@@ -68,19 +68,19 @@ const Contact = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: 'Email',
-      details: 'nayan@example.com',
-      link: 'mailto:nayan@example.com'
+      details: 'nayan.kumar.cybersec@gmail.com',
+      link: 'mailto:nayan.kumar.cybersec@gmail.com'
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: 'Phone',
-      details: '+91 XXXXX XXXXX',
-      link: 'tel:+91XXXXXXXXX'
+      details: '+91 98765 43210',
+      link: 'tel:+919876543210'
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: 'Location',
-      details: 'India',
+      details: 'Greater Noida, India',
       link: '#'
     }
   ];
@@ -89,19 +89,19 @@ const Contact = () => {
     {
       icon: <Github className="w-6 h-6" />,
       title: 'GitHub',
-      url: 'https://github.com',
+      url: 'https://github.com/nayankumar-cybersec',
       color: 'hover:text-foreground'
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
       title: 'LinkedIn',
-      url: 'https://linkedin.com',
+      url: 'https://linkedin.com/in/nayan-kumar-cybersec',
       color: 'hover:text-cyber-blue'
     },
     {
       icon: <Twitter className="w-6 h-6" />,
       title: 'Twitter',
-      url: 'https://twitter.com',
+      url: 'https://twitter.com/nayan_cybersec',
       color: 'hover:text-cyan-400'
     }
   ];
