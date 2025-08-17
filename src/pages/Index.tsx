@@ -1,90 +1,47 @@
 import { motion } from 'framer-motion';
-import ThreeBackground from '@/components/ThreeBackground';
-import AnimatedNav from '@/components/AnimatedNav';
-import EnhancedHero from '@/components/EnhancedHero';
-import EnhancedAbout from '@/components/EnhancedAbout';
-import EnhancedSkills from '@/components/EnhancedSkills';
-import EnhancedProjects from '@/components/EnhancedProjects';
-import ComponentShowcase from '@/components/ComponentShowcase';
+import FullscreenNav from '@/components/FullscreenNav';
+import CuratedHero from '@/components/CuratedHero';
+import CuratedProjects from '@/components/CuratedProjects';
 import SkillsChart from '@/components/SkillsChart';
+import BlogSection from '@/components/BlogSection';
+import ComponentShowcase from '@/components/ComponentShowcase';
 import Contact from '@/components/Contact';
 import EnhancedFooter from '@/components/EnhancedFooter';
 
 const Index = () => {
   return (
     <motion.div 
-      className="min-h-screen bg-background text-foreground relative overflow-hidden"
+      className="min-h-screen bg-background text-foreground relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <ThreeBackground />
-      <AnimatedNav />
+      <FullscreenNav />
       
-      <main className="relative z-10">
+      <main className="relative">
         <section id="home">
-          <EnhancedHero />
+          <CuratedHero />
         </section>
         
-        <motion.section 
-          id="about"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <EnhancedAbout />
-        </motion.section>
+        <section id="curated-projects">
+          <CuratedProjects />
+        </section>
         
-        <motion.section 
-          id="skills"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <EnhancedSkills />
-        </motion.section>
-        
-        <motion.section 
-          id="projects"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <EnhancedProjects />
-        </motion.section>
-        
-        <motion.section 
-          id="skills-chart"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
+        <section id="skills-chart">
           <SkillsChart />
-        </motion.section>
+        </section>
         
-        <motion.section 
-          id="showcase"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
+        <section id="blog">
+          <BlogSection />
+        </section>
+        
+        <section id="showcase">
           <ComponentShowcase />
-        </motion.section>
+        </section>
         
-        <motion.section 
-          id="contact"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
+        <section id="contact">
           <Contact />
-        </motion.section>
+        </section>
         
         <EnhancedFooter />
       </main>
