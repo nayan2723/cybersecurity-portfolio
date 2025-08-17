@@ -5,6 +5,7 @@ import EnhancedHero from '@/components/EnhancedHero';
 import EnhancedAbout from '@/components/EnhancedAbout';
 import EnhancedSkills from '@/components/EnhancedSkills';
 import EnhancedProjects from '@/components/EnhancedProjects';
+import ComponentShowcase from '@/components/ComponentShowcase';
 import Contact from '@/components/Contact';
 import EnhancedFooter from '@/components/EnhancedFooter';
 
@@ -52,6 +53,16 @@ const Index = () => {
           viewport={{ once: true }}
         >
           <EnhancedProjects />
+        </motion.section>
+        
+        <motion.section 
+          id="showcase"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <ComponentShowcase />
         </motion.section>
         
         <motion.section 
