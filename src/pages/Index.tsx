@@ -6,6 +6,7 @@ import EnhancedAbout from '@/components/EnhancedAbout';
 import EnhancedSkills from '@/components/EnhancedSkills';
 import EnhancedProjects from '@/components/EnhancedProjects';
 import ComponentShowcase from '@/components/ComponentShowcase';
+import SkillsChart from '@/components/SkillsChart';
 import Contact from '@/components/Contact';
 import EnhancedFooter from '@/components/EnhancedFooter';
 
@@ -53,6 +54,16 @@ const Index = () => {
           viewport={{ once: true }}
         >
           <EnhancedProjects />
+        </motion.section>
+        
+        <motion.section 
+          id="skills-chart"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <SkillsChart />
         </motion.section>
         
         <motion.section 

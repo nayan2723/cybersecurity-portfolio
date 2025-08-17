@@ -256,3 +256,17 @@ All colors MUST be HSL.
 .animate-hologram {
   animation: hologram 2s ease-in-out infinite;
 }
+
+/* Swiper Styles */
+.project-swiper .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.3);
+  width: 12px;
+  height: 12px;
+}
+.project-swiper .swiper-pagination-bullet-active {
+  background: hsl(var(--primary));
+}
+.project-swiper .swiper-button-next,
+.project-swiper .swiper-button-prev {
+  color: hsl(var(--primary));
+}
