@@ -2,11 +2,11 @@ import { motion } from 'framer-motion';
 import ThreeBackground from '@/components/ThreeBackground';
 import AnimatedNav from '@/components/AnimatedNav';
 import EnhancedHero from '@/components/EnhancedHero';
-import About from '@/components/About';
+import EnhancedAbout from '@/components/EnhancedAbout';
 import EnhancedSkills from '@/components/EnhancedSkills';
-import Projects from '@/components/Projects';
+import EnhancedProjects from '@/components/EnhancedProjects';
 import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
+import EnhancedFooter from '@/components/EnhancedFooter';
 
 const Index = () => {
   return (
@@ -31,7 +31,7 @@ const Index = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <About />
+          <EnhancedAbout />
         </motion.section>
         
         <motion.section 
@@ -51,7 +51,7 @@ const Index = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <Projects />
+          <EnhancedProjects />
         </motion.section>
         
         <motion.section 
@@ -64,7 +64,7 @@ const Index = () => {
           <Contact />
         </motion.section>
         
-        <Footer />
+        <EnhancedFooter />
       </main>
     </motion.div>
   );

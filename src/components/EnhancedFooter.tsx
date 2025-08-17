@@ -1,0 +1,238 @@
+import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { Github, Linkedin, Mail, Heart, Code, Terminal } from 'lucide-react';
+
+const EnhancedFooter = () => {
+  const currentYear = new Date().getFullYear();
+
+  useEffect(() => {
+    // Add terminal cursor blink animation
+    const cursor = document.querySelector('.terminal-cursor');
+    if (cursor) {
+      setInterval(() => {
+        cursor.classList.toggle('opacity-0');
+      }, 500);
+    }
+  }, []);
+
+  const socialLinks = [
+    {
+      icon: <Github className="w-5 h-5" />,
+      href: "https://github.com/nayankumar-cybersec",
+      label: "GitHub",
+      hoverColor: "hover:text-cyber-green"
+    },
+    {
+      icon: <Linkedin className="w-5 h-5" />,
+      href: "https://linkedin.com/in/nayan-kumar-cybersec",
+      label: "LinkedIn",
+      hoverColor: "hover:text-cyber-blue"
+    },
+    {
+      icon: <Mail className="w-5 h-5" />,
+      href: "mailto:nayan.kumar.cybersec@gmail.com",
+      label: "Email",
+      hoverColor: "hover:text-neon-pink"
+    }
+  ];
+
+  return (
+    <footer className="bg-card/50 backdrop-blur-sm border-t border-border/50 relative overflow-hidden">
+      {/* Animated background */}
+      <div className="absolute inset-0 opacity-5">
+        {Array.from({ length: 20 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-cyber-green rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              scale: [0, 1, 0],
+              opacity: [0, 0.6, 0],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-6xl mx-auto px-6 py-12 relative z-10">
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
+          {/* Left: Branding */}
+          <motion.div 
+            className="space-y-4"
+            data-aos="fade-right"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="flex items-center gap-2">
+              <motion.div
+                className="p-2 rounded-lg cyber-card"
+                animate={{ 
+                  boxShadow: [
+                    "0 0 0 rgba(0, 255, 65, 0)",
+                    "0 0 20px rgba(0, 255, 65, 0.3)",
+                    "0 0 0 rgba(0, 255, 65, 0)"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <Terminal className="w-5 h-5 text-cyber-green" />
+              </motion.div>
+              <span className="text-lg font-bold font-mono">
+                <span className="text-cyber-green">$</span> nayan.dev
+              </span>
+            </div>
+            <p className="text-foreground/70 text-sm animate__animated animate__fadeInLeft">
+              Building secure digital solutions with passion for cybersecurity and innovative development.
+            </p>
+            <div className="terminal-text text-primary font-mono text-sm flex items-center">
+              <span className="text-cyber-green">$</span>
+              <span className="ml-2">status: online</span>
+              <span className="ml-2 terminal-cursor">|</span>
+            </div>
+          </motion.div>
+
+          {/* Center: Quick Links */}
+          <motion.div 
+            className="space-y-4"
+            data-aos="fade-up"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <h3 className="text-lg font-semibold text-primary animate__animated animate__fadeInDown">
+              Quick Links
+            </h3>
+            <div className="space-y-2">
+              {['Home', 'About', 'Skills', 'Projects', 'Contact'].map((item, index) => (
+                <motion.a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="block text-foreground/70 hover:text-primary transition-colors text-sm magictime slideRight"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                  whileHover={{ x: 5 }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.getElementById(item.toLowerCase());
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                >
+                  <span className="text-cyber-green mr-2">&gt;</span>
+                  {item}
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right: Social & Contact */}
+          <motion.div 
+            className="space-y-4"
+            data-aos="fade-left"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <h3 className="text-lg font-semibold text-primary animate__animated animate__fadeInDown">
+              Connect With Me
+            </h3>
+            <div className="flex gap-4">
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`p-3 cyber-card ${social.hoverColor} transition-all duration-300 animate__animated animate__zoomIn`}
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                  whileHover={{ 
+                    scale: 1.1, 
+                    rotate: 5,
+                    boxShadow: "0 0 20px rgba(0, 255, 65, 0.3)"
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  title={social.label}
+                >
+                  {social.icon}
+                </motion.a>
+              ))}
+            </div>
+            <div className="text-sm text-foreground/60 space-y-1">
+              <div className="flex items-center gap-2 animate__animated animate__fadeInUp">
+                <Code className="w-4 h-4 text-cyber-blue" />
+                <span>Always coding something cool</span>
+              </div>
+              <div className="flex items-center gap-2 animate__animated animate__fadeInUp animate__delay-1s">
+                <Terminal className="w-4 h-4 text-cyber-green" />
+                <span>Securing the digital world</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Bottom Bar */}
+        <motion.div 
+          className="border-t border-border/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+          data-aos="fade-up"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          <div className="text-sm text-foreground/60 animate__animated animate__fadeInLeft">
+            <span>© {currentYear} Nayan Kumar. Crafted with </span>
+            <motion.span
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1, repeat: Infinity }}
+              className="inline-block text-red-500"
+            >
+              <Heart className="w-4 h-4 inline" />
+            </motion.span>
+            <span> and lots of ☕</span>
+          </div>
+          
+          <div className="text-sm text-foreground/60 font-mono animate__animated animate__fadeInRight">
+            <span className="text-cyber-green">Built with:</span>
+            <span className="ml-2">React + TypeScript + Three.js + ❤️</span>
+          </div>
+        </motion.div>
+
+        {/* Matrix rain effect */}
+        <div className="absolute bottom-0 left-0 right-0 h-16 overflow-hidden opacity-10">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute text-cyber-green font-mono text-xs"
+              style={{ left: `${i * 10}%` }}
+              animate={{
+                y: ['-100%', '200%'],
+                opacity: [0, 1, 0]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "linear",
+                delay: i * 0.2
+              }}
+            >
+              {Array.from({ length: 5 }).map((_, j) => (
+                <div key={j}>
+                  {Math.random() > 0.5 ? '1' : '0'}
+                </div>
+              ))}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default EnhancedFooter;
