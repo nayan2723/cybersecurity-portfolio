@@ -2,6 +2,10 @@ import { motion } from 'framer-motion';
 import FullscreenNav from '@/components/FullscreenNav';
 import CuratedHero from '@/components/CuratedHero';
 import CuratedProjects from '@/components/CuratedProjects';
+import QuirkyAbout from '@/components/QuirkyAbout';
+import MiniGames from '@/components/MiniGames';
+import EasterEggs from '@/components/EasterEggs';
+import AnimatedMascot from '@/components/AnimatedMascot';
 import SkillsChart from '@/components/SkillsChart';
 import BlogSection from '@/components/BlogSection';
 import ComponentShowcase from '@/components/ComponentShowcase';
@@ -27,6 +31,18 @@ const Index = () => {
           <CuratedProjects />
         </section>
         
+        <section id="about">
+          <QuirkyAbout />
+        </section>
+        
+        <section id="games">
+          <MiniGames />
+        </section>
+        
+        <section id="easter-eggs">
+          <EasterEggs />
+        </section>
+        
         <section id="skills-chart">
           <SkillsChart />
         </section>
@@ -44,6 +60,7 @@ const Index = () => {
         </section>
         
         <EnhancedFooter />
+        <AnimatedMascot />
       </main>
     </motion.div>
   );
