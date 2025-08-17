@@ -8,89 +8,63 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
+    /* Cybersecurity Portfolio Theme */
+    --background: 240 10% 3.9%;
+    --foreground: 120 100% 85%;
+    
+    --card: 240 10% 5%;
+    --card-foreground: 120 100% 85%;
+    
+    --popover: 240 10% 5%;
+    --popover-foreground: 120 100% 85%;
+    
+    --primary: 120 100% 50%;
+    --primary-foreground: 240 10% 3.9%;
+    
+    --secondary: 240 8% 8%;
+    --secondary-foreground: 120 80% 70%;
+    
+    --muted: 240 8% 8%;
+    --muted-foreground: 120 20% 50%;
+    
+    --accent: 193 100% 50%;
+    --accent-foreground: 240 10% 3.9%;
+    
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    --border: 240 8% 12%;
+    --input: 240 8% 8%;
+    --ring: 120 100% 50%;
+    
+    --radius: 0.75rem;
+    
+    /* Custom cyber colors */
+    --cyber-green: 120 100% 50%;
+    --cyber-blue: 193 100% 50%;
+    --cyber-purple: 271 91% 65%;
+    --neon-pink: 330 100% 70%;
+    --dark-bg: 240 10% 3.9%;
+    --card-bg: 240 10% 5%;
+    --glass-bg: 240 10% 8%;
+    
+    /* Gradients */
+    --gradient-cyber: linear-gradient(135deg, hsl(var(--cyber-green) / 0.8), hsl(var(--cyber-blue) / 0.8));
+    --gradient-dark: linear-gradient(135deg, hsl(var(--dark-bg)), hsl(var(--card-bg)));
+    --gradient-glow: linear-gradient(45deg, hsl(var(--cyber-green) / 0.2), hsl(var(--cyber-blue) / 0.2));
+    
+    /* Shadows & Effects */
+    --shadow-cyber: 0 0 20px hsl(var(--cyber-green) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--cyber-blue) / 0.2);
+    --blur-glass: blur(10px);
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Dark mode uses same cyber theme */
+    --background: 240 10% 3.9%;
+    --foreground: 120 100% 85%;
+    --card: 240 10% 5%;
+    --card-foreground: 120 100% 85%;
   }
 }
 
@@ -101,5 +75,131 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', 'JetBrains Mono', monospace;
+    overflow-x: hidden;
   }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .cyber-card {
+    @apply bg-card/50 backdrop-blur-sm border border-border/50 rounded-lg;
+    background: linear-gradient(135deg, hsl(var(--card-bg) / 0.8), hsl(var(--glass-bg) / 0.6));
+    box-shadow: 0 8px 32px hsl(var(--cyber-green) / 0.1);
+  }
+  
+  .cyber-button {
+    @apply relative overflow-hidden px-6 py-3 rounded-md font-medium transition-all duration-300;
+    background: linear-gradient(45deg, hsl(var(--cyber-green)), hsl(var(--cyber-blue)));
+    color: hsl(var(--dark-bg));
+    text-shadow: none;
+  }
+  
+  .cyber-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px hsl(var(--cyber-green) / 0.4);
+  }
+  
+  .terminal-text {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    @apply text-primary;
+  }
+  
+  .glitch-effect {
+    position: relative;
+  }
+  
+  .glitch-effect::before,
+  .glitch-effect::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .glitch-effect::before {
+    animation: glitch-1 0.5s infinite;
+    color: hsl(var(--cyber-blue));
+    z-index: -1;
+  }
+  
+  .glitch-effect::after {
+    animation: glitch-2 0.5s infinite;
+    color: hsl(var(--neon-pink));
+    z-index: -2;
+  }
+  
+  .particle-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -10;
+  }
+}
+
+@layer utilities {
+  .text-cyber-green {
+    color: hsl(var(--cyber-green));
+  }
+  
+  .text-cyber-blue {
+    color: hsl(var(--cyber-blue));
+  }
+  
+  .bg-cyber-gradient {
+    background: var(--gradient-cyber);
+  }
+  
+  .bg-glass {
+    background: hsl(var(--glass-bg) / 0.8);
+    backdrop-filter: var(--blur-glass);
+  }
+}
+
+@keyframes glitch-1 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-2px, 2px); }
+  80% { transform: translate(-2px, -2px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }
