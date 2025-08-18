@@ -239,7 +239,7 @@ const CuratedHero = () => {
             size="lg" 
             variant="outline" 
             className="hero-cta"
-            onClick={() => window.open('/resume.pdf', '_blank')}
+            onClick={() => window.open('/Nayan_resume_final.pdf', '_blank')}
           >
             <Download className="w-4 h-4 mr-2" />
             Download Resume
