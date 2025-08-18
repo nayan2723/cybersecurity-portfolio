@@ -205,11 +205,9 @@ const FullscreenNav = () => {
                 </div>
 
                 {/* Download Button */}
-                <Button variant="primary" size="lg" className="group" asChild>
-                  <a href="/Nayan_resume_final.pdf" download="Nayan_Kshitij_Resume.pdf">
-                    <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
-                    Download Resume
-                  </a>
+                <Button variant="primary" size="lg" className="group">
+                  <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+                  Download Resume
                 </Button>
 
                 {/* Contact Info */}
