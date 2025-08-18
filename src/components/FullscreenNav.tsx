@@ -98,7 +98,7 @@ const FullscreenNav = () => {
             variant="ghost"
             size="sm"
             onClick={() => setIsOpen(!isOpen)}
-            className="relative z-50"
+            className="relative z-50 md:hidden"
           >
             <motion.div
               animate={{ rotate: isOpen ? 180 : 0 }}
