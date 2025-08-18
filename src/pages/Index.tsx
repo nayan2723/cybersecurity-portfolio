@@ -6,7 +6,7 @@ import QuirkyAbout from '@/components/QuirkyAbout';
 import MiniGames from '@/components/MiniGames';
 import EasterEggs from '@/components/EasterEggs';
 import AnimatedMascot from '@/components/AnimatedMascot';
-import SkillsChart from '@/components/SkillsChart';
+import EnhancedSkills from '@/components/EnhancedSkills';
 import BlogSection from '@/components/BlogSection';
 import ComponentShowcase from '@/components/ComponentShowcase';
 import Contact from '@/components/Contact';
@@ -45,8 +45,8 @@ const Index = () => {
           <EasterEggs />
         </section>
         
-        <section id="skills-chart">
-          <SkillsChart />
+        <section id="skills">
+          <EnhancedSkills />
         </section>
         
         <section id="contact">
