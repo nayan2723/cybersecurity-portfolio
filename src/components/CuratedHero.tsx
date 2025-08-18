@@ -235,9 +235,11 @@ const CuratedHero = () => {
             View My Work
             <ArrowDown className="w-4 h-4 ml-2 group-hover:animate-bounce" />
           </Button>
-          <Button size="lg" variant="outline" className="hero-cta">
-            <Download className="w-4 h-4 mr-2" />
-            Download Resume
+          <Button size="lg" variant="outline" className="hero-cta" asChild>
+            <a href="/Nayan_resume_final.pdf" download="Nayan_Kshitij_Resume.pdf">
+              <Download className="w-4 h-4 mr-2" />
+              Download Resume
+            </a>
           </Button>
         </motion.div>
 

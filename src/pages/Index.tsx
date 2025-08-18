@@ -6,9 +6,7 @@ import QuirkyAbout from '@/components/QuirkyAbout';
 import MiniGames from '@/components/MiniGames';
 import EasterEggs from '@/components/EasterEggs';
 import AnimatedMascot from '@/components/AnimatedMascot';
-import SkillsChart from '@/components/SkillsChart';
 import BlogSection from '@/components/BlogSection';
-import ComponentShowcase from '@/components/ComponentShowcase';
 import Contact from '@/components/Contact';
 import EnhancedFooter from '@/components/EnhancedFooter';
 import ThemeSwitch from '@/components/ThemeSwitch';
@@ -45,16 +43,8 @@ const Index = () => {
           <EasterEggs />
         </section>
         
-        <section id="skills-chart">
-          <SkillsChart />
-        </section>
-        
         <section id="blog">
           <BlogSection />
-        </section>
-        
-        <section id="showcase">
-          <ComponentShowcase />
         </section>
         
         <section id="contact">
