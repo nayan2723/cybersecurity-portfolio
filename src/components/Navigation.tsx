@@ -60,7 +60,7 @@ const Navigation = () => {
           <Button 
             variant="outline" 
             className="border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground"
-            onClick={() => window.open('#', '_blank')}
+            onClick={() => window.open('/resume.pdf', '_blank')}
           >
             Resume
           </Button>

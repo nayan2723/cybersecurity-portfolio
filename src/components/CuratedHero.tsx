@@ -235,7 +235,12 @@ const CuratedHero = () => {
             View My Work
             <ArrowDown className="w-4 h-4 ml-2 group-hover:animate-bounce" />
           </Button>
-          <Button size="lg" variant="outline" className="hero-cta">
+          <Button 
+            size="lg" 
+            variant="outline" 
+            className="hero-cta"
+            onClick={() => window.open('/resume.pdf', '_blank')}
+          >
             <Download className="w-4 h-4 mr-2" />
             Download Resume
           </Button>

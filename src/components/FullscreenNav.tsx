@@ -87,7 +87,11 @@ const FullscreenNav = () => {
                 {item.label}
               </button>
             ))}
-            <Button size="sm" variant="outline">
+            <Button 
+              size="sm" 
+              variant="outline"
+              onClick={() => window.open('/resume.pdf', '_blank')}
+            >
               <Download className="w-4 h-4 mr-2" />
               Resume
             </Button>
@@ -205,7 +209,12 @@ const FullscreenNav = () => {
                 </div>
 
                 {/* Download Button */}
-                <Button variant="primary" size="lg" className="group">
+                <Button 
+                  variant="primary" 
+                  size="lg" 
+                  className="group"
+                  onClick={() => window.open('/resume.pdf', '_blank')}
+                >
                   <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
                   Download Resume
                 </Button>
