@@ -100,12 +100,12 @@ const CuratedHero = () => {
           animate={{ scale: 1 }}
           transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
         >
-          <div className="hero-avatar w-32 h-32 mx-auto relative">
-            <div className="absolute inset-0 bg-cyber-gradient rounded-full animate-spin-slow"></div>
-            <div className="absolute inset-1 bg-background rounded-full flex items-center justify-center">
-              <div className="text-6xl">🛡️</div>
-            </div>
-          </div>
+           <div className="hero-avatar w-32 h-32 mx-auto relative" role="img" aria-label="Cybersecurity shield avatar">
+             <div className="absolute inset-0 bg-cyber-gradient rounded-full animate-spin-slow"></div>
+             <div className="absolute inset-1 bg-background rounded-full flex items-center justify-center">
+               <div className="text-6xl" aria-hidden="true">🛡️</div>
+             </div>
+           </div>
         </motion.div>
 
         {/* Main Title */}

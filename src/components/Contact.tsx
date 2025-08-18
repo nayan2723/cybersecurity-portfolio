@@ -128,16 +128,18 @@ const Contact = () => {
                       control={form.control}
                       name="name"
                       render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <Input
-                              placeholder="Your Name"
-                              className="bg-background/50 border-border/50 focus:border-primary"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
+                         <FormItem>
+                           <FormControl>
+                             <Input
+                               placeholder="Your Name"
+                               className="bg-background/50 border-border/50 focus:border-primary"
+                               aria-label="Full name"
+                               autoComplete="name"
+                               {...field}
+                             />
+                           </FormControl>
+                           <FormMessage />
+                         </FormItem>
                       )}
                     />
                     
@@ -145,17 +147,19 @@ const Contact = () => {
                       control={form.control}
                       name="email"
                       render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <Input
-                              type="email"
-                              placeholder="Your Email"
-                              className="bg-background/50 border-border/50 focus:border-primary"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
+                         <FormItem>
+                           <FormControl>
+                             <Input
+                               type="email"
+                               placeholder="Your Email"
+                               className="bg-background/50 border-border/50 focus:border-primary"
+                               aria-label="Email address"
+                               autoComplete="email"
+                               {...field}
+                             />
+                           </FormControl>
+                           <FormMessage />
+                         </FormItem>
                       )}
                     />
                   </div>
@@ -164,16 +168,17 @@ const Contact = () => {
                     control={form.control}
                     name="subject"
                     render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <Input
-                            placeholder="Subject"
-                            className="bg-background/50 border-border/50 focus:border-primary"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
+                       <FormItem>
+                         <FormControl>
+                           <Input
+                             placeholder="Subject"
+                             className="bg-background/50 border-border/50 focus:border-primary"
+                             aria-label="Message subject"
+                             {...field}
+                           />
+                         </FormControl>
+                         <FormMessage />
+                       </FormItem>
                     )}
                   />
                   
@@ -181,17 +186,18 @@ const Contact = () => {
                     control={form.control}
                     name="message"
                     render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <Textarea
-                            placeholder="Your Message"
-                            rows={6}
-                            className="bg-background/50 border-border/50 focus:border-primary"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
+                       <FormItem>
+                         <FormControl>
+                           <Textarea
+                             placeholder="Your Message"
+                             rows={6}
+                             className="bg-background/50 border-border/50 focus:border-primary"
+                             aria-label="Message content"
+                             {...field}
+                           />
+                         </FormControl>
+                         <FormMessage />
+                       </FormItem>
                     )}
                   />
                   

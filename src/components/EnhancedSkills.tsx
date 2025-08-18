@@ -121,7 +121,7 @@ const EnhancedSkills = () => {
               animationDelay: `${Math.random() * 3}s`
             }}
             animate={{
-              y: [0, window.innerHeight + 20],
+              y: [0, 800],
               opacity: [0, 1, 0]
             }}
             transition={{
@@ -167,7 +167,11 @@ const EnhancedSkills = () => {
               <div className="p-6">
                 <div className="flex items-center gap-4 mb-6">
                   <motion.div 
-                    className={`p-3 rounded-lg bg-${category.color}/20 text-${category.color} group-hover:animate-cyberpulse`}
+                    className={`p-3 rounded-lg group-hover:animate-cyberpulse ${
+                      category.color === 'cyber-green' ? 'bg-cyber-green/20 text-cyber-green' :
+                      category.color === 'cyber-blue' ? 'bg-cyber-blue/20 text-cyber-blue' :
+                      'bg-cyber-pink/20 text-cyber-pink'
+                    }`}
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.6 }}
                   >
@@ -196,7 +200,11 @@ const EnhancedSkills = () => {
                         <div className="h-2 bg-muted rounded-full overflow-hidden">
                           <div
                             ref={(el) => progressRefs.current[progressIndex] = el}
-                            className={`h-full bg-gradient-to-r from-${category.color} to-${category.color}/60 rounded-full relative`}
+                            className={`h-full rounded-full relative ${
+                              category.color === 'cyber-green' ? 'bg-gradient-to-r from-cyber-green to-cyber-green/60' :
+                              category.color === 'cyber-blue' ? 'bg-gradient-to-r from-cyber-blue to-cyber-blue/60' :
+                              'bg-gradient-to-r from-cyber-pink to-cyber-pink/60'
+                            }`}
                             style={{ width: '0%' }}
                           >
                             <motion.div

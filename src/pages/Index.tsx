@@ -12,15 +12,19 @@ import ComponentShowcase from '@/components/ComponentShowcase';
 import Contact from '@/components/Contact';
 import EnhancedFooter from '@/components/EnhancedFooter';
 import ThemeSwitch from '@/components/ThemeSwitch';
+import SmoothScroll from '@/components/SmoothScroll';
+import SEOHead from '@/components/SEOHead';
 
 const Index = () => {
   return (
-    <motion.div 
-      className="min-h-screen bg-background text-foreground relative"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-    >
+    <SEOHead>
+      <motion.div 
+        className="min-h-screen bg-background text-foreground relative"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+      <SmoothScroll />
       <FullscreenNav />
       <ThemeSwitch />
       
@@ -56,7 +60,8 @@ const Index = () => {
         <EnhancedFooter />
         <AnimatedMascot />
       </main>
-    </motion.div>
+      </motion.div>
+    </SEOHead>
   );
 };
 
