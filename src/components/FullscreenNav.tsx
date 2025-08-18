@@ -73,7 +73,7 @@ const FullscreenNav = () => {
             className="text-xl font-bold text-primary"
             whileHover={{ scale: 1.05 }}
           >
-            Alex Chen
+            Nayan Dev
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -212,7 +212,7 @@ const FullscreenNav = () => {
 
                 {/* Contact Info */}
                 <p className="text-foreground/60">
-                  alex@example.com • Available for freelance
+                  nayankshitij128@gmail.com • Available for work
                 </p>
               </motion.div>
             </div>
