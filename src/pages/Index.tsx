@@ -49,6 +49,10 @@ const Index = () => {
           <SkillsChart />
         </section>
         
+        <section id="contact">
+          <Contact />
+        </section>
+        
         <EnhancedFooter />
         <AnimatedMascot />
       </main>
