@@ -46,22 +46,6 @@ All colors MUST be HSL.
     --neon-pink: 330 81% 60%;
     --neon-orange: 25 95% 53%;
     --electric-blue: 199 95% 50%;
-    
-    /* Additional theme colors for compatibility */
-    --dark-bg: 222 16% 8%;
-    --card-bg: 0 0% 100%;
-    --glass-bg: 210 40% 96%;
-    
-    /* Gradients */
-    --gradient-cyber: linear-gradient(135deg, hsl(var(--cyber-green) / 0.8), hsl(var(--cyber-blue) / 0.8));
-    --gradient-neon: linear-gradient(45deg, hsl(var(--neon-pink) / 0.6), hsl(var(--cyber-purple) / 0.6));
-    --gradient-dark: linear-gradient(135deg, hsl(var(--background)), hsl(var(--card)));
-    --gradient-glow: linear-gradient(45deg, hsl(var(--cyber-green) / 0.2), hsl(var(--cyber-blue) / 0.2));
-    
-    /* Shadows & effects */
-    --shadow-cyber: 0 0 20px hsl(var(--cyber-green) / 0.3);
-    --shadow-glow: 0 0 40px hsl(var(--cyber-blue) / 0.2);
-    --shadow-neon: 0 0 30px hsl(var(--neon-pink) / 0.4);
   }
 
   .dark {
@@ -101,22 +85,6 @@ All colors MUST be HSL.
     --neon-pink: 330 81% 70%;
     --neon-orange: 25 95% 63%;
     --electric-blue: 199 95% 60%;
-    
-    /* Additional theme colors for compatibility */
-    --dark-bg: 222 16% 8%;
-    --card-bg: 222 16% 11%;
-    --glass-bg: 217 33% 17%;
-    
-    /* Gradients */
-    --gradient-cyber: linear-gradient(135deg, hsl(var(--cyber-green) / 0.8), hsl(var(--cyber-blue) / 0.8));
-    --gradient-neon: linear-gradient(45deg, hsl(var(--neon-pink) / 0.6), hsl(var(--cyber-purple) / 0.6));
-    --gradient-dark: linear-gradient(135deg, hsl(var(--background)), hsl(var(--card)));
-    --gradient-glow: linear-gradient(45deg, hsl(var(--cyber-green) / 0.2), hsl(var(--cyber-blue) / 0.2));
-    
-    /* Shadows & effects */
-    --shadow-cyber: 0 0 20px hsl(var(--cyber-green) / 0.3);
-    --shadow-glow: 0 0 40px hsl(var(--cyber-blue) / 0.2);
-    --shadow-neon: 0 0 30px hsl(var(--neon-pink) / 0.4);
   }
 
   .hacker {
