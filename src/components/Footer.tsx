@@ -46,7 +46,7 @@ const Footer = () => {
 
         <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center">
           <p className="text-foreground/60 text-sm">
-            © 2024 Nayan Kumar. All rights reserved.
+            © 2024 Nayan Kshitij. All rights reserved.
           </p>
           <p className="text-foreground/60 text-sm mt-2 md:mt-0">
             Built with ❤️ and lots of ☕

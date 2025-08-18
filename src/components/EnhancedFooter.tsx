@@ -187,7 +187,7 @@ const EnhancedFooter = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           <div className="text-sm text-foreground/60 animate__animated animate__fadeInLeft">
-            <span>© {currentYear} Nayan Kumar. Crafted with </span>
+            <span>© {currentYear} Nayan Kshitij. Crafted with </span>
             <motion.span
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1, repeat: Infinity }}

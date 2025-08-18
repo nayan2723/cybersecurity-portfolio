@@ -117,7 +117,7 @@ const Hero = () => {
             <div className="w-80 h-96 rounded-2xl overflow-hidden cyber-card">
               <img
                 src="https://i.ibb.co/LhYB87c6/Urban-Stillness-Amidst-Evening-Rush.png"
-                alt="Nayan Kumar - Cybersecurity enthusiast and computer science student"
+                alt="Nayan Kshitij - Cybersecurity enthusiast and computer science student"
                 className="w-full h-full object-cover"
               />
             </div>

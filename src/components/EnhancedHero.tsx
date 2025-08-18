@@ -289,7 +289,7 @@ const EnhancedHero = () => {
             >
               <img
                 src="https://i.ibb.co/LhYB87c6/Urban-Stillness-Amidst-Evening-Rush.png"
-                alt="Nayan Kumar - Cybersecurity enthusiast and computer science student"
+                alt="Nayan Kshitij - Cybersecurity enthusiast and computer science student"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               
