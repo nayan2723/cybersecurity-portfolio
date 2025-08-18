@@ -169,38 +169,38 @@ const SkillsChart = () => {
   const skillCategories = [
     {
       icon: <Shield className="w-6 h-6" />,
-      title: "Security Testing",
-      skills: ["OWASP Top 10", "Burp Suite", "Metasploit", "Nmap"],
+      title: "Cybersecurity Tools",
+      skills: ["Burp Suite", "Wireshark", "Nmap", "Metasploit"],
       color: "text-cyber-green"
     },
     {
       icon: <Code className="w-6 h-6" />,
-      title: "Development",
-      skills: ["React", "Node.js", "Python", "TypeScript"],
+      title: "Programming (85%)",
+      skills: ["Python", "JavaScript/React", "C++", "SQL"],
       color: "text-cyber-blue"
     },
     {
       icon: <Database className="w-6 h-6" />,
-      title: "Database Security",
-      skills: ["SQL Injection", "NoSQL", "PostgreSQL", "MongoDB"],
+      title: "Pentesting & Security",
+      skills: ["Web App Security", "Vulnerability Assessment", "Secure Coding", "TryHackMe"],
       color: "text-neon-pink"
     },
     {
       icon: <Network className="w-6 h-6" />,
-      title: "Network Security",
-      skills: ["Wireshark", "Nessus", "pfSense", "IDS/IPS"],
+      title: "Tools & Platforms",
+      skills: ["John the Ripper", "Aircrack-ng", "Docker", "Kali Linux"],
       color: "text-neon-yellow"
     },
     {
       icon: <Lock className="w-6 h-6" />,
-      title: "Cryptography",
-      skills: ["AES", "RSA", "PKI", "TLS/SSL"],
+      title: "Certifications",
+      skills: ["Google Cybersecurity (In Progress)", "CompTIA Security+ (Planned)"],
       color: "text-purple-400"
     },
     {
       icon: <Brain className="w-6 h-6" />,
-      title: "AI Security",
-      skills: ["Adversarial ML", "Privacy", "Federated Learning", "Bias Detection"],
+      title: "Academic Focus",
+      skills: ["B.Tech CSE - Bennett University", "Cybersecurity Specialization", "Full-Stack Projects", "HackTheBox"],
       color: "text-orange-400"
     }
   ];

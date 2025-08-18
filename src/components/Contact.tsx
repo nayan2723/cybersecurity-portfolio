@@ -68,14 +68,14 @@ const Contact = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: 'Email',
-      details: 'nayan.kumar.cybersec@gmail.com',
-      link: 'mailto:nayan.kumar.cybersec@gmail.com'
+      details: 'nayankshitij128@gmail.com',
+      link: 'mailto:nayankshitij128@gmail.com'
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: 'Phone',
-      details: '+91 98765 43210',
-      link: 'tel:+919876543210'
+      details: '+91-9100606434',
+      link: 'tel:+919100606434'
     },
     {
       icon: <MapPin className="w-6 h-6" />,
@@ -89,20 +89,14 @@ const Contact = () => {
     {
       icon: <Github className="w-6 h-6" />,
       title: 'GitHub',
-      url: 'https://github.com/nayankumar-cybersec',
+      url: 'https://github.com/nayan2723',
       color: 'hover:text-foreground'
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
       title: 'LinkedIn',
-      url: 'https://linkedin.com/in/nayan-kumar-cybersec',
+      url: 'https://www.linkedin.com/in/nayan-kshitij',
       color: 'hover:text-cyber-blue'
-    },
-    {
-      icon: <Twitter className="w-6 h-6" />,
-      title: 'Twitter',
-      url: 'https://twitter.com/nayan_cybersec',
-      color: 'hover:text-cyan-400'
     }
   ];
 

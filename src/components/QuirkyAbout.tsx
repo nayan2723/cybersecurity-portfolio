@@ -19,49 +19,41 @@ import {
 
 const QuirkyAbout = () => {
   const [selectedFail, setSelectedFail] = useState<number | null>(null);
-  const [coffeCount, setCoffeCount] = useState(1247);
-  const [bugsSquashed, setBugsSquashed] = useState(9999);
+  const [coffeCount, setCoffeCount] = useState(650);
+  const [bugsSquashed, setBugsSquashed] = useState(40);
 
   const epicFails = [
     {
-      year: "2019",
-      title: "The Great Database Disaster",
-      description: "Accidentally deleted the entire user table during my first internship. Spent 14 hours straight recovering it. Now I triple-check EVERY SQL query.",
-      lesson: "Always backup before you f*** up 😅",
+      year: "2022",
+      title: "The Great OS Deletion",
+      description: "Deleted my OS and panicked the shit outta myself... reinstalled it somehow. That was a wild 8-hour adventure.",
+      lesson: "Always backup your system before experimenting 💀",
       icon: <Skull className="w-5 h-5" />,
       mood: "panic"
     },
     {
-      year: "2020",
-      title: "WiFi Password Incident",
-      description: "Tried to crack my own WiFi password for a security project. Locked myself out for 3 days. Had to use neighbor's WiFi to submit the assignment.",
-      lesson: "Know when to stop 'testing' 🤦‍♂️",
+      year: "2023",
+      title: "Pen Drive Format Fiasco",
+      description: "Accidentally formatted my pen drive while setting up Kali. Lost all my assignments. Thank god for cloud backups!",
+      lesson: "Backups are life savers 🤦‍♂️",
       icon: <Bug className="w-5 h-5" />,
       mood: "embarrassed"
     },
     {
-      year: "2021", 
-      title: "Assembly Code Nightmare",
-      description: "Spent 6 hours debugging assembly code. The issue? I forgot a single semicolon. My brain literally blue-screened.",
-      lesson: "Syntax errors are the real villains 💀",
+      year: "2024", 
+      title: "The Missing Semicolon Saga",
+      description: "Spent 6 hours debugging only to realize I missed a semicolon. My brain literally went into debug mode.",
+      lesson: "Attention to detail > caffeine 😅",
       icon: <Zap className="w-5 h-5" />,
       mood: "frustrated"
     },
     {
-      year: "2022",
-      title: "The Infinite Loop of Doom",
-      description: "Created an infinite loop that crashed the entire lab's computers during finals week. Professor was... not amused.",
-      lesson: "With great power comes great responsibility 🕷️",
+      year: "2025",
+      title: "Self-Hack Attack",
+      description: "Ran a hack script on my own PC... against myself. Basically DoS'd my own system for testing. Brilliant!",
+      lesson: "Know your target before you fire 🎯",
       icon: <RefreshCw className="w-5 h-5" />,
       mood: "guilty"
-    },
-    {
-      year: "2023",
-      title: "Penetration Testing Gone Wrong",
-      description: "Accidentally triggered the actual security system while testing. Fire department showed up. Oops?",
-      lesson: "Always tell security before 'breaking in' 🚨",
-      icon: <Trophy className="w-5 h-5" />,
-      mood: "proud"
     }
   ];
 
@@ -90,19 +82,19 @@ const QuirkyAbout = () => {
 
   const stats = [
     { label: "Coffee Consumed", value: coffeCount, icon: <Coffee className="w-4 h-4" />, unit: "cups" },
-    { label: "Bugs Squashed", value: bugsSquashed, icon: <Bug className="w-4 h-4" />, unit: "🐛" },
-    { label: "All-Nighters", value: 127, icon: <Skull className="w-4 h-4" />, unit: "nights" },
-    { label: "StackOverflow Visits", value: "∞", icon: <Heart className="w-4 h-4" />, unit: "times" }
+    { label: "Bugs Squashed", value: 0, icon: <Bug className="w-4 h-4" />, unit: "🐛" },
+    { label: "All-Nighters", value: 83, icon: <Skull className="w-4 h-4" />, unit: "nights" },
+    { label: "Security Labs", value: bugsSquashed, icon: <Heart className="w-4 h-4" />, unit: "labs" }
   ];
 
   useEffect(() => {
     // Randomly increment stats for fun
     const interval = setInterval(() => {
       if (Math.random() > 0.7) {
-        setCoffeCount(prev => prev + 1);
+        setCoffeCount(prev => prev < 742 ? prev + 1 : prev);
       }
       if (Math.random() > 0.8) {
-        setBugsSquashed(prev => prev + 1);
+        setBugsSquashed(prev => prev < 50 ? prev + 1 : prev);
       }
     }, 3000);
 
@@ -270,20 +262,20 @@ const QuirkyAbout = () => {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-foreground/60" />
-                    <span className="text-sm">Graduated: 2024 (Somehow!) 🎓</span>
+                    <GraduationCap className="w-4 h-4 text-foreground/60" />
+                    <span className="text-sm">Student: 3rd Year B.Tech CSE 🎓</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Briefcase className="w-4 h-4 text-foreground/60" />
-                    <span className="text-sm">Job Status: Available for hire! 💼</span>
+                    <MapPin className="w-4 h-4 text-foreground/60" />
+                    <span className="text-sm">Location: Greater Noida, India 📍</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Coffee className="w-4 h-4 text-foreground/60" />
-                    <span className="text-sm">Coffee Level: Dangerously Low ⚠️</span>
+                    <span className="text-sm">PC Fan Status: Ready for takeoff 🚀</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Heart className="w-4 h-4 text-red-400" />
-                    <span className="text-sm">Relationship Status: It&apos;s complicated (with code) 💻</span>
+                    <span className="text-sm">Dark mode everything, tabs &gt; spaces 💻</span>
                   </div>
                 </CardContent>
               </Card>

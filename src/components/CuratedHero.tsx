@@ -41,7 +41,7 @@ const CuratedHero = () => {
     // Typewriter effect
     const typewriter = typewriterRef.current;
     if (typewriter) {
-      const text = "I craft digital experiences that make an impact.";
+      const text = "Breaking systems and building them again.";
       let index = 0;
       
       const typeWriterInterval = setInterval(() => {
@@ -116,10 +116,10 @@ const CuratedHero = () => {
           transition={{ delay: 0.8 }}
         >
           <h1 className="text-5xl md:text-7xl font-bold mb-4">
-            Alex <span className="text-primary">Chen</span>
+            Nayan <span className="text-primary">Kshitij</span>
           </h1>
           <h2 className="text-2xl md:text-3xl text-foreground/80 font-light mb-6">
-            Cybersecurity Engineer & Full-Stack Developer
+            Cybersecurity Student & Full-Stack Developer
           </h2>
         </motion.div>
 
@@ -144,15 +144,15 @@ const CuratedHero = () => {
           transition={{ delay: 1.5 }}
         >
           <div className="text-center">
-            <div className="text-3xl font-bold text-primary">25+</div>
+            <div className="text-3xl font-bold text-primary">10+</div>
             <div className="text-sm text-foreground/60">Projects</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-cyber-green">100+</div>
-            <div className="text-sm text-foreground/60">Audits</div>
+            <div className="text-3xl font-bold text-cyber-green">50+</div>
+            <div className="text-sm text-foreground/60">Security Labs</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-cyber-blue">5</div>
+            <div className="text-3xl font-bold text-cyber-blue">2+</div>
             <div className="text-sm text-foreground/60">Years Exp</div>
           </div>
         </motion.div>
@@ -187,9 +187,9 @@ const CuratedHero = () => {
           transition={{ delay: 2.1 }}
         >
           {[
-            { icon: Github, href: "#", label: "GitHub" },
-            { icon: Linkedin, href: "#", label: "LinkedIn" },
-            { icon: Mail, href: "mailto:alex@example.com", label: "Email" }
+            { icon: Github, href: "https://github.com/nayan2723", label: "GitHub" },
+            { icon: Linkedin, href: "https://www.linkedin.com/in/nayan-kshitij", label: "LinkedIn" },
+            { icon: Mail, href: "mailto:nayankshitij128@gmail.com", label: "Email" }
           ].map((social, index) => (
             <motion.a
               key={social.label}
