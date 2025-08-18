@@ -112,11 +112,28 @@ const CuratedHero = () => {
         <motion.div 
           className="hero-title mb-6"
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
+          animate={{ 
+            opacity: 1, 
+            y: 0,
+            rotateY: [0, 5, -5, 0],
+            scale: [1, 1.02, 1, 1.02, 1]
+          }}
+          transition={{ 
+            delay: 0.8,
+            rotateY: {
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            },
+            scale: {
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }
+          }}
         >
           <h1 className="text-5xl md:text-7xl font-bold mb-4">
-            Nayan <span className="text-primary">Kshitij</span>
+            Nayan <span className="text-primary animate-pulse">Kshitij</span>
           </h1>
           <h2 className="text-2xl md:text-3xl text-foreground/80 font-light mb-6">
             Cybersecurity Student & Full-Stack Developer
