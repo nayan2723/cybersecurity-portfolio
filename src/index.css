@@ -8,49 +8,127 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Enhanced Cybersecurity Portfolio Theme */
-    --background: 240 10% 3.9%;
+    /* Light Theme - Clean & Professional */
+    --background: 0 0% 100%;
+    --foreground: 222 16% 16%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 222 16% 16%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 16% 16%;
+    
+    --primary: 222 47% 11%;
+    --primary-foreground: 210 40% 98%;
+    
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 16% 16%;
+    
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 16% 16%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 222 47% 11%;
+    
+    --radius: 0.5rem;
+    
+    /* Light theme specific colors */
+    --cyber-green: 142 76% 36%;
+    --cyber-blue: 221 83% 53%;
+    --cyber-purple: 262 83% 58%;
+    --neon-pink: 330 81% 60%;
+    --neon-orange: 25 95% 53%;
+    --electric-blue: 199 95% 50%;
+  }
+
+  .dark {
+    /* Dark Theme - Sleek & Modern */
+    --background: 222 16% 8%;
+    --foreground: 210 40% 98%;
+    
+    --card: 222 16% 11%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 222 16% 11%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 210 40% 98%;
+    --primary-foreground: 222 16% 8%;
+    
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+    
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 212 97% 87%;
+    
+    /* Dark theme specific colors */
+    --cyber-green: 142 76% 45%;
+    --cyber-blue: 221 83% 63%;
+    --cyber-purple: 262 83% 68%;
+    --neon-pink: 330 81% 70%;
+    --neon-orange: 25 95% 63%;
+    --electric-blue: 199 95% 60%;
+  }
+
+  .hacker {
+    /* Hacker Theme - Welcome to the Matrix */
+    --background: 240 10% 2%;
     --foreground: 120 100% 85%;
     
-    --card: 240 10% 5%;
+    --card: 240 10% 3%;
     --card-foreground: 120 100% 85%;
     
-    --popover: 240 10% 5%;
+    --popover: 240 10% 3%;
     --popover-foreground: 120 100% 85%;
     
     --primary: 120 100% 50%;
-    --primary-foreground: 240 10% 3.9%;
+    --primary-foreground: 240 10% 2%;
     
-    --secondary: 240 8% 8%;
+    --secondary: 240 8% 5%;
     --secondary-foreground: 120 80% 70%;
     
-    --muted: 240 8% 8%;
-    --muted-foreground: 120 20% 50%;
+    --muted: 240 8% 5%;
+    --muted-foreground: 120 20% 40%;
     
-    --accent: 193 100% 50%;
-    --accent-foreground: 240 10% 3.9%;
+    --accent: 120 100% 50%;
+    --accent-foreground: 240 10% 2%;
     
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 240 10% 2%;
     
-    --border: 240 8% 12%;
-    --input: 240 8% 8%;
+    --border: 120 50% 15%;
+    --input: 240 8% 5%;
     --ring: 120 100% 50%;
     
-    --radius: 0.75rem;
-    
-    /* Enhanced cyber colors */
+    /* Hacker theme cyber colors */
     --cyber-green: 120 100% 50%;
     --cyber-blue: 193 100% 50%;
     --cyber-purple: 271 91% 65%;
     --neon-pink: 330 100% 70%;
     --neon-orange: 25 100% 60%;
     --electric-blue: 205 100% 50%;
-    --dark-bg: 240 10% 3.9%;
-    --card-bg: 240 10% 5%;
-    --glass-bg: 240 10% 8%;
+    --dark-bg: 240 10% 2%;
+    --card-bg: 240 10% 3%;
+    --glass-bg: 240 10% 5%;
     
-    /* Enhanced gradients */
+    /* Matrix effects */
     --gradient-cyber: linear-gradient(135deg, hsl(var(--cyber-green) / 0.8), hsl(var(--cyber-blue) / 0.8));
     --gradient-neon: linear-gradient(45deg, hsl(var(--neon-pink) / 0.6), hsl(var(--cyber-purple) / 0.6));
     --gradient-dark: linear-gradient(135deg, hsl(var(--dark-bg)), hsl(var(--card-bg)));
@@ -63,14 +141,6 @@ All colors MUST be HSL.
     --shadow-neon: 0 0 30px hsl(var(--neon-pink) / 0.4);
     --blur-glass: blur(10px);
     --glow-pulse: 0 0 20px hsl(var(--cyber-green) / 0.5);
-  }
-
-  .dark {
-    /* Dark mode uses same cyber theme */
-    --background: 240 10% 3.9%;
-    --foreground: 120 100% 85%;
-    --card: 240 10% 5%;
-    --card-foreground: 120 100% 85%;
   }
 }
 

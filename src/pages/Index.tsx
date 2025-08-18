@@ -11,6 +11,7 @@ import BlogSection from '@/components/BlogSection';
 import ComponentShowcase from '@/components/ComponentShowcase';
 import Contact from '@/components/Contact';
 import EnhancedFooter from '@/components/EnhancedFooter';
+import ThemeSwitch from '@/components/ThemeSwitch';
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
       transition={{ duration: 1 }}
     >
       <FullscreenNav />
+      <ThemeSwitch />
       
       <main className="relative">
         <section id="home">
