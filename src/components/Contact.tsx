@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
-import { Mail, MapPin, Phone, Send, Github, Linkedin, Twitter, Loader2 } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, Github, Linkedin, Twitter, Loader2, X } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { contactFormSchema, type ContactFormData } from '@/lib/contact-validation';
 import { supabase } from '@/integrations/supabase/client';
@@ -14,6 +14,7 @@ import { supabase } from '@/integrations/supabase/client';
 const Contact = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showRickRoll, setShowRickRoll] = useState(false);
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -45,6 +46,9 @@ const Contact = () => {
         title: "Message Sent!",
         description: "Thank you for reaching out. I'll get back to you soon!",
       });
+      
+      // Show rick roll after successful submission
+      setShowRickRoll(true);
       
       form.reset();
     } catch (error: any) {
@@ -100,7 +104,39 @@ const Contact = () => {
     }
   ];
 
+  // Rick Roll Modal Component
+  const RickRollModal = () => (
+    <div className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4">
+      <div className="relative max-w-4xl w-full">
+        <Button
+          onClick={() => setShowRickRoll(false)}
+          className="absolute -top-12 right-0 bg-red-600 hover:bg-red-700 text-white"
+          size="sm"
+        >
+          <X className="w-4 h-4 mr-2" />
+          Close
+        </Button>
+        <div className="relative w-full h-0 pb-[56.25%]">
+          <iframe
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&start=0"
+            title="Rick Roll"
+            className="absolute top-0 left-0 w-full h-full rounded-lg"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+        <div className="text-center mt-4 text-white">
+          <p className="text-xl font-bold">You've been Rick Rolled! 🎵</p>
+          <p className="text-sm opacity-75 mt-2">Thanks for reaching out though!</p>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
+    <>
+      {showRickRoll && <RickRollModal />}
     <section id="contact" className="py-20 px-6 bg-muted/20">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
@@ -274,6 +310,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 
