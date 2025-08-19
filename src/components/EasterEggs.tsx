@@ -20,6 +20,7 @@ const EasterEggs = () => {
   const [konami, setKonami] = useState('');
   const [easterEggFound, setEasterEggFound] = useState<string[]>([]);
   const [ghibliCharacter, setGhibliCharacter] = useState('');
+  const [terminalMode, setTerminalMode] = useState(false);
 
   const moods = {
     happy: { emoji: '😊', text: 'Living my best dev life!', color: 'text-green-400' },
@@ -75,6 +76,7 @@ const EasterEggs = () => {
         // Check for secret codes
         if (newCode.includes(secretCodes.konami.slice(-8))) {
           foundEasterEgg('konami');
+          setTerminalMode(true);
         }
         
         return newCode;
@@ -160,6 +162,74 @@ const EasterEggs = () => {
   };
 
   const currentMoodData = moods[currentMood as keyof typeof moods];
+
+  // Terminal Mode Component
+  const TerminalMode = () => (
+    <div className="fixed inset-0 z-[9999] bg-black text-cyber-green font-mono overflow-hidden">
+      {/* Matrix Rain Background */}
+      <div className="absolute inset-0 opacity-20">
+        {Array.from({ length: 50 }, (_, i) => (
+          <div
+            key={i}
+            className="absolute animate-matrix-rain text-xs"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 2}s`,
+              animationDuration: `${2 + Math.random() * 3}s`
+            }}
+          >
+            {Array.from({ length: 20 }, (_, j) => (
+              <div key={j} className="block">
+                {String.fromCharCode(Math.random() * 94 + 33)}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+      
+      {/* Terminal Content */}
+      <div className="relative z-10 h-full flex flex-col justify-center items-center p-8">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="text-center space-y-6"
+        >
+          <div className="text-6xl md:text-8xl font-bold text-cyber-green animate-cyber-pulse">
+            YOU ARE A G
+          </div>
+          
+          <div className="text-xl md:text-2xl text-cyber-green/80 animate-fade-in-up">
+            Matrix access granted... Welcome to the code
+          </div>
+          
+          <div className="text-sm text-cyber-green/60 mt-8 animate-fade-in-up" style={{ animationDelay: '1s' }}>
+            ► SYSTEM STATUS: ELITE HACKER MODE ACTIVATED
+          </div>
+          
+          <div className="text-sm text-cyber-green/60 animate-fade-in-up" style={{ animationDelay: '1.5s' }}>
+            ► ACCESS LEVEL: LEGENDARY
+          </div>
+          
+          <motion.button
+            onClick={() => setTerminalMode(false)}
+            className="mt-8 px-6 py-3 border border-cyber-green/50 text-cyber-green hover:bg-cyber-green/10 transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2 }}
+          >
+            [ EXIT MATRIX ]
+          </motion.button>
+        </motion.div>
+      </div>
+    </div>
+  );
+
+  if (terminalMode) {
+    return <TerminalMode />;
+  }
 
   return (
     <section className="py-20 px-6 bg-gradient-to-br from-indigo-900/10 to-purple-900/10">
