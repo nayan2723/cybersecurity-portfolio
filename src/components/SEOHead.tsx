@@ -6,7 +6,7 @@ interface SEOHeadProps extends SEOProps {
 }
 
 const SEOHead = ({ 
-  title = "Nayan Kumar - Cybersecurity Enthusiast | Portfolio",
+  title = "Nayan Kshitij - Cybersecurity Enthusiast | Portfolio",
   description = "Cybersecurity enthusiast and CSE student at Bennett University. Passionate about ethical hacking, web development, and secure systems.",
   keywords = "cybersecurity, ethical hacking, web development, portfolio, computer science, Bennett University, penetration testing, vulnerability assessment",
   image = "https://i.ibb.co/LhYB87c6/Urban-Stillness-Amidst-Evening-Rush.png",
