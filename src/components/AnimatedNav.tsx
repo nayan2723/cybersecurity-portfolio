@@ -20,7 +20,8 @@ const AnimatedNav = () => {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
+    { name: 'Projects', href: '#curated-projects' },
+    { name: 'Games', href: '#games' },
     { name: 'Contact', href: '#contact' },
   ];
 

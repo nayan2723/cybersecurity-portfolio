@@ -32,6 +32,12 @@ const Navigation = () => {
           
           <div className="hidden md:flex items-center space-x-8">
             <button
+              onClick={() => scrollToSection('home')}
+              className="text-foreground/80 hover:text-primary transition-colors"
+            >
+              Home
+            </button>
+            <button
               onClick={() => scrollToSection('about')}
               className="text-foreground/80 hover:text-primary transition-colors"
             >
@@ -44,10 +50,16 @@ const Navigation = () => {
               Skills
             </button>
             <button
-              onClick={() => scrollToSection('projects')}
+              onClick={() => scrollToSection('curated-projects')}
               className="text-foreground/80 hover:text-primary transition-colors"
             >
               Projects
+            </button>
+            <button
+              onClick={() => scrollToSection('games')}
+              className="text-foreground/80 hover:text-primary transition-colors"
+            >
+              Games
             </button>
             <button
               onClick={() => scrollToSection('contact')}

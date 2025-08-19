@@ -41,8 +41,8 @@ const FullscreenNav = () => {
     { label: 'Home', icon: Home, href: '#home' },
     { label: 'About', icon: User, href: '#about' },
     { label: 'Projects', icon: Code, href: '#curated-projects' },
-    { label: 'Skills', icon: Shield, href: '#skills-chart' },
-    { label: 'Blog', icon: FileText, href: '#blog' },
+    { label: 'Skills', icon: Shield, href: '#skills' },
+    { label: 'Games', icon: FileText, href: '#games' },
     { label: 'Contact', icon: Mail, href: '#contact' },
   ];
 
