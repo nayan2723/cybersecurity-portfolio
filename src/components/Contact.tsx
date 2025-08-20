@@ -124,7 +124,7 @@ const Contact = () => {
             className="w-full h-auto rounded-lg"
             muted={false}
           >
-            <source src="/Rick Roll (Different link + no ads) (1).mp4" type="video/mp4" />
+            <source src="/rickroll.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
