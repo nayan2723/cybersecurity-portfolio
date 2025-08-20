@@ -116,19 +116,21 @@ const Contact = () => {
           <X className="w-4 h-4 mr-2" />
           Close
         </Button>
-        <div className="relative w-full h-0 pb-[56.25%]">
-          <iframe
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&start=0"
-            title="Rick Roll"
-            className="absolute top-0 left-0 w-full h-full rounded-lg"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
+        <div className="relative w-full">
+          <video
+            autoPlay
+            loop
+            controls
+            className="w-full h-auto rounded-lg"
+            muted={false}
+          >
+            <source src="/Rick Roll (Different link + no ads) (1).mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
         <div className="text-center mt-4 text-white">
-          <p className="text-xl font-bold">You've been Rick Rolled! 🎵</p>
-          <p className="text-sm opacity-75 mt-2">Thanks for reaching out though!</p>
+          <p className="text-xl font-bold">Thanks for reaching me, now get rick rolled :) 🎵</p>
+          <p className="text-sm opacity-75 mt-2">Hope you enjoyed that!</p>
         </div>
       </div>
     </div>
