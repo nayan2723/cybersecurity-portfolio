@@ -14,6 +14,7 @@ import EnhancedFooter from '@/components/EnhancedFooter';
 import ThemeSwitch from '@/components/ThemeSwitch';
 import SmoothScroll from '@/components/SmoothScroll';
 import SEOHead from '@/components/SEOHead';
+import FloatingResumeButton from '@/components/FloatingResumeButton';
 
 const Index = () => {
   return (
@@ -59,6 +60,7 @@ const Index = () => {
         
         <EnhancedFooter />
         <AnimatedMascot />
+        <FloatingResumeButton />
       </main>
       </motion.div>
     </SEOHead>

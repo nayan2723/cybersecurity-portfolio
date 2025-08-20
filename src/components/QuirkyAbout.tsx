@@ -16,6 +16,7 @@ import {
   GraduationCap,
   Briefcase
 } from 'lucide-react';
+import ResumeButton from '@/components/ui/resume-button';
 
 const QuirkyAbout = () => {
   const [selectedFail, setSelectedFail] = useState<number | null>(null);
@@ -282,6 +283,40 @@ const QuirkyAbout = () => {
             </motion.div>
           </div>
         </div>
+
+        {/* Resume CTA Section */}
+        <motion.div 
+          className="text-center mt-16 pt-12 border-t border-border/20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold mb-4">
+              Want to know more about my journey?
+            </h3>
+            <p className="text-foreground/70 mb-6">
+              Check out my detailed resume with all my projects, achievements, and that one time I actually fixed a bug on the first try.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <ResumeButton 
+                variant="primary" 
+                size="lg"
+                text="Download My Resume"
+                className="cyber-button"
+              />
+              <Button 
+                variant="outline"
+                size="lg"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <Briefcase className="w-4 h-4 mr-2" />
+                Let's Work Together
+              </Button>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

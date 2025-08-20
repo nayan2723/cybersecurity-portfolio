@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { Github, Linkedin, Mail, Heart, Code, Terminal } from 'lucide-react';
+import ResumeButton from '@/components/ui/resume-button';
 
 const EnhancedFooter = () => {
   const currentYear = new Date().getFullYear();
@@ -175,6 +176,21 @@ const EnhancedFooter = () => {
                 <span>Securing the digital world</span>
               </div>
             </div>
+            
+            {/* Resume Button in Footer */}
+            <motion.div 
+              className="mt-4"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+            >
+              <ResumeButton 
+                variant="outline" 
+                size="sm"
+                text="Resume"
+                className="w-full border-primary/30 hover:border-primary"
+              />
+            </motion.div>
           </motion.div>
         </div>
 

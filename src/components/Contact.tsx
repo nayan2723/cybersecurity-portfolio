@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Mail, MapPin, Phone, Send, Github, Linkedin, Twitter, Loader2, X } from 'lucide-react';
+import ResumeButton from '@/components/ui/resume-button';
 import { useToast } from '@/hooks/use-toast';
 import { contactFormSchema, type ContactFormData } from '@/lib/contact-validation';
 import { supabase } from '@/integrations/supabase/client';
@@ -302,10 +303,27 @@ const Contact = () => {
                 <h4 className="text-lg font-semibold text-primary mb-4">
                   Let's Build Something Secure Together
                 </h4>
-                <p className="text-foreground/70">
+                <p className="text-foreground/70 mb-6">
                   Whether you're looking for a cybersecurity consultant, a developer for your next project, 
                   or just want to discuss the latest in cybersecurity trends, I'm here to help.
                 </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <ResumeButton 
+                    variant="primary" 
+                    size="sm"
+                    text="View My Resume"
+                    className="flex-1"
+                  />
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    className="flex-1 text-primary hover:bg-primary/10"
+                    onClick={() => window.open('https://www.linkedin.com/in/nayan-kshitij', '_blank')}
+                  >
+                    <Linkedin className="w-4 h-4 mr-2" />
+                    LinkedIn Profile
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </div>
