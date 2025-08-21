@@ -15,6 +15,9 @@ import ThemeSwitch from '@/components/ThemeSwitch';
 import SmoothScroll from '@/components/SmoothScroll';
 import SEOHead from '@/components/SEOHead';
 import FloatingResumeButton from '@/components/FloatingResumeButton';
+import ResumeButton from '@/components/ui/resume-button';
+import { Button } from '@/components/ui/button';
+import { Briefcase } from 'lucide-react';
 
 const Index = () => {
   return (
@@ -34,8 +37,40 @@ const Index = () => {
           <CuratedHero />
         </section>
         
-        <section id="about">
-          <QuirkyAbout />
+        <section id="journey">
+          <div className="py-20 px-6">
+            <div className="max-w-4xl mx-auto text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                  Want to know more about my <span className="text-primary">journey</span>?
+                </h2>
+                <p className="text-xl text-foreground/70 mb-8 max-w-2xl mx-auto">
+                  Check out my detailed resume with all my projects, achievements, and that one time I actually fixed a bug on the first try.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <ResumeButton 
+                    variant="primary" 
+                    size="lg"
+                    text="Download My Resume"
+                    className="cyber-button"
+                  />
+                  <Button 
+                    variant="outline"
+                    size="lg"
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  >
+                    <Briefcase className="w-4 h-4 mr-2" />
+                    Let's Work Together
+                  </Button>
+                </div>
+              </motion.div>
+            </div>
+          </div>
         </section>
         
         <section id="skills">
@@ -44,6 +79,10 @@ const Index = () => {
         
         <section id="curated-projects">
           <CuratedProjects />
+        </section>
+        
+        <section id="about">
+          <QuirkyAbout />
         </section>
         
         <section id="games">
