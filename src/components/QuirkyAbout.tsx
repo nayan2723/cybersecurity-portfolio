@@ -58,28 +58,6 @@ const QuirkyAbout = () => {
     }
   ];
 
-  const fakeInterviewQs = [
-    {
-      q: "Why do you love microprocessors?",
-      a: "Because they never ask for group assignments! 🙌"
-    },
-    {
-      q: "What's your biggest weakness?",
-      a: "I care too much... about whether my code compiles on the first try 😂"
-    },
-    {
-      q: "Where do you see yourself in 5 years?",
-      a: "Still trying to center a div perfectly 📐"
-    },
-    {
-      q: "Why cybersecurity?",
-      a: "Someone has to protect the world from my old code 🛡️"
-    },
-    {
-      q: "What motivates you?",
-      a: "The fear of production bugs and unlimited coffee ☕"
-    }
-  ];
 
   const stats = [
     { label: "Coffee Consumed", value: coffeCount, icon: <Coffee className="w-4 h-4" />, unit: "cups" },
@@ -218,34 +196,6 @@ const QuirkyAbout = () => {
               </Card>
             </motion.div>
 
-            {/* Fake Interview Q&A */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <GraduationCap className="w-5 h-5 text-cyber-green" />
-                    Fake Interview Questions
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {fakeInterviewQs.map((qa, index) => (
-                    <div key={index} className="p-3 bg-muted/20 rounded-lg">
-                      <p className="text-sm font-medium text-primary mb-1">
-                        {qa.q}
-                      </p>
-                      <p className="text-sm text-foreground/70">
-                        {qa.a}
-                      </p>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            </motion.div>
 
             {/* Current Status */}
             <motion.div
