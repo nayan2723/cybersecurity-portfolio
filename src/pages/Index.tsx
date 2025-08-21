@@ -34,12 +34,16 @@ const Index = () => {
           <CuratedHero />
         </section>
         
-        <section id="curated-projects">
-          <CuratedProjects />
-        </section>
-        
         <section id="about">
           <QuirkyAbout />
+        </section>
+        
+        <section id="skills">
+          <EnhancedSkills />
+        </section>
+        
+        <section id="curated-projects">
+          <CuratedProjects />
         </section>
         
         <section id="games">
@@ -48,10 +52,6 @@ const Index = () => {
         
         <section id="easter-eggs">
           <EasterEggs />
-        </section>
-        
-        <section id="skills">
-          <EnhancedSkills />
         </section>
         
         <section id="contact">
