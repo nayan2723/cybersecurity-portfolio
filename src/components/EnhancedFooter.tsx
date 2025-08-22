@@ -134,7 +134,7 @@ const EnhancedFooter = () => {
             </div>
           </motion.div>
 
-          {/* Right: Social & Contact */}
+          {/* Right: Collaboration CTA & Contact */}
           <motion.div 
             className="space-y-4"
             data-aos="fade-left"
@@ -142,55 +142,84 @@ const EnhancedFooter = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h3 className="text-lg font-semibold text-primary animate__animated animate__fadeInDown">
-              Connect With Me
-            </h3>
-            <div className="flex gap-4">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`p-3 cyber-card ${social.hoverColor} transition-all duration-300 animate__animated animate__zoomIn`}
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                  whileHover={{ 
-                    scale: 1.1, 
-                    rotate: 5,
-                    boxShadow: "0 0 20px rgba(0, 255, 65, 0.3)"
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  title={social.label}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
-            </div>
-            <div className="text-sm text-foreground/60 space-y-1">
-              <div className="flex items-center gap-2 animate__animated animate__fadeInUp">
-                <Code className="w-4 h-4 text-cyber-blue" />
-                <span>Always coding something cool</span>
-              </div>
-              <div className="flex items-center gap-2 animate__animated animate__fadeInUp animate__delay-1s">
-                <Terminal className="w-4 h-4 text-cyber-green" />
-                <span>Securing the digital world</span>
-              </div>
-            </div>
-            
-            {/* Resume Button in Footer */}
+            {/* Collaboration CTA */}
             <motion.div 
-              className="mt-4"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
+              className="cyber-card p-4 bg-gradient-to-br from-primary/10 to-cyber-blue/10 border-primary/30"
+              whileHover={{ 
+                scale: 1.02,
+                boxShadow: "0 0 25px rgba(0, 255, 65, 0.2)"
+              }}
             >
-              <ResumeButton 
-                variant="outline" 
-                size="sm"
-                text="Resume"
-                className="w-full border-primary/30 hover:border-primary"
-              />
+              <h3 className="text-lg font-bold text-primary mb-2 flex items-center gap-2">
+                <Terminal className="w-5 h-5" />
+                Ready to Collaborate?
+              </h3>
+              <p className="text-sm text-foreground/80 mb-3">
+                Want to build something <span className="text-cyber-green font-semibold">secure</span> and <span className="text-cyber-blue font-semibold">innovative</span>? 
+                Let's turn ideas into bulletproof code.
+              </p>
+              <motion.a
+                href="mailto:nayankshitij128@gmail.com"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-cyber-green transition-colors"
+                whileHover={{ x: 5 }}
+              >
+                <Mail className="w-4 h-4" />
+                Shoot me an email →
+              </motion.a>
             </motion.div>
+
+            {/* Social Links */}
+            <div>
+              <h4 className="text-sm font-semibold text-foreground/70 mb-3">Connect With Me</h4>
+              <div className="flex gap-3">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`p-3 cyber-card ${social.hoverColor} transition-all duration-300 animate__animated animate__zoomIn`}
+                    style={{ animationDelay: `${index * 0.2}s` }}
+                    whileHover={{ 
+                      scale: 1.1, 
+                      rotate: 5,
+                      boxShadow: "0 0 20px rgba(0, 255, 65, 0.3)"
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    title={social.label}
+                  >
+                    {social.icon}
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+
+            {/* Status & Resume */}
+            <div className="space-y-3">
+              <div className="text-sm text-foreground/60 space-y-1">
+                <div className="flex items-center gap-2 animate__animated animate__fadeInUp">
+                  <div className="w-2 h-2 bg-cyber-green rounded-full animate-pulse"></div>
+                  <span>Available for security projects</span>
+                </div>
+                <div className="flex items-center gap-2 animate__animated animate__fadeInUp animate__delay-1s">
+                  <Terminal className="w-4 h-4 text-cyber-green" />
+                  <span>Breaking & building systems daily</span>
+                </div>
+              </div>
+              
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+              >
+                <ResumeButton 
+                  variant="outline" 
+                  size="sm"
+                  text="Download Resume"
+                  className="w-full border-primary/30 hover:border-primary hover:bg-primary/10"
+                />
+              </motion.div>
+            </div>
           </motion.div>
         </div>
 
