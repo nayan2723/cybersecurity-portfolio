@@ -123,9 +123,14 @@ serve(async (req) => {
   } catch (error) {
     console.error('Contact form submission error:', error);
     
+    // Don't expose detailed error messages to prevent information leakage
+    const publicErrorMessage = error.message?.includes('Invalid') || error.message?.includes('Rate limit') 
+      ? error.message 
+      : 'An error occurred while processing your request. Please try again later.';
+    
     return new Response(
       JSON.stringify({ 
-        error: error.message || 'An error occurred while processing your request' 
+        error: publicErrorMessage
       }),
       { 
         status: 400, 

@@ -139,19 +139,41 @@ const EasterEggs = () => {
       text-align: center;
     `;
     
-    blueScreen.innerHTML = `
-      <div>
-        <h1 style="font-size: 24px; margin-bottom: 20px;">😱 SEGMENTATION FAULT 😱</h1>
-        <p>A problem has been detected and your portfolio has been shut down to prevent damage.</p>
-        <br>
-        <p>BLAME_THE_USER</p>
-        <br>
-        <p>Technical information:</p>
-        <p>*** STOP: 0x0000001E (0xC0000005, 0xFDE38AF7, 0x0000001, 0x7E8B0EB4)</p>
-        <br>
-        <p style="font-size: 12px;">Just kidding! Click anywhere to continue 😄</p>
-      </div>
-    `;
+    // Create content safely without innerHTML
+    const container = document.createElement('div');
+    
+    const title = document.createElement('h1');
+    title.style.cssText = 'font-size: 24px; margin-bottom: 20px;';
+    title.textContent = '😱 SEGMENTATION FAULT 😱';
+    
+    const description = document.createElement('p');
+    description.textContent = 'A problem has been detected and your portfolio has been shut down to prevent damage.';
+    
+    const blameText = document.createElement('p');
+    blameText.textContent = 'BLAME_THE_USER';
+    
+    const techInfo = document.createElement('p');
+    techInfo.textContent = 'Technical information:';
+    
+    const errorCode = document.createElement('p');
+    errorCode.textContent = '*** STOP: 0x0000001E (0xC0000005, 0xFDE38AF7, 0x0000001, 0x7E8B0EB4)';
+    
+    const clickPrompt = document.createElement('p');
+    clickPrompt.style.fontSize = '12px';
+    clickPrompt.textContent = "Just kidding! Click anywhere to continue 😄";
+    
+    // Append elements with line breaks
+    container.appendChild(title);
+    container.appendChild(description);
+    container.appendChild(document.createElement('br'));
+    container.appendChild(blameText);
+    container.appendChild(document.createElement('br'));
+    container.appendChild(techInfo);
+    container.appendChild(errorCode);
+    container.appendChild(document.createElement('br'));
+    container.appendChild(clickPrompt);
+    
+    blueScreen.appendChild(container);
     
     blueScreen.onclick = () => {
       document.body.removeChild(blueScreen);
