@@ -184,39 +184,43 @@ const EnhancedSkills = () => {
           ))}
         </motion.div>
 
-        {/* Floating certification badges */}
+        {/* Certifications To Do */}
         <motion.div 
-          className="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-          initial={{ opacity: 0, y: 50 }}
+          className="mt-12"
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 1, duration: 0.8 }}
         >
-          {[
-            { name: "CEH", desc: "Certified Ethical Hacker", icon: <Bug className="w-5 h-5" /> },
-            { name: "CISSP", desc: "Security Professional", icon: <Lock className="w-5 h-5" /> },
-            { name: "OSCP", desc: "Penetration Testing", icon: <Search className="w-5 h-5" /> },
-            { name: "AWS", desc: "Cloud Security", icon: <Cloud className="w-5 h-5" /> }
-          ].map((cert, index) => (
-            <motion.div
-              key={cert.name}
-              className="cyber-card p-4 text-center group hover:scale-105 transition-all duration-300"
-              whileHover={{ y: -5 }}
-              animate={{ 
-                y: [0, -2, 0],
-                transition: { 
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: index * 0.5
-                }
-              }}
-            >
-              <div className="text-primary mb-2 group-hover:animate-pulse">
-                {cert.icon}
-              </div>
-              <h4 className="font-bold text-lg">{cert.name}</h4>
-              <p className="text-xs text-foreground/60">{cert.desc}</p>
-            </motion.div>
-          ))}
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold mb-2">Certifications <span className="text-primary">To Conquer</span></h3>
+            <p className="text-sm text-foreground/60">Next goals on my cybersecurity journey</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+            {[
+              { name: "CEH", fullName: "Certified Ethical Hacker", icon: <Bug className="w-5 h-5" /> },
+              { name: "OSCP", fullName: "Offensive Security Certified Professional", icon: <Search className="w-5 h-5" /> },
+              { name: "CISSP", fullName: "Certified Information Systems Security Professional", icon: <Lock className="w-5 h-5" /> },
+              { name: "Security+", fullName: "CompTIA Security+", icon: <Shield className="w-5 h-5" /> },
+              { name: "CISM", fullName: "Certified Information Security Manager", icon: <Server className="w-5 h-5" /> },
+              { name: "GSEC", fullName: "GIAC Security Essentials", icon: <Terminal className="w-5 h-5" /> }
+            ].map((cert, index) => (
+              <motion.div
+                key={cert.name}
+                className="cyber-card p-4 text-center relative group hover:scale-105 transition-all duration-300 opacity-75"
+                whileHover={{ y: -2 }}
+              >
+                <div className="absolute top-2 right-2">
+                  <Lock className="w-4 h-4 text-foreground/30" />
+                </div>
+                <div className="text-foreground/50 mb-2 group-hover:text-primary transition-colors">
+                  {cert.icon}
+                </div>
+                <h4 className="font-bold text-sm mb-1">{cert.name}</h4>
+                <p className="text-xs text-foreground/40 leading-tight">{cert.fullName}</p>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
