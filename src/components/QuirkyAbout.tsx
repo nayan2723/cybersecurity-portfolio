@@ -92,10 +92,10 @@ const QuirkyAbout = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            How I Survived <span className="text-primary">Engineering Hell</span>
+            Epic <span className="text-primary">Tech Fails</span>
           </h2>
           <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-            A totally honest timeline of epic fails, caffeine addiction, and somehow becoming a cybersecurity engineer
+            A collection of my most memorable technical disasters and the lessons learned from each epic fail
           </p>
         </motion.div>
 
