@@ -36,75 +36,76 @@ const CuratedProjects = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: "CyberShield Security Suite",
-      description: "Enterprise-grade penetration testing framework with AI-powered vulnerability detection. Reduced average scan time by 75% while increasing accuracy to 99.2%.",
-      category: "security",
+      title: "Fharma – Bridging Rural & Urban Healthcare",
+      description: "Full-stack web app with AI-powered medicine recommendation system and doctor-patient live chat functionality. User-friendly UI/UX designed and implemented.",
+      category: "ai",
       featured: true,
-      image: "🛡️",
-      technologies: ["Python", "React", "PostgreSQL", "Docker", "TensorFlow"],
-      achievements: ["500+ vulnerabilities detected", "75% faster scanning", "Enterprise adoption"],
-      liveUrl: "#",
-      githubUrl: "#",
+      image: "🏥",
+      technologies: ["React", "Supabase", "AI Models", "Real-time Chat", "TailwindCSS"],
+      achievements: ["AI medicine recommendations", "Live chat system", "Rural healthcare bridge"],
+      liveUrl: "https://fharma-health-bridge-ui-nayan2723s-projects.vercel.app/",
+      githubUrl: "https://github.com/nayan2723/fharma-health-bridge-ui.git",
       caseStudy: true
     },
     {
       id: 2,
-      title: "Neural Threat Detection",
-      description: "Machine learning system that analyzes network traffic patterns to identify zero-day attacks. Deployed across 50+ enterprise networks.",
-      category: "ai",
+      title: "PhishTrap",
+      description: "Advanced cybersecurity project using rule-based + ML models to detect phishing URLs. Integrates AI (Gemini + Perplexity) for real-time threat intelligence with Google Safe Browsing API validation.",
+      category: "security",
       featured: true,
-      image: "🧠",
-      technologies: ["TensorFlow", "Python", "Kafka", "Elasticsearch", "Kubernetes"],
-      achievements: ["99.8% accuracy", "Real-time processing", "Zero false positives"],
+      image: "🎣",
+      technologies: ["Python", "Scikit-learn", "Google Gemini API", "Perplexity API", "Google Safe Browsing API"],
+      achievements: ["ML + rule-based detection", "Real-time threat intelligence", "Multi-API integration"],
       liveUrl: "#",
       githubUrl: "#",
       caseStudy: true
     },
     {
       id: 3,
-      title: "Blockchain Security Auditor",
-      description: "Automated smart contract vulnerability scanner that saved clients over $50M in potential losses through comprehensive DeFi protocol audits.",
-      category: "blockchain",
+      title: "Cyber Threat Visualization",
+      description: "Real-time cyber threat intelligence visualization with geographical attack maps, live updates, severity classification and trend analysis for cybersecurity professionals.",
+      category: "security",
       featured: true,
-      image: "⛓️",
-      technologies: ["Solidity", "Node.js", "Web3", "Hardhat", "TypeScript"],
-      achievements: ["$50M+ protected", "200+ contracts audited", "Industry recognition"],
+      image: "📊",
+      technologies: ["Python", "Flask/Django", "D3.js", "Chart.js", "Threat Intelligence APIs"],
+      achievements: ["Real-time visualization", "Geographical mapping", "Trend analysis"],
       liveUrl: "#",
       githubUrl: "#",
       caseStudy: true
     },
     {
       id: 4,
-      title: "Real-time Incident Response",
-      description: "Cloud-native security orchestration platform that automates threat response across multi-cloud environments.",
-      category: "cloud",
+      title: "Portfolio Website",
+      description: "Personal portfolio website built with React and TailwindCSS. Fully responsive custom-built design showcasing skills, resume, and live projects. Optimized for performance and accessibility.",
+      category: "web",
       featured: false,
-      image: "☁️",
-      technologies: ["AWS", "Azure", "Terraform", "Python", "Go"],
-      achievements: ["90% faster response", "Multi-cloud support", "24/7 monitoring"],
+      image: "💼",
+      technologies: ["React", "TailwindCSS", "Vercel", "TypeScript", "Framer Motion"],
+      achievements: ["Fully responsive design", "Performance optimized", "Accessibility compliant"],
+      liveUrl: "https://nayan-cyber-folio.vercel.app/",
+      githubUrl: "https://github.com/nayan2723/nayan-cyber-folio.git"
+    },
+    {
+      id: 5,
+      title: "LinkedIn Clone (UI Prototype)",
+      description: "Frontend UI prototype replicating LinkedIn's layout and core UI components. Responsive design across devices built as practice project to mimic real-world complexity.",
+      category: "web",
+      featured: false,
+      image: "👥",
+      technologies: ["React", "TailwindCSS", "Responsive Design", "Component Libraries"],
+      achievements: ["Pixel-perfect UI replica", "Cross-device responsive", "Complex component structure"],
       liveUrl: "#",
       githubUrl: "#"
     },
     {
-      id: 5,
-      title: "Quantum Cryptography Lab",
-      description: "Research project implementing post-quantum cryptographic algorithms for future-proof security solutions.",
-      category: "research",
-      featured: false,
-      image: "🔮",
-      technologies: ["C++", "Quantum Computing", "NIST Standards", "OpenSSL"],
-      achievements: ["Research published", "NIST compliance", "Open source"],
-      githubUrl: "#"
-    },
-    {
       id: 6,
-      title: "DevSecOps Pipeline",
-      description: "Integrated security testing pipeline that embeds security checks throughout the entire development lifecycle.",
-      category: "devops",
+      title: "NoxxShell",
+      description: "Custom lightweight shell implementation supporting command execution, piping, and process handling. Built for OS and system programming practice using Python on Linux.",
+      category: "systems",
       featured: false,
-      image: "🔧",
-      technologies: ["Jenkins", "Docker", "SonarQube", "OWASP ZAP", "GitLab"],
-      achievements: ["40% faster delivery", "Security by design", "Team adoption"],
+      image: "💻",
+      technologies: ["Python", "Linux", "System Programming", "Process Management"],
+      achievements: ["Custom shell implementation", "Command piping support", "Process handling"],
       liveUrl: "#",
       githubUrl: "#"
     }
@@ -112,10 +113,10 @@ const CuratedProjects = () => {
 
   const categories = [
     { id: 'all', label: 'All Projects', icon: Eye },
-    { id: 'security', label: 'Security', icon: Shield },
     { id: 'ai', label: 'AI/ML', icon: Brain },
-    { id: 'blockchain', label: 'Blockchain', icon: Database },
-    { id: 'cloud', label: 'Cloud', icon: Code },
+    { id: 'security', label: 'Cybersecurity', icon: Shield },
+    { id: 'web', label: 'Web Development', icon: Code },
+    { id: 'systems', label: 'Systems Programming', icon: Database },
   ];
 
   const filteredProjects = selectedCategory === 'all' 
@@ -140,8 +141,8 @@ const CuratedProjects = () => {
             Featured <span className="text-primary">Work</span>
           </h2>
           <p className="text-xl text-foreground/70 max-w-3xl mx-auto mb-8">
-            A curated selection of projects that showcase my expertise in cybersecurity, 
-            AI, and full-stack development.
+            A curated selection of projects showcasing expertise in AI/ML, cybersecurity, 
+            web development, and systems programming.
           </p>
 
           {/* Category Filter */}

@@ -6,55 +6,55 @@ import { ExternalLink, Github } from 'lucide-react';
 const Projects = () => {
   const projects = [
     {
-      title: 'NoXx Shell',
-      description: 'Custom Linux Shell - Built a lightweight interactive shell for Linux to automate system tasks.',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475',
-      technologies: ['Bash', 'Python', 'Linux CLI', 'Git'],
-      liveUrl: '#',
-      githubUrl: '#',
+      title: 'Fharma – Bridging Rural & Urban Healthcare',
+      description: 'Full-stack web app with AI-powered medicine recommendation system and doctor-patient live chat functionality.',
+      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f',
+      technologies: ['React', 'Supabase', 'AI Models', 'Real-time Chat', 'TailwindCSS'],
+      liveUrl: 'https://fharma-health-bridge-ui-nayan2723s-projects.vercel.app/',
+      githubUrl: 'https://github.com/nayan2723/fharma-health-bridge-ui.git',
       featured: true
     },
     {
       title: 'Portfolio Website',
-      description: 'Developer Portfolio - Designed a responsive portfolio site showcasing resume, projects, and a blog.',
+      description: 'Personal portfolio website built with React and TailwindCSS. Fully responsive design showcasing skills, resume, and live projects.',
       image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085',
-      technologies: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'GitHub', 'Supabase'],
+      technologies: ['React', 'TailwindCSS', 'Vercel', 'TypeScript', 'Framer Motion'],
       liveUrl: 'https://nayan-cyber-folio.vercel.app/',
       githubUrl: 'https://github.com/nayan2723/nayan-cyber-folio.git',
       featured: true
     },
     {
-      title: 'Fharma',
-      description: 'Bridging Rural & Urban Healthcare - Built a healthtech platform connecting rural patients with doctors.',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f',
-      technologies: ['HTML', 'CSS', 'JavaScript', 'Python', 'Supabase', 'AI Toolkit'],
-      liveUrl: 'https://fharma-health-bridge-ui-nayan2723s-projects.vercel.app/',
-      githubUrl: 'https://github.com/nayan2723/fharma-health-bridge-ui.git',
-      featured: false
-    },
-    {
-      title: 'Cybersecurity Threat Visualization',
-      description: 'Visualized global cybersecurity threats from CSV datasets to identify patterns for SOC teams.',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475',
-      technologies: ['Python', 'Pandas', 'Matplotlib', 'Seaborn'],
-      liveUrl: '#',
-      githubUrl: 'https://github.com/nayan2723/cybersecurity-threat-viz',
-      featured: false
-    },
-    {
-      title: 'Security Vulnerability Scanner',
-      description: 'A comprehensive web application security scanner that identifies common vulnerabilities like SQL injection, XSS, and CSRF. Built with Python and includes automated reporting.',
+      title: 'PhishTrap',
+      description: 'Advanced cybersecurity project using ML models to detect phishing URLs. Integrates AI (Gemini + Perplexity) for real-time threat intelligence.',
       image: 'https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=500&h=300&fit=crop',
-      technologies: ['Python', 'Flask', 'SQLite', 'Beautiful Soup', 'Requests'],
+      technologies: ['Python', 'Scikit-learn', 'Google Gemini API', 'Perplexity API', 'Google Safe Browsing API'],
       liveUrl: '#',
       githubUrl: '#',
       featured: false
     },
     {
-      title: 'Network Traffic Analyzer',
-      description: 'Python-based network monitoring tool that captures and analyzes network packets, detects suspicious activities, and generates security reports.',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=300&fit=crop',
-      technologies: ['Python', 'Scapy', 'Matplotlib', 'Pandas', 'Tkinter'],
+      title: 'Cyber Threat Visualization',
+      description: 'Real-time cyber threat intelligence visualization with geographical attack maps and trend analysis for cybersecurity professionals.',
+      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475',
+      technologies: ['Python', 'Flask/Django', 'D3.js', 'Chart.js', 'Threat Intelligence APIs'],
+      liveUrl: '#',
+      githubUrl: '#',
+      featured: false
+    },
+    {
+      title: 'LinkedIn Clone (UI Prototype)',
+      description: 'Frontend UI prototype replicating LinkedIn\'s layout and core UI components. Responsive design across devices.',
+      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop',
+      technologies: ['React', 'TailwindCSS', 'Responsive Design', 'Component Libraries'],
+      liveUrl: '#',
+      githubUrl: '#',
+      featured: false
+    },
+    {
+      title: 'NoxxShell',
+      description: 'Custom lightweight shell implementation supporting command execution, piping, and process handling. Built for OS and system programming practice.',
+      image: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=500&h=300&fit=crop',
+      technologies: ['Python', 'Linux', 'System Programming', 'Process Management'],
       liveUrl: '#',
       githubUrl: '#',
       featured: false
@@ -72,7 +72,7 @@ const Projects = () => {
             FEATURED <span className="text-primary">PROJECTS</span>
           </h2>
           <p className="text-lg text-foreground/70 max-w-3xl mx-auto">
-            Here's a selection of my technical projects that demonstrate my skills in cybersecurity and web development.
+            A selection of technical projects demonstrating expertise in AI/ML, cybersecurity, web development, and systems programming.
           </p>
           <div className="w-24 h-1 bg-cyber-gradient mx-auto rounded-full mt-6"></div>
         </div>
