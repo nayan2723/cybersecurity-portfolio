@@ -1,6 +1,5 @@
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { gsap } from 'gsap';
 import { 
   Shield, 
   Code, 
@@ -18,7 +17,6 @@ import {
 const EnhancedSkills = () => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true });
-  const progressRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const skillCategories = [
     {
@@ -61,30 +59,6 @@ const EnhancedSkills = () => {
       ]
     }
   ];
-
-  useEffect(() => {
-    if (isInView) {
-      progressRefs.current.forEach((ref, index) => {
-        if (ref) {
-          const skillIndex = Math.floor(index / skillCategories.length);
-          const categoryIndex = index % skillCategories.length;
-          const skill = skillCategories[categoryIndex]?.skills[skillIndex];
-          
-          if (skill) {
-            gsap.fromTo(ref, 
-              { width: '0%' },
-              { 
-                width: `${skill.level}%`,
-                duration: 1.5,
-                delay: index * 0.1,
-                ease: "power2.out"
-              }
-            );
-          }
-        }
-      });
-    }
-  }, [isInView]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -180,47 +154,18 @@ const EnhancedSkills = () => {
                   <h3 className="text-xl font-bold">{category.title}</h3>
                 </div>
 
-                <div className="space-y-4">
-                  {category.skills.map((skill, skillIndex) => {
-                    const progressIndex = skillIndex * skillCategories.length + categoryIndex;
-                    return (
-                      <motion.div
-                        key={skill.name}
-                        className="group/skill"
-                        whileHover={{ scale: 1.02 }}
-                      >
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="text-sm font-medium text-foreground/80 group-hover/skill:text-primary transition-colors">
-                            {skill.name}
-                          </span>
-                          <span className="text-xs text-foreground/60">
-                            {skill.level}%
-                          </span>
-                        </div>
-                        <div className="h-2 bg-muted rounded-full overflow-hidden">
-                          <div
-                            ref={(el) => progressRefs.current[progressIndex] = el}
-                            className={`h-full rounded-full relative ${
-                              category.color === 'cyber-green' ? 'bg-gradient-to-r from-cyber-green to-cyber-green/60' :
-                              category.color === 'cyber-blue' ? 'bg-gradient-to-r from-cyber-blue to-cyber-blue/60' :
-                              'bg-gradient-to-r from-cyber-pink to-cyber-pink/60'
-                            }`}
-                            style={{ width: '0%' }}
-                          >
-                            <motion.div
-                              className="absolute inset-0 bg-white/20 rounded-full"
-                              animate={{ x: ['-100%', '100%'] }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                ease: "linear"
-                              }}
-                            />
-                          </div>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
+                <div className="space-y-3">
+                  {category.skills.map((skill, skillIndex) => (
+                    <motion.div
+                      key={skill.name}
+                      className="group/skill"
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      <span className="text-sm font-medium text-foreground/80 group-hover/skill:text-primary transition-colors block py-2 px-3 rounded-lg hover:bg-muted/50">
+                        {skill.name}
+                      </span>
+                    </motion.div>
+                  ))}
                 </div>
 
                 <motion.div 
