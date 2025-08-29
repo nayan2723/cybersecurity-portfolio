@@ -94,7 +94,7 @@ const Contact = () => {
     {
       icon: <Github className="w-6 h-6" />,
       title: 'GitHub',
-      url: 'https://github.com/nayan2723',
+      url: 'https://github.com/nayankumar-cybersec',
       color: 'hover:text-foreground'
     },
     {

@@ -25,13 +25,13 @@ const EnhancedFooter = () => {
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
-      href: "https://linkedin.com/in/nayan-kumar-cybersec",
+      href: "https://www.linkedin.com/in/nayan-kshitij",
       label: "LinkedIn",
       hoverColor: "hover:text-cyber-blue"
     },
     {
       icon: <Mail className="w-5 h-5" />,
-      href: "mailto:nayan.kumar.cybersec@gmail.com",
+      href: "mailto:nayankshitij128@gmail.com",
       label: "Email",
       hoverColor: "hover:text-neon-pink"
     }

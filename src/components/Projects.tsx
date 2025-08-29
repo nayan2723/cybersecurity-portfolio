@@ -11,7 +11,7 @@ const Projects = () => {
       image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f',
       technologies: ['React', 'Supabase', 'AI Models', 'Real-time Chat', 'TailwindCSS'],
       liveUrl: 'https://fharma-health-bridge-ui-nayan2723s-projects.vercel.app/',
-      githubUrl: 'https://github.com/nayan2723/fharma-health-bridge-ui.git',
+      githubUrl: 'https://github.com/nayankumar-cybersec/fharma-health-bridge-ui',
       featured: true
     },
     {
@@ -20,7 +20,7 @@ const Projects = () => {
       image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085',
       technologies: ['React', 'TailwindCSS', 'Vercel', 'TypeScript', 'Framer Motion'],
       liveUrl: 'https://nayan-cyber-folio.vercel.app/',
-      githubUrl: 'https://github.com/nayan2723/nayan-cyber-folio.git',
+      githubUrl: 'https://github.com/nayankumar-cybersec/cybersecurity-portfolio',
       featured: true
     },
     {

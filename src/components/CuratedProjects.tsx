@@ -44,7 +44,7 @@ const CuratedProjects = () => {
       technologies: ["React", "Supabase", "AI Models", "Real-time Chat", "TailwindCSS"],
       achievements: ["AI medicine recommendations", "Live chat system", "Rural healthcare bridge"],
       liveUrl: "https://fharma-health-bridge-ui-nayan2723s-projects.vercel.app/",
-      githubUrl: "https://github.com/nayan2723/fharma-health-bridge-ui.git",
+      githubUrl: "https://github.com/nayankumar-cybersec/fharma-health-bridge-ui",
       caseStudy: true
     },
     {
@@ -83,7 +83,7 @@ const CuratedProjects = () => {
       technologies: ["React", "TailwindCSS", "Vercel", "TypeScript", "Framer Motion"],
       achievements: ["Fully responsive design", "Performance optimized", "Accessibility compliant"],
       liveUrl: "https://nayan-cyber-folio.vercel.app/",
-      githubUrl: "https://github.com/nayan2723/nayan-cyber-folio.git"
+      githubUrl: "https://github.com/nayankumar-cybersec/cybersecurity-portfolio"
     },
     {
       id: 5,
