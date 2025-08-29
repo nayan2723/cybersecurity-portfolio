@@ -73,7 +73,7 @@ const FullscreenNav = () => {
             className="text-xl font-bold text-primary"
             whileHover={{ scale: 1.05 }}
           >
-            Nayan Dev
+            Nayan Kshitij
           </motion.div>
 
           {/* Desktop Navigation */}

@@ -87,7 +87,7 @@ const EnhancedFooter = () => {
                 <Terminal className="w-5 h-5 text-cyber-green" />
               </motion.div>
               <span className="text-lg font-bold font-mono">
-                <span className="text-cyber-green">$</span> nayan.dev
+                <span className="text-cyber-green">$</span> Nayan Kshitij
               </span>
             </div>
             <p className="text-foreground/70 text-sm animate__animated animate__fadeInLeft">

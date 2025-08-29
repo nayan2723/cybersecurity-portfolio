@@ -84,7 +84,7 @@ const AnimatedNav = () => {
               <Terminal className="w-6 h-6 text-cyber-green" />
             </motion.div>
             <span className="text-xl font-bold font-mono">
-              <span className="text-cyber-green">$</span> nayan.dev
+              <span className="text-cyber-green">$</span> Nayan Kshitij
             </span>
           </motion.div>
 
