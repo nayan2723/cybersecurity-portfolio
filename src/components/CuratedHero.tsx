@@ -1,10 +1,147 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { LottieGlow } from '@/components/LottieAnimations';
+import * as THREE from 'three';
+
+// 3D Components
+function CrazyFloatingCubes() {
+  const meshRef = useRef<THREE.Group>(null);
+  
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y = state.clock.elapsedTime * 0.8;
+      meshRef.current.children.forEach((child, index) => {
+        if (child instanceof THREE.Mesh) {
+          child.position.y = Math.sin(state.clock.elapsedTime * 2 + index) * 1.5;
+          child.rotation.x = state.clock.elapsedTime * (index + 1);
+          child.rotation.z = state.clock.elapsedTime * 0.5 * (index + 1);
+          child.scale.setScalar(1 + Math.sin(state.clock.elapsedTime * 3 + index) * 0.3);
+        }
+      });
+    }
+  });
+
+  return (
+    <group ref={meshRef}>
+      {Array.from({ length: 6 }).map((_, i) => (
+        <mesh
+          key={i}
+          position={[
+            Math.cos((i / 6) * Math.PI * 2) * 2,
+            0,
+            Math.sin((i / 6) * Math.PI * 2) * 2
+          ]}
+        >
+          <boxGeometry args={[0.3, 0.3, 0.3]} />
+          <meshStandardMaterial
+            color={i % 2 === 0 ? "#00ff41" : "#00bfff"}
+            emissive={i % 2 === 0 ? "#00ff41" : "#00bfff"}
+            emissiveIntensity={0.3}
+            transparent
+            opacity={0.8}
+          />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+function MorphingSphere() {
+  const meshRef = useRef<THREE.Mesh>(null);
+  
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.x = state.clock.elapsedTime * 0.3;
+      meshRef.current.rotation.y = state.clock.elapsedTime * 0.5;
+      const scale = 1 + Math.sin(state.clock.elapsedTime * 2) * 0.5;
+      meshRef.current.scale.setScalar(scale);
+      meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 1.5) * 0.5;
+    }
+  });
+
+  return (
+    <mesh ref={meshRef} position={[0, 0, 0]}>
+      <sphereGeometry args={[0.8, 16, 16]} />
+      <meshStandardMaterial
+        color="#ff00ff"
+        emissive="#ff00ff"
+        emissiveIntensity={0.2}
+        transparent
+        opacity={0.7}
+        wireframe={false}
+      />
+    </mesh>
+  );
+}
+
+function WireframeTorus() {
+  const meshRef = useRef<THREE.Mesh>(null);
+  
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.x = state.clock.elapsedTime * 0.4;
+      meshRef.current.rotation.y = state.clock.elapsedTime * 0.6;
+      meshRef.current.rotation.z = state.clock.elapsedTime * 0.2;
+      meshRef.current.position.x = Math.sin(state.clock.elapsedTime) * 1.5;
+      meshRef.current.position.z = Math.cos(state.clock.elapsedTime) * 1.5;
+    }
+  });
+
+  return (
+    <mesh ref={meshRef}>
+      <torusGeometry args={[1, 0.3, 8, 16]} />
+      <meshBasicMaterial
+        color="#00ff41"
+        wireframe={true}
+        transparent
+        opacity={0.8}
+      />
+    </mesh>
+  );
+}
+
+function FloatingParticles() {
+  const pointsRef = useRef<THREE.Points>(null);
+  
+  const particlesPosition = new Float32Array(100 * 3);
+  for (let i = 0; i < 100; i++) {
+    particlesPosition[i * 3] = (Math.random() - 0.5) * 8;
+    particlesPosition[i * 3 + 1] = (Math.random() - 0.5) * 8;
+    particlesPosition[i * 3 + 2] = (Math.random() - 0.5) * 8;
+  }
+
+  useFrame((state) => {
+    if (pointsRef.current) {
+      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.1;
+      pointsRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.2;
+    }
+  });
+
+  return (
+    <points ref={pointsRef}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={100}
+          array={particlesPosition}
+          itemSize={3}
+        />
+      </bufferGeometry>
+      <pointsMaterial
+        color="#00bfff"
+        size={0.02}
+        sizeAttenuation={true}
+        transparent
+        opacity={0.8}
+      />
+    </points>
+  );
+}
 
 const CuratedHero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -153,68 +290,38 @@ const CuratedHero = () => {
           </p>
         </motion.div>
 
-        {/* Animated Coding Scene */}
+        {/* Crazy 3D Loop */}
         <motion.div 
-          className="relative max-w-lg mx-auto mb-12 p-6 bg-muted/20 rounded-xl border border-primary/20"
+          className="relative max-w-lg mx-auto mb-12 h-64 bg-muted/20 rounded-xl border border-primary/20 overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5 }}
         >
-          <div className="relative">
-            {/* Room Setup */}
-            <div className="bg-gradient-to-b from-background/50 to-muted/30 rounded-lg p-4 relative overflow-hidden">
-              {/* Desk */}
-              <div className="h-4 bg-gradient-to-r from-muted to-muted/60 rounded-sm mb-2"></div>
-              
-              {/* Monitor with code */}
-              <div className="relative bg-background border-2 border-primary/30 rounded-sm p-3 mb-4">
-                <div className="flex items-center gap-1 mb-2">
-                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                </div>
-                <div className="space-y-1 text-xs font-mono">
-                  <div className="flex">
-                    <span className="text-cyber-green animate-pulse">$</span>
-                    <span className="text-primary ml-1 animate-pulse">nmap -sS target.com</span>
-                  </div>
-                  <div className="flex">
-                    <span className="text-cyber-blue">console.log(</span>
-                    <span className="text-cyber-pink animate-pulse">"hacking..."</span>
-                    <span className="text-cyber-blue">)</span>
-                  </div>
-                  <div className="text-cyber-green animate-pulse">// Breaking systems...</div>
-                </div>
-              </div>
-              
-              {/* Animated Person */}
-              <div className="relative">
-                <div className="text-2xl animate-bounce">🧑‍💻</div>
-                
-                {/* Coffee cup with steam */}
-                <div className="absolute -right-2 top-0">
-                  <div className="text-lg">☕</div>
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
-                    <div className="w-1 h-3 opacity-60 animate-pulse">💨</div>
-                  </div>
-                </div>
-                
-                {/* Floating code particles */}
-                <div className="absolute -top-4 left-4 text-xs text-primary/60 animate-pulse">{`{}`}</div>
-                <div className="absolute -top-2 right-2 text-xs text-cyber-green/60 animate-pulse delay-500">[]</div>
-                <div className="absolute top-2 -left-2 text-xs text-cyber-blue/60 animate-pulse delay-1000">()</div>
-              </div>
-              
-              {/* Room lighting effects */}
-              <div className="absolute top-2 right-2 w-3 h-3 bg-primary/20 rounded-full animate-pulse"></div>
-              <div className="absolute bottom-2 left-2 w-2 h-2 bg-cyber-green/20 rounded-full animate-pulse delay-700"></div>
-            </div>
+          <Canvas
+            camera={{ position: [0, 0, 5], fov: 60 }}
+            style={{ background: 'transparent' }}
+          >
+            <ambientLight intensity={0.3} />
+            <pointLight position={[10, 10, 10]} intensity={0.8} color="#00ff41" />
+            <pointLight position={[-10, -10, -10]} intensity={0.6} color="#00bfff" />
+            <pointLight position={[0, 10, -10]} intensity={0.4} color="#ff00ff" />
             
-            {/* Status text */}
-            <div className="text-center mt-3">
-              <div className="text-sm text-foreground/60 font-mono">
-                Status: <span className="text-primary animate-pulse">Coding Tirelessly</span>
-              </div>
+            {/* Crazy Floating Cubes */}
+            <CrazyFloatingCubes />
+            
+            {/* Morphing Sphere */}
+            <MorphingSphere />
+            
+            {/* Wireframe Torus */}
+            <WireframeTorus />
+            
+            {/* Floating Particles */}
+            <FloatingParticles />
+          </Canvas>
+          
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center">
+            <div className="text-sm text-foreground/60 font-mono">
+              Status: <span className="text-primary animate-pulse">Mind = Blown</span>
             </div>
           </div>
         </motion.div>
