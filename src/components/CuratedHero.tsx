@@ -1,147 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
-import { Canvas, useFrame } from '@react-three/fiber';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { LottieGlow } from '@/components/LottieAnimations';
-import * as THREE from 'three';
-
-// 3D Components
-function CrazyFloatingCubes() {
-  const meshRef = useRef<THREE.Group>(null);
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.8;
-      meshRef.current.children.forEach((child, index) => {
-        if (child instanceof THREE.Mesh) {
-          child.position.y = Math.sin(state.clock.elapsedTime * 2 + index) * 1.5;
-          child.rotation.x = state.clock.elapsedTime * (index + 1);
-          child.rotation.z = state.clock.elapsedTime * 0.5 * (index + 1);
-          child.scale.setScalar(1 + Math.sin(state.clock.elapsedTime * 3 + index) * 0.3);
-        }
-      });
-    }
-  });
-
-  return (
-    <group ref={meshRef}>
-      {Array.from({ length: 6 }).map((_, i) => (
-        <mesh
-          key={i}
-          position={[
-            Math.cos((i / 6) * Math.PI * 2) * 2,
-            0,
-            Math.sin((i / 6) * Math.PI * 2) * 2
-          ]}
-        >
-          <boxGeometry args={[0.3, 0.3, 0.3]} />
-          <meshStandardMaterial
-            color={i % 2 === 0 ? "#00ff41" : "#00bfff"}
-            emissive={i % 2 === 0 ? "#00ff41" : "#00bfff"}
-            emissiveIntensity={0.3}
-            transparent
-            opacity={0.8}
-          />
-        </mesh>
-      ))}
-    </group>
-  );
-}
-
-function MorphingSphere() {
-  const meshRef = useRef<THREE.Mesh>(null);
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.3;
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.5;
-      const scale = 1 + Math.sin(state.clock.elapsedTime * 2) * 0.5;
-      meshRef.current.scale.setScalar(scale);
-      meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 1.5) * 0.5;
-    }
-  });
-
-  return (
-    <mesh ref={meshRef} position={[0, 0, 0]}>
-      <sphereGeometry args={[0.8, 16, 16]} />
-      <meshStandardMaterial
-        color="#ff00ff"
-        emissive="#ff00ff"
-        emissiveIntensity={0.2}
-        transparent
-        opacity={0.7}
-        wireframe={false}
-      />
-    </mesh>
-  );
-}
-
-function WireframeTorus() {
-  const meshRef = useRef<THREE.Mesh>(null);
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.4;
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.6;
-      meshRef.current.rotation.z = state.clock.elapsedTime * 0.2;
-      meshRef.current.position.x = Math.sin(state.clock.elapsedTime) * 1.5;
-      meshRef.current.position.z = Math.cos(state.clock.elapsedTime) * 1.5;
-    }
-  });
-
-  return (
-    <mesh ref={meshRef}>
-      <torusGeometry args={[1, 0.3, 8, 16]} />
-      <meshBasicMaterial
-        color="#00ff41"
-        wireframe={true}
-        transparent
-        opacity={0.8}
-      />
-    </mesh>
-  );
-}
-
-function FloatingParticles() {
-  const pointsRef = useRef<THREE.Points>(null);
-  
-  const particlesPosition = new Float32Array(100 * 3);
-  for (let i = 0; i < 100; i++) {
-    particlesPosition[i * 3] = (Math.random() - 0.5) * 8;
-    particlesPosition[i * 3 + 1] = (Math.random() - 0.5) * 8;
-    particlesPosition[i * 3 + 2] = (Math.random() - 0.5) * 8;
-  }
-
-  useFrame((state) => {
-    if (pointsRef.current) {
-      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.1;
-      pointsRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.2;
-    }
-  });
-
-  return (
-    <points ref={pointsRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={100}
-          array={particlesPosition}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        color="#00bfff"
-        size={0.02}
-        sizeAttenuation={true}
-        transparent
-        opacity={0.8}
-      />
-    </points>
-  );
-}
 
 const CuratedHero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -290,38 +153,60 @@ const CuratedHero = () => {
           </p>
         </motion.div>
 
-        {/* Crazy 3D Loop */}
+        {/* Morphing Blob Animation */}
         <motion.div 
-          className="relative max-w-lg mx-auto mb-12 h-64 bg-muted/20 rounded-xl border border-primary/20 overflow-hidden"
+          className="relative max-w-lg mx-auto mb-12 h-64 rounded-xl overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5 }}
         >
-          <Canvas
-            camera={{ position: [0, 0, 5], fov: 60 }}
-            style={{ background: 'transparent' }}
-          >
-            <ambientLight intensity={0.3} />
-            <pointLight position={[10, 10, 10]} intensity={0.8} color="#00ff41" />
-            <pointLight position={[-10, -10, -10]} intensity={0.6} color="#00bfff" />
-            <pointLight position={[0, 10, -10]} intensity={0.4} color="#ff00ff" />
-            
-            {/* Crazy Floating Cubes */}
-            <CrazyFloatingCubes />
-            
-            {/* Morphing Sphere */}
-            <MorphingSphere />
-            
-            {/* Wireframe Torus */}
-            <WireframeTorus />
-            
-            {/* Floating Particles */}
-            <FloatingParticles />
-          </Canvas>
+          {/* Main morphing blob */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="relative w-48 h-48">
+              {/* Primary blob */}
+              <div className="absolute inset-0 bg-gradient-to-br from-cyber-blue/30 to-primary/20 rounded-full blur-xl animate-[morph_8s_ease-in-out_infinite]"></div>
+              
+              {/* Secondary blob */}
+              <div className="absolute inset-4 bg-gradient-to-tl from-neon-pink/20 to-cyber-green/30 rounded-full blur-lg animate-[morph-reverse_10s_ease-in-out_infinite]"></div>
+              
+              {/* Tertiary blob */}
+              <div className="absolute inset-8 bg-gradient-to-r from-primary/40 to-cyber-blue/30 rounded-full blur-md animate-[morph-slow_12s_ease-in-out_infinite]"></div>
+              
+              {/* Core glow */}
+              <div className="absolute inset-16 bg-primary/60 rounded-full blur-sm animate-pulse"></div>
+            </div>
+          </div>
+          
+          {/* Digital rain overlay */}
+          <div className="absolute inset-0 opacity-10 overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-full">
+              {Array.from({ length: 20 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute text-xs font-mono text-cyber-green animate-[rain_4s_linear_infinite]"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    animationDelay: `${Math.random() * 4}s`,
+                    animationDuration: `${3 + Math.random() * 2}s`
+                  }}
+                >
+                  {Math.random() > 0.5 ? '1' : '0'}
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Floating code elements */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-4 left-4 text-xs font-mono text-primary/30 animate-float">{'<dev>'}</div>
+            <div className="absolute top-8 right-8 text-xs font-mono text-cyber-blue/40 animate-float-delayed">{'{...}'}</div>
+            <div className="absolute bottom-12 left-8 text-xs font-mono text-neon-pink/30 animate-float-slow">{'[]'}</div>
+            <div className="absolute bottom-6 right-6 text-xs font-mono text-cyber-green/40 animate-float">{'=>'}</div>
+          </div>
           
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center">
             <div className="text-sm text-foreground/60 font-mono">
-              Status: <span className="text-primary animate-pulse">Mind = Blown</span>
+              Status: <span className="text-primary animate-pulse">In the Zone</span>
             </div>
           </div>
         </motion.div>

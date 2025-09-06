@@ -80,6 +80,92 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'morph': {
+					'0%, 100%': {
+						borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
+						transform: 'translate3d(0, 0, 0) rotateZ(0deg)'
+					},
+					'34%': {
+						borderRadius: '70% 60% 70% 30% / 50% 60% 30% 60%',
+						transform: 'translate3d(5px, -6px, 0) rotateZ(-5deg)'
+					},
+					'67%': {
+						borderRadius: '100% 100% 60% 60% / 100% 100% 60% 60%',
+						transform: 'translate3d(-3px, 6px, 0) rotateZ(3deg)'
+					}
+				},
+				'morph-reverse': {
+					'0%, 100%': {
+						borderRadius: '40% 60% 70% 30% / 40% 70% 30% 60%',
+						transform: 'translate3d(0, 0, 0) rotateZ(0deg)'
+					},
+					'34%': {
+						borderRadius: '30% 70% 40% 60% / 60% 40% 70% 50%',
+						transform: 'translate3d(-4px, 5px, 0) rotateZ(4deg)'
+					},
+					'67%': {
+						borderRadius: '60% 60% 100% 100% / 60% 60% 100% 100%',
+						transform: 'translate3d(2px, -4px, 0) rotateZ(-2deg)'
+					}
+				},
+				'morph-slow': {
+					'0%, 100%': {
+						borderRadius: '50% 50% 50% 50% / 50% 50% 50% 50%',
+						transform: 'translate3d(0, 0, 0) rotateZ(0deg) scale(1)'
+					},
+					'25%': {
+						borderRadius: '80% 20% 80% 20% / 20% 80% 20% 80%',
+						transform: 'translate3d(2px, -2px, 0) rotateZ(2deg) scale(1.05)'
+					},
+					'50%': {
+						borderRadius: '20% 80% 20% 80% / 80% 20% 80% 20%',
+						transform: 'translate3d(-2px, 2px, 0) rotateZ(-2deg) scale(0.95)'
+					},
+					'75%': {
+						borderRadius: '80% 20% 80% 20% / 20% 80% 20% 80%',
+						transform: 'translate3d(1px, -1px, 0) rotateZ(1deg) scale(1.02)'
+					}
+				},
+				'rain': {
+					'0%': {
+						transform: 'translateY(-100px)',
+						opacity: '0'
+					},
+					'10%': {
+						opacity: '1'
+					},
+					'90%': {
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'translateY(300px)',
+						opacity: '0'
+					}
+				},
+				'float': {
+					'0%, 100%': {
+						transform: 'translateY(0px)'
+					},
+					'50%': {
+						transform: 'translateY(-10px)'
+					}
+				},
+				'float-delayed': {
+					'0%, 100%': {
+						transform: 'translateY(0px)'
+					},
+					'50%': {
+						transform: 'translateY(-8px)'
+					}
+				},
+				'float-slow': {
+					'0%, 100%': {
+						transform: 'translateY(0px)'
+					},
+					'50%': {
+						transform: 'translateY(-6px)'
+					}
 				}
 			},
 			animation: {
@@ -87,6 +173,8 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
 				'float': 'float 3s ease-in-out infinite',
+				'float-delayed': 'float-delayed 4s ease-in-out infinite 0.5s',
+				'float-slow': 'float-slow 5s ease-in-out infinite 1s',
 				'glow': 'glow 2s ease-in-out infinite alternate'
 			},
 			fontFamily: {
