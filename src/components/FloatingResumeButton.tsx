@@ -25,7 +25,7 @@ const FloatingResumeButton = () => {
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0, opacity: 0 }}
-          className="fixed bottom-6 right-20 z-50"
+          className="fixed bottom-6 left-6 z-50"
         >
           <div className="relative">
             {/* Expanded Card */}
@@ -35,7 +35,7 @@ const FloatingResumeButton = () => {
                   initial={{ opacity: 0, scale: 0.8, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.8, y: 20 }}
-                  className="absolute bottom-16 right-0 bg-card border border-border/50 rounded-lg p-4 shadow-lg backdrop-blur-sm min-w-[280px]"
+                  className="absolute bottom-16 left-0 bg-card border border-border/50 rounded-lg p-4 shadow-lg backdrop-blur-sm min-w-[280px]"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="font-semibold text-primary">Quick Access</h3>
@@ -96,12 +96,12 @@ const FloatingResumeButton = () => {
             {/* Tooltip */}
             {!isExpanded && (
               <motion.div
-                initial={{ opacity: 0, x: 10 }}
+                initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-card border border-border/50 px-3 py-1 rounded-md text-sm whitespace-nowrap shadow-lg"
+                className="absolute left-full ml-3 top-1/2 -translate-y-1/2 bg-card border border-border/50 px-3 py-1 rounded-md text-sm whitespace-nowrap shadow-lg"
               >
                 Resume & Contact
-                <div className="absolute left-full top-1/2 -translate-y-1/2 border-l-4 border-l-card border-t-4 border-t-transparent border-b-4 border-b-transparent"></div>
+                <div className="absolute right-full top-1/2 -translate-y-1/2 border-r-4 border-r-card border-t-4 border-t-transparent border-b-4 border-b-transparent"></div>
               </motion.div>
             )}
           </div>
