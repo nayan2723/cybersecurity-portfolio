@@ -195,36 +195,6 @@ const CuratedProjects = () => {
                         {project.image}
                       </div>
                       
-                      {/* Hover Overlay */}
-                      <AnimatePresence>
-                        {hoveredProject === project.id && (
-                          <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="absolute inset-0 bg-black/80 flex items-center justify-center gap-4"
-                          >
-                            {project.liveUrl && (
-                              <Button size="sm" variant="outline">
-                                <Eye className="w-4 h-4 mr-1" />
-                                Live Demo
-                              </Button>
-                            )}
-                            {project.githubUrl && (
-                              <Button size="sm" variant="outline">
-                                <Github className="w-4 h-4 mr-1" />
-                                Code
-                              </Button>
-                            )}
-                            {project.caseStudy && (
-                              <Button size="sm" variant="primary">
-                                <Play className="w-4 h-4 mr-1" />
-                                Case Study
-                              </Button>
-                            )}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
 
                       {/* Featured Badge */}
                       <Badge 
@@ -316,20 +286,6 @@ const CuratedProjects = () => {
                         {project.description}
                       </p>
                       
-                      <div className="flex gap-2 mb-4">
-                        {project.liveUrl && (
-                          <Button size="sm" variant="outline" className="flex-1">
-                            <ExternalLink className="w-3 h-3 mr-1" />
-                            Demo
-                          </Button>
-                        )}
-                        {project.githubUrl && (
-                          <Button size="sm" variant="outline" className="flex-1">
-                            <Github className="w-3 h-3 mr-1" />
-                            Code
-                          </Button>
-                        )}
-                      </div>
                       
                       <div className="flex flex-wrap gap-1">
                         {project.technologies.slice(0, 3).map((tech, idx) => (

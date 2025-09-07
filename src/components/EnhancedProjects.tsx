@@ -185,25 +185,6 @@ const EnhancedProjects = () => {
                   ))}
                 </div>
                 
-                <div className="flex gap-3 pt-2">
-                  <Button 
-                    size="sm" 
-                    className="cyber-button group/btn animate__animated animate__slideInLeft"
-                    onClick={() => window.open(project.liveUrl, '_blank')}
-                  >
-                    <Eye className="w-4 h-4 mr-2 group-hover/btn:animate-bounce" />
-                    Live Demo
-                  </Button>
-                  <Button 
-                    size="sm" 
-                    variant="outline"
-                    className="border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground animate__animated animate__slideInRight"
-                    onClick={() => window.open(project.githubUrl, '_blank')}
-                  >
-                    <Github className="w-4 h-4 mr-2" />
-                    Code
-                  </Button>
-                </div>
               </CardContent>
             </Card>
           ))}
@@ -266,26 +247,6 @@ const EnhancedProjects = () => {
                     )}
                   </div>
                   
-                  <div className="flex gap-2">
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      className="flex-1 text-xs hover:animate__pulse"
-                      onClick={() => window.open(project.liveUrl, '_blank')}
-                    >
-                      <ExternalLink className="w-3 h-3 mr-1" />
-                      Demo
-                    </Button>
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      className="flex-1 text-xs hover:animate__pulse"
-                      onClick={() => window.open(project.githubUrl, '_blank')}
-                    >
-                      <Github className="w-3 h-3 mr-1" />
-                      Code
-                    </Button>
-                  </div>
                 </CardContent>
               </Card>
             ))}

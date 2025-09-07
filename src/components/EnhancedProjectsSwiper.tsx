@@ -204,17 +204,6 @@ const EnhancedProjectsSwiper = () => {
                       ))}
                     </div>
                     
-                    {/* Actions */}
-                    <div className="flex gap-2 pt-4">
-                      <Button size="sm" variant="outline" className="flex-1">
-                        <Github className="w-3 h-3" />
-                        Code
-                      </Button>
-                      <Button size="sm" variant="primary" className="flex-1">
-                        <ExternalLink className="w-3 h-3" />
-                        Demo
-                      </Button>
-                    </div>
                   </CardContent>
                 </Card>
               </SwiperSlide>
