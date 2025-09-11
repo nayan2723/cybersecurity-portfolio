@@ -49,7 +49,7 @@ const CuratedProjects = () => {
     },
     {
       id: 2,
-      title: "PhishTrap",
+      title: "Phishnot",
       description: "Advanced cybersecurity project using rule-based + ML models to detect phishing URLs. Integrates AI (Gemini + Perplexity) for real-time threat intelligence with Google Safe Browsing API validation.",
       category: "security",
       featured: true,
@@ -62,19 +62,44 @@ const CuratedProjects = () => {
     },
     {
       id: 3,
-      title: "Cyber Threat Visualization",
-      description: "Real-time cyber threat intelligence visualization with geographical attack maps, live updates, severity classification and trend analysis for cybersecurity professionals.",
-      category: "security",
+      title: "NoxxShell",
+      description: "Custom lightweight shell implementation supporting command execution, piping, and process handling. Built for OS and system programming practice using Python on Linux.",
+      category: "systems",
       featured: true,
-      image: "📊",
-      technologies: ["Python", "Flask/Django", "D3.js", "Chart.js", "Threat Intelligence APIs"],
-      achievements: ["Real-time visualization", "Geographical mapping", "Trend analysis"],
+      image: "💻",
+      technologies: ["Python", "Linux", "System Programming", "Process Management"],
+      achievements: ["Custom shell implementation", "Command piping support", "Process handling"],
       liveUrl: "#",
       githubUrl: "#",
       caseStudy: true
     },
     {
       id: 4,
+      title: "Mailer3000",
+      description: "Telegram bot that generates temporary email addresses and helps users check their inbox. Built for privacy-focused users who need disposable email addresses for temporary services.",
+      category: "security",
+      featured: true,
+      image: "📧",
+      technologies: ["Python", "Telegram Bot API", "Temp Mail APIs", "SQLite", "Asyncio"],
+      achievements: ["Temporary email generation", "Real-time inbox monitoring", "Privacy protection"],
+      liveUrl: "#",
+      githubUrl: "#",
+      caseStudy: true
+    },
+    {
+      id: 5,
+      title: "Cyber Threat Visualization",
+      description: "Real-time cyber threat intelligence visualization with geographical attack maps, live updates, severity classification and trend analysis for cybersecurity professionals.",
+      category: "security",
+      featured: false,
+      image: "📊",
+      technologies: ["Python", "Flask/Django", "D3.js", "Chart.js", "Threat Intelligence APIs"],
+      achievements: ["Real-time visualization", "Geographical mapping", "Trend analysis"],
+      liveUrl: "#",
+      githubUrl: "#"
+    },
+    {
+      id: 6,
       title: "Portfolio Website",
       description: "Personal portfolio website built with React and TailwindCSS. Fully responsive custom-built design showcasing skills, resume, and live projects. Optimized for performance and accessibility.",
       category: "web",
@@ -86,7 +111,7 @@ const CuratedProjects = () => {
       githubUrl: "https://github.com/nayankumar-cybersec/cybersecurity-portfolio"
     },
     {
-      id: 5,
+      id: 7,
       title: "LinkedIn Clone (UI Prototype)",
       description: "Frontend UI prototype replicating LinkedIn's layout and core UI components. Responsive design across devices built as practice project to mimic real-world complexity.",
       category: "web",
@@ -94,18 +119,6 @@ const CuratedProjects = () => {
       image: "👥",
       technologies: ["React", "TailwindCSS", "Responsive Design", "Component Libraries"],
       achievements: ["Pixel-perfect UI replica", "Cross-device responsive", "Complex component structure"],
-      liveUrl: "#",
-      githubUrl: "#"
-    },
-    {
-      id: 6,
-      title: "NoxxShell",
-      description: "Custom lightweight shell implementation supporting command execution, piping, and process handling. Built for OS and system programming practice using Python on Linux.",
-      category: "systems",
-      featured: false,
-      image: "💻",
-      technologies: ["Python", "Linux", "System Programming", "Process Management"],
-      achievements: ["Custom shell implementation", "Command piping support", "Process handling"],
       liveUrl: "#",
       githubUrl: "#"
     }

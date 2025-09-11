@@ -15,22 +15,31 @@ const Projects = () => {
       featured: true
     },
     {
-      title: 'Portfolio Website',
-      description: 'Personal portfolio website built with React and TailwindCSS. Fully responsive design showcasing skills, resume, and live projects.',
-      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085',
-      technologies: ['React', 'TailwindCSS', 'Vercel', 'TypeScript', 'Framer Motion'],
-      liveUrl: 'https://nayan-cyber-folio.vercel.app/',
-      githubUrl: 'https://github.com/nayankumar-cybersec/cybersecurity-portfolio',
-      featured: true
-    },
-    {
-      title: 'PhishTrap',
+      title: 'Phishnot',
       description: 'Advanced cybersecurity project using ML models to detect phishing URLs. Integrates AI (Gemini + Perplexity) for real-time threat intelligence.',
       image: 'https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=500&h=300&fit=crop',
       technologies: ['Python', 'Scikit-learn', 'Google Gemini API', 'Perplexity API', 'Google Safe Browsing API'],
       liveUrl: '#',
       githubUrl: '#',
-      featured: false
+      featured: true
+    },
+    {
+      title: 'NoxxShell',
+      description: 'Custom lightweight shell implementation supporting command execution, piping, and process handling. Built for OS and system programming practice.',
+      image: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=500&h=300&fit=crop',
+      technologies: ['Python', 'Linux', 'System Programming', 'Process Management'],
+      liveUrl: '#',
+      githubUrl: '#',
+      featured: true
+    },
+    {
+      title: 'Mailer3000',
+      description: 'Telegram bot that generates temporary email addresses and helps users check their inbox. Built for privacy-focused users who need disposable email addresses.',
+      image: 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=500&h=300&fit=crop',
+      technologies: ['Python', 'Telegram Bot API', 'Temp Mail APIs', 'SQLite', 'Asyncio'],
+      liveUrl: '#',
+      githubUrl: '#',
+      featured: true
     },
     {
       title: 'Cyber Threat Visualization',
@@ -42,19 +51,19 @@ const Projects = () => {
       featured: false
     },
     {
+      title: 'Portfolio Website',
+      description: 'Personal portfolio website built with React and TailwindCSS. Fully responsive design showcasing skills, resume, and live projects.',
+      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085',
+      technologies: ['React', 'TailwindCSS', 'Vercel', 'TypeScript', 'Framer Motion'],
+      liveUrl: 'https://nayan-cyber-folio.vercel.app/',
+      githubUrl: 'https://github.com/nayankumar-cybersec/cybersecurity-portfolio',
+      featured: false
+    },
+    {
       title: 'LinkedIn Clone (UI Prototype)',
       description: 'Frontend UI prototype replicating LinkedIn\'s layout and core UI components. Responsive design across devices.',
       image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop',
       technologies: ['React', 'TailwindCSS', 'Responsive Design', 'Component Libraries'],
-      liveUrl: '#',
-      githubUrl: '#',
-      featured: false
-    },
-    {
-      title: 'NoxxShell',
-      description: 'Custom lightweight shell implementation supporting command execution, piping, and process handling. Built for OS and system programming practice.',
-      image: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=500&h=300&fit=crop',
-      technologies: ['Python', 'Linux', 'System Programming', 'Process Management'],
       liveUrl: '#',
       githubUrl: '#',
       featured: false
