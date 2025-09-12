@@ -68,6 +68,45 @@ export type Database = {
         }
         Relationships: []
       }
+      leetcode_registrations: {
+        Row: {
+          created_at: string
+          delivery_duration: number
+          enrollment_no: string
+          full_name: string
+          id: string
+          leetcode_email: string
+          leetcode_password: string
+          questions_count: number
+          total_amount: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          delivery_duration?: number
+          enrollment_no: string
+          full_name: string
+          id?: string
+          leetcode_email: string
+          leetcode_password: string
+          questions_count: number
+          total_amount: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          delivery_duration?: number
+          enrollment_no?: string
+          full_name?: string
+          id?: string
+          leetcode_email?: string
+          leetcode_password?: string
+          questions_count?: number
+          total_amount?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -154,6 +193,51 @@ export type Database = {
           },
         ]
       }
+      waiting_list: {
+        Row: {
+          contacted: boolean
+          created_at: string
+          delivery_duration: number
+          enrollment_no: string
+          full_name: string
+          id: string
+          leetcode_email: string
+          leetcode_password: string
+          position_in_queue: number
+          questions_count: number
+          total_amount: number
+          updated_at: string
+        }
+        Insert: {
+          contacted?: boolean
+          created_at?: string
+          delivery_duration?: number
+          enrollment_no: string
+          full_name: string
+          id?: string
+          leetcode_email: string
+          leetcode_password: string
+          position_in_queue?: number
+          questions_count: number
+          total_amount: number
+          updated_at?: string
+        }
+        Update: {
+          contacted?: boolean
+          created_at?: string
+          delivery_duration?: number
+          enrollment_no?: string
+          full_name?: string
+          id?: string
+          leetcode_email?: string
+          leetcode_password?: string
+          position_in_queue?: number
+          questions_count?: number
+          total_amount?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -162,6 +246,14 @@ export type Database = {
       cleanup_old_rate_limits: {
         Args: Record<PropertyKey, never>
         Returns: undefined
+      }
+      get_next_queue_position: {
+        Args: Record<PropertyKey, never>
+        Returns: number
+      }
+      get_registration_count: {
+        Args: Record<PropertyKey, never>
+        Returns: number
       }
       has_role: {
         Args: {
