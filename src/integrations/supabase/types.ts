@@ -107,6 +107,39 @@ export type Database = {
         }
         Relationships: []
       }
+      password_access_log: {
+        Row: {
+          access_type: string
+          accessed_record_id: string | null
+          created_at: string | null
+          id: string
+          ip_address: unknown | null
+          success: boolean | null
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          access_type: string
+          accessed_record_id?: string | null
+          created_at?: string | null
+          id?: string
+          ip_address?: unknown | null
+          success?: boolean | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          access_type?: string
+          accessed_record_id?: string | null
+          created_at?: string | null
+          id?: string
+          ip_address?: unknown | null
+          success?: boolean | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -198,6 +231,7 @@ export type Database = {
           contacted: boolean
           created_at: string
           delivery_duration: number
+          encrypted_password: string | null
           enrollment_no: string
           full_name: string
           id: string
@@ -212,6 +246,7 @@ export type Database = {
           contacted?: boolean
           created_at?: string
           delivery_duration?: number
+          encrypted_password?: string | null
           enrollment_no: string
           full_name: string
           id?: string
@@ -226,6 +261,7 @@ export type Database = {
           contacted?: boolean
           created_at?: string
           delivery_duration?: number
+          encrypted_password?: string | null
           enrollment_no?: string
           full_name?: string
           id?: string
@@ -247,6 +283,10 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: undefined
       }
+      encrypt_password: {
+        Args: { encryption_key?: string; password_text: string }
+        Returns: string
+      }
       get_next_queue_position: {
         Args: Record<PropertyKey, never>
         Returns: number
@@ -260,6 +300,18 @@ export type Database = {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
+        Returns: boolean
+      }
+      log_password_access: {
+        Args: {
+          access_type_param: string
+          record_id: string
+          success_param?: boolean
+        }
+        Returns: undefined
+      }
+      verify_waiting_list_password: {
+        Args: { provided_password: string; user_id: string }
         Returns: boolean
       }
     }
