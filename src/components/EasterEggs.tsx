@@ -217,12 +217,12 @@ const EasterEggs = () => {
           transition={{ duration: 1 }}
           className="text-center space-y-6"
         >
-          <div className="text-6xl md:text-8xl font-bold text-cyber-green animate-cyber-pulse">
-            YOU ARE A G
+          <div className="text-4xl md:text-6xl font-bold text-cyber-green animate-cyber-pulse">
+            YOU ARE A REAL GAMER
           </div>
           
           <div className="text-xl md:text-2xl text-cyber-green/80 animate-fade-in-up">
-            Matrix access granted... Welcome to the code
+            Konami Code Master... Welcome to the elite
           </div>
           
           <div className="text-sm text-cyber-green/60 mt-8 animate-fade-in-up" style={{ animationDelay: '1s' }}>
