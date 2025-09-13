@@ -295,6 +295,23 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: number
       }
+      get_waiting_list_admin_view: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          contacted: boolean
+          created_at: string
+          delivery_duration: number
+          enrollment_no: string
+          full_name: string
+          has_encrypted_password: boolean
+          id: string
+          leetcode_email: string
+          position_in_queue: number
+          questions_count: number
+          total_amount: number
+          updated_at: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
