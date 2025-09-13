@@ -11,6 +11,7 @@ import ResumeButton from '@/components/ui/resume-button';
 import { useToast } from '@/hooks/use-toast';
 import { contactFormSchema, type ContactFormData } from '@/lib/contact-validation';
 import { supabase } from '@/integrations/supabase/client';
+import type { ContactSubmissionInsert } from '@/integrations/supabase/simple-types';
 
 const Contact = () => {
   const { toast } = useToast();
