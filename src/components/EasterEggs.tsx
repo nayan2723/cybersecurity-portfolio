@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { supabase } from '@/integrations/supabase/client';
 import { 
   Smile, 
   Coffee, 
@@ -258,11 +259,44 @@ const EasterEggs = () => {
     }
   };
 
-  const generateSong = () => {
-    const moodKey = currentMood as keyof typeof moodSongs;
-    const songsForMood = moodSongs[moodKey] || moodSongs.happy;
-    const randomSong = songsForMood[Math.floor(Math.random() * songsForMood.length)];
-    setGhibliCharacter(randomSong);
+  const generateSong = async () => {
+    try {
+      const { data, error } = await supabase.functions.invoke('gemini-music-generator', {
+        body: {
+          mood: currentMood,
+          language: 'both' // Can be 'english', 'hindi', or 'both'
+        }
+      });
+
+      if (error) {
+        console.error('Error calling Gemini music generator:', error);
+        // Fallback to hardcoded songs
+        const moodKey = currentMood as keyof typeof moodSongs;
+        const songsForMood = moodSongs[moodKey] || moodSongs.happy;
+        const randomSong = songsForMood[Math.floor(Math.random() * songsForMood.length)];
+        setGhibliCharacter(randomSong);
+        return;
+      }
+
+      if (data && data.songs && data.songs.length > 0) {
+        const randomSong = data.songs[Math.floor(Math.random() * data.songs.length)];
+        setGhibliCharacter(randomSong);
+        console.log(`Generated song via ${data.source}:`, randomSong);
+      } else {
+        // Fallback to hardcoded songs
+        const moodKey = currentMood as keyof typeof moodSongs;
+        const songsForMood = moodSongs[moodKey] || moodSongs.happy;
+        const randomSong = songsForMood[Math.floor(Math.random() * songsForMood.length)];
+        setGhibliCharacter(randomSong);
+      }
+    } catch (error) {
+      console.error('Error generating song:', error);
+      // Fallback to hardcoded songs
+      const moodKey = currentMood as keyof typeof moodSongs;
+      const songsForMood = moodSongs[moodKey] || moodSongs.happy;
+      const randomSong = songsForMood[Math.floor(Math.random() * songsForMood.length)];
+      setGhibliCharacter(randomSong);
+    }
   };
 
   const triggerBlueScreen = () => {
@@ -469,12 +503,12 @@ const EasterEggs = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Heart className="w-5 h-5 text-pink-400" />
-                  Mood Songs Generator
+                  AI-Powered Songs Generator
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-sm text-foreground/70 text-center">
-                  Get a song recommendation based on your current mood!
+                  Get personalized song recommendations from Gemini AI based on your current mood!
                 </p>
                 {ghibliCharacter && (
                   <motion.div
