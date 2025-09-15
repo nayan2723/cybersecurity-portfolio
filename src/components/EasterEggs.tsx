@@ -28,17 +28,116 @@ const EasterEggs = () => {
     panic: { emoji: '😱', text: 'FINALS PANIC MODE ACTIVATED!', color: 'text-red-400' },
     coffee: { emoji: '☕', text: 'Caffeine levels: MAXIMUM', color: 'text-orange-400' },
     hacker: { emoji: '😎', text: 'Hack the planet! (ethically)', color: 'text-cyber-green' },
-    debugging: { emoji: '🐛', text: 'Why... why won\'t you work?!', color: 'text-purple-400' }
+    debugging: { emoji: '🐛', text: 'Why... why won\'t you work?!', color: 'text-purple-400' },
+    excited: { emoji: '🤩', text: 'Code compiles on first try!', color: 'text-pink-400' },
+    confused: { emoji: '🤔', text: 'This should work... shouldn\'t it?', color: 'text-indigo-400' },
+    proud: { emoji: '😤', text: 'My code is art!', color: 'text-purple-500' },
+    sleepy: { emoji: '😪', text: '3 AM coding session activated', color: 'text-blue-400' },
+    motivated: { emoji: '💪', text: 'Ready to conquer this algorithm!', color: 'text-red-500' },
+    zen: { emoji: '🧘', text: 'One with the code...', color: 'text-green-500' },
+    caffeinated: { emoji: '⚡', text: 'Powered by pure caffeine!', color: 'text-yellow-500' },
+    frustrated: { emoji: '😤', text: 'It was working yesterday!', color: 'text-orange-500' },
+    genius: { emoji: '🧠', text: 'Big brain time!', color: 'text-cyan-400' },
+    lazy: { emoji: '😑', text: 'TODO: Write better code', color: 'text-gray-400' },
+    savage: { emoji: '😈', text: 'Deleting legacy code like...', color: 'text-red-600' },
+    accomplished: { emoji: '🏆', text: 'Bug-free code achieved!', color: 'text-yellow-600' },
+    overwhelmed: { emoji: '🤯', text: 'Too many tabs open!', color: 'text-purple-600' },
+    focused: { emoji: '🎯', text: 'In the zone!', color: 'text-blue-500' },
+    creative: { emoji: '🎨', text: 'Crafting elegant solutions', color: 'text-pink-500' },
+    mysterious: { emoji: '🕵️', text: 'Hunting down mysterious bugs', color: 'text-indigo-500' },
+    victorious: { emoji: '🎉', text: 'Deploy successful!', color: 'text-green-600' },
+    nostalgic: { emoji: '🥺', text: 'Remember when this worked?', color: 'text-amber-400' },
+    optimistic: { emoji: '🌟', text: 'This time it will work!', color: 'text-cyan-500' },
+    philosophical: { emoji: '🤨', text: 'What is code but organized chaos?', color: 'text-slate-400' },
+    determined: { emoji: '😠', text: 'I WILL make this work!', color: 'text-orange-600' },
+    euphoric: { emoji: '🤤', text: 'Clean code gives me life', color: 'text-emerald-400' },
+    paranoid: { emoji: '👀', text: 'Someone is watching my commits', color: 'text-red-300' },
+    enlightened: { emoji: '✨', text: 'I finally understand recursion!', color: 'text-violet-400' },
+    rebellious: { emoji: '🤘', text: 'Who needs documentation anyway?', color: 'text-rose-400' },
+    humble: { emoji: '😇', text: 'Stack Overflow saved me again', color: 'text-blue-300' },
+    dramatic: { emoji: '🎭', text: 'To debug or not to debug', color: 'text-purple-300' },
+    athletic: { emoji: '🏃', text: 'Sprint through this code!', color: 'text-lime-400' },
+    musical: { emoji: '🎵', text: 'My keyboard is my instrument', color: 'text-fuchsia-400' },
+    magical: { emoji: '🪄', text: 'Abracadabra! Fix my code!', color: 'text-violet-500' },
+    robotic: { emoji: '🤖', text: 'Beep boop, compiling...', color: 'text-gray-500' },
+    pirate: { emoji: '🏴‍☠️', text: 'Arr! Ye code be broken!', color: 'text-amber-600' },
+    ninja: { emoji: '🥷', text: 'Silent but deadly (bugs)', color: 'text-slate-600' },
+    superhero: { emoji: '🦸', text: 'Saving the day, one commit at a time', color: 'text-blue-600' },
+    chef: { emoji: '👨‍🍳', text: 'Cooking up some fresh code!', color: 'text-red-400' },
+    detective: { emoji: '🔍', text: 'The case of the missing semicolon', color: 'text-amber-500' },
+    wizard: { emoji: '🧙', text: 'Casting spells in JavaScript', color: 'text-indigo-600' },
+    alien: { emoji: '👽', text: 'This code is not from this world', color: 'text-green-300' },
+    vampire: { emoji: '🧛', text: 'I only code at night', color: 'text-red-700' },
+    ghost: { emoji: '👻', text: 'Haunted by deprecated functions', color: 'text-gray-300' },
+    unicorn: { emoji: '🦄', text: 'Magical code that actually works!', color: 'text-pink-300' },
+    dragon: { emoji: '🐉', text: 'Breathing fire into my algorithms', color: 'text-orange-400' },
+    phoenix: { emoji: '🔥', text: 'Rising from crashed code!', color: 'text-red-500' },
+    warrior: { emoji: '⚔️', text: 'Battling bugs in production!', color: 'text-steel-400' },
+    sage: { emoji: '👴', text: 'With great code comes great responsibility', color: 'text-emerald-600' }
   };
 
-  const ghibliCharacters = [
-    '🔥 Calcifer - Because you\'re fired up about coding!',
-    '🌙 Totoro - Big, fluffy, and comforting like good documentation',
-    '✨ Kiki - Delivering code magic across the digital sky',
-    '🗡️ San - Fighting bugs in the code forest',
-    '🏰 Howl - Your code is beautiful (when it works)',
-    '🐱 Jiji - Silent but judgmental about your coding choices'
-  ];
+  const moodSongs = {
+    happy: [
+      '🎵 Happy - Pharrell Williams',
+      '🎶 खुशियों का गीत - Lata Mangeshkar',
+      '🎵 Good as Hell - Lizzo',
+      '🎶 Zindagi Ek Safar - Kishore Kumar'
+    ],
+    tired: [
+      '🎵 Tired - Alan Walker',
+      '🎶 सुन रे पगली - Lata Mangeshkar',
+      '🎵 Heavy - Linkin Park',
+      '🎶 चल गुजारा - Kishore Kumar'
+    ],
+    panic: [
+      '🎵 Stressed Out - Twenty One Pilots',
+      '🎶 जब कोई बात बिगड़ जाए - Kumar Sanu',
+      '🎵 Anxiety - Julia Michaels',
+      '🎶 तेरे बिना जिंदगी से - Lata Mangeshkar'
+    ],
+    coffee: [
+      '🎵 Coffee - BTS',
+      '🎶 चाय गरम - Kishore Kumar',
+      '🎵 But First, Coffee - Katy Perry',
+      '🎶 कॉफी पीके - Arijit Singh'
+    ],
+    hacker: [
+      '🎵 Technologic - Daft Punk',
+      '🎶 कंप्यूटर जी - Udit Narayan',
+      '🎵 Digital Love - Daft Punk',
+      '🎶 टेक्नो तक धिमी - Badshah'
+    ],
+    debugging: [
+      '🎵 Fix You - Coldplay',
+      '🎶 कुछ तो गड़बड़ है - Shankar Mahadevan',
+      '🎵 Help! - The Beatles',
+      '🎶 समस्या का समाधान - Rahat Fateh Ali Khan'
+    ],
+    excited: [
+      '🎵 Uptown Funk - Bruno Mars',
+      '🎶 जश्न-ए-बहारां - Javed Ali',
+      '🎵 Can\'t Stop the Feeling - Justin Timberlake',
+      '🎶 खुशी के गीत - Shreya Ghoshal'
+    ],
+    confused: [
+      '🎵 Somebody That I Used to Know - Gotye',
+      '🎶 ये क्या हुआ - Alka Yagnik',
+      '🎵 Mad World - Gary Jules',
+      '🎶 समझ नहीं आता - Sonu Nigam'
+    ],
+    motivated: [
+      '🎵 Eye of the Tiger - Survivor',
+      '🎶 हौसला - Rahat Fateh Ali Khan',
+      '🎵 Stronger - Kelly Clarkson',
+      '🎶 जीत की आशा - Kailash Kher'
+    ],
+    zen: [
+      '🎵 Weightless - Marconi Union',
+      '🎶 ॐ नमः शिवाय - Hariharan',
+      '🎵 Claire de Lune - Debussy',
+      '🎶 शांति का गीत - Pandit Jasraj'
+    ]
+  };
 
   const secretCodes = {
     'konami': '↑↑↓↓←→←→BA',
@@ -52,7 +151,53 @@ const EasterEggs = () => {
     "There are only 10 types of people: those who understand binary and those who don't 💻",
     "Why did the programmer quit his job? He didn't get arrays! 📊",
     "How many programmers does it take to change a light bulb? None, that's a hardware problem 💡",
-    "Why do Java developers wear glasses? Because they can't C# 👓"
+    "Why do Java developers wear glasses? Because they can't C# 👓",
+    "A SQL query goes into a bar, walks up to two tables and asks: 'Can I join you?' 🍺",
+    "Why don't programmers like nature? It has too many bugs 🌿",
+    "What's a programmer's favorite hangout place? The Foo Bar! 🍻",
+    "How do you comfort a JavaScript bug? You console it! 🐞",
+    "Why was the JavaScript developer sad? Because he didn't Node how to Express himself! 😢",
+    "What do you call a programmer from Finland? Nerdic! 🇫🇮",
+    "Why do programmers always mix up Christmas and Halloween? Because Oct 31 == Dec 25! 🎃",
+    "What's the object-oriented way to become wealthy? Inheritance! 💰",
+    "Why did the programmer go broke? Because he used up all his cache! 💸",
+    "What do you get when you cross a computer and a lifeguard? A screensaver! 🏊",
+    "Why don't developers trust stairs? They're always up to something! 🪜",
+    "What's a computer's favorite beat? An algo-rhythm! 🎵",
+    "Why did the developer get kicked out of school? For debugging during class! 🎓",
+    "What do you call a sleeping bull at the computer? A bulldozer! 🐂",
+    "Why was the math book sad? Because it had too many problems! 📚",
+    "What's the best thing about a Boolean? Even if you're wrong, you're only off by a bit! ⚡",
+    "Why do programmers hate nature? It has too many trees! 🌳",
+    "What did the router say to the doctor? It hurts when IP! 🏥",
+    "Why don't programmers like to go outside? The sun causes too much glare on their screens! ☀️",
+    "What do you call a computer superhero? A screensaver! 🦸",
+    "Why was the cell phone wearing glasses? It lost all its contacts! 📱",
+    "What's a programmer's favorite type of music? Algo-rhythm and blues! 🎼",
+    "Why do programmers prefer iOS development? Because it's Objective-C! 📱",
+    "What do you call a programmer who doesn't comment their code? A monster! 👹",
+    "Why did the programmer break up with the internet? Too many connection issues! 💔",
+    "What's the difference between a programmer and a non-programmer? The programmer thinks there are 1024 meters in a kilometer! 📏",
+    "Why don't developers ever pay full price? They always wait for the next version! 💵",
+    "What do you call a factory that makes great programmers? A constructor! 🏭",
+    "Why was the programmer cold? He left Windows open! 🥶",
+    "What's a programmer's favorite place to hang out? The space bar! ⌨️",
+    "Why don't programmers like to exercise? They get enough runtime! 🏃",
+    "What did the Java code say to the C code? You've got no class! 👔",
+    "Why was the programmer late to work? He got stuck in an infinite loop at breakfast! 🥞",
+    "What do you call a programmer's pet? A cursor! 🐕",
+    "Why don't programmers like going to parties? Too many people, not enough bandwidth! 🎉",
+    "What's a programmer's favorite kind of tree? A binary tree! 🌲",
+    "Why did the programmer get arrested? For killing a process! 👮",
+    "What do you call a programmer who works at a bakery? A cookie developer! 🍪",
+    "Why don't programmers make good comedians? Their jokes are too recursive! 😂",
+    "What's the programmer's favorite type of exercise? Code running! 🏃‍♂️",
+    "Why was the database administrator tired? Too many queries! 😴",
+    "What do you call a programmer's favorite snack? Chips and salsa verde! 🥨",
+    "Why don't programmers like the beach? Too much sand-boxing! 🏖️",
+    "What's a programmer's favorite drink? Java! ☕",
+    "Why did the programmer refuse to go skydiving? He was afraid of a fatal exception! 🪂",
+    "What do you call a programmer who loves gardening? A root user! 🌱"
   ];
 
   useEffect(() => {
@@ -113,9 +258,11 @@ const EasterEggs = () => {
     }
   };
 
-  const generateGhibliCharacter = () => {
-    const randomCharacter = ghibliCharacters[Math.floor(Math.random() * ghibliCharacters.length)];
-    setGhibliCharacter(randomCharacter);
+  const generateSong = () => {
+    const moodKey = currentMood as keyof typeof moodSongs;
+    const songsForMood = moodSongs[moodKey] || moodSongs.happy;
+    const randomSong = songsForMood[Math.floor(Math.random() * songsForMood.length)];
+    setGhibliCharacter(randomSong);
   };
 
   const triggerBlueScreen = () => {
@@ -311,7 +458,7 @@ const EasterEggs = () => {
             </Card>
           </motion.div>
 
-          {/* Ghibli Character Generator */}
+          {/* Song Generator */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -322,12 +469,12 @@ const EasterEggs = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Heart className="w-5 h-5 text-pink-400" />
-                  Ghibli Character Match
+                  Mood Songs Generator
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-sm text-foreground/70 text-center">
-                  Discover which Studio Ghibli character you are today!
+                  Get a song recommendation based on your current mood!
                 </p>
                 {ghibliCharacter && (
                   <motion.div
@@ -338,9 +485,9 @@ const EasterEggs = () => {
                     <p className="text-sm text-pink-400">{ghibliCharacter}</p>
                   </motion.div>
                 )}
-                <Button onClick={generateGhibliCharacter} variant="outline" className="w-full">
+                <Button onClick={generateSong} variant="outline" className="w-full">
                   <Shuffle className="w-4 h-4 mr-2" />
-                  Generate Character
+                  Generate Song
                 </Button>
               </CardContent>
             </Card>
