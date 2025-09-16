@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { EvervaultCard } from '@/components/ui/evervault-card';
 import { 
   ExternalLink, 
   Github, 
@@ -202,17 +203,17 @@ const CuratedProjects = () => {
               >
                 <Card className="h-full overflow-hidden bg-muted/5 border-primary/20 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10">
                   <div className="relative overflow-hidden">
-                    {/* Project Image/Icon */}
-                    <div className="h-48 flex items-center justify-center bg-gradient-to-br from-primary/10 to-cyber-blue/10 relative">
-                      <div className="text-6xl mb-4 transition-transform duration-500 group-hover:scale-110">
-                        {project.image}
-                      </div>
+                    {/* Project Image/Icon with EvervaultCard Effect */}
+                    <div className="h-48 relative bg-gradient-to-br from-primary/10 to-cyber-blue/10">
+                      <EvervaultCard 
+                        text={project.image}
+                        className="absolute inset-0 w-full h-full"
+                      />
                       
-
                       {/* Featured Badge */}
                       <Badge 
                         variant="success" 
-                        className="absolute top-4 right-4 animate-pulse"
+                        className="absolute top-4 right-4 animate-pulse z-20"
                       >
                         Featured
                       </Badge>
@@ -284,7 +285,12 @@ const CuratedProjects = () => {
                   <Card className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 hover:border-primary/30">
                     <CardContent className="p-6">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="text-3xl">{project.image}</div>
+                        <div className="w-12 h-12 relative">
+                          <EvervaultCard 
+                            text={project.image}
+                            className="absolute inset-0 w-full h-full"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h3 className="font-bold group-hover:text-primary transition-colors">
                             {project.title}
