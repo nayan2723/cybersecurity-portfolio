@@ -2,6 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .loader-cell {
+    @apply w-[52px] h-[52px] m-[1px] bg-transparent rounded border-none;
+  }
+  
+  .loader-cell-1 { --cell-color: #00FF87; }
+  .loader-cell-2 { --cell-color: #0CFD95; }
+  .loader-cell-3 { --cell-color: #17FBA2; }
+  .loader-cell-4 { --cell-color: #23F9B2; }
+  .loader-cell-5 { --cell-color: #30F7C3; }
+  .loader-cell-6 { --cell-color: #3DF5D4; }
+  .loader-cell-7 { --cell-color: #45F4DE; }
+  .loader-cell-8 { --cell-color: #53F1F0; }
+  .loader-cell-9 { --cell-color: #60EFFF; }
+}
+
+@keyframes ripple {
+  0% { background-color: transparent; }
+  30% { background-color: var(--cell-color); }
+  60% { background-color: transparent; }
+  100% { background-color: transparent; }
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */

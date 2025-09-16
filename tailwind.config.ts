@@ -166,6 +166,20 @@ export default {
 					'50%': {
 						transform: 'translateY(-6px)'
 					}
+				},
+				'ripple': {
+					'0%': {
+						backgroundColor: 'transparent'
+					},
+					'30%': {
+						backgroundColor: 'var(--cell-color)'
+					},
+					'60%': {
+						backgroundColor: 'transparent'
+					},
+					'100%': {
+						backgroundColor: 'transparent'
+					}
 				}
 			},
 			animation: {
@@ -175,7 +189,8 @@ export default {
 				'float': 'float 3s ease-in-out infinite',
 				'float-delayed': 'float-delayed 4s ease-in-out infinite 0.5s',
 				'float-slow': 'float-slow 5s ease-in-out infinite 1s',
-				'glow': 'glow 2s ease-in-out infinite alternate'
+				'glow': 'glow 2s ease-in-out infinite alternate',
+				'ripple': 'ripple 1.5s ease infinite'
 			},
 			fontFamily: {
 				'mono': ['JetBrains Mono', 'Courier New', 'monospace'],
