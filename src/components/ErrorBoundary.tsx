@@ -21,7 +21,22 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('ErrorBoundary caught an error:', error, errorInfo);
+    // Structured error logging for production monitoring
+    const errorId = crypto.randomUUID();
+    const errorLog = {
+      errorId,
+      message: error.message,
+      stack: error.stack,
+      componentStack: errorInfo.componentStack,
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent,
+      url: window.location.href
+    };
+    
+    console.error(`[${errorId}] Application Error:`, errorLog);
+    
+    // In production, you could send this to an error tracking service
+    // Example: sendErrorToService(errorLog);
   }
 
   private handleReload = () => {

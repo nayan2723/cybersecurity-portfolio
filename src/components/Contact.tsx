@@ -12,6 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 import { contactFormSchema, type ContactFormData } from '@/lib/contact-validation';
 import { supabase } from '@/integrations/supabase/client';
 import type { ContactSubmissionInsert } from '@/integrations/supabase/simple-types';
+import { sanitizeTextInput, validateSecureEmail, containsSuspiciousContent } from '@/lib/security-utils';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -32,8 +33,27 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
+      // Client-side security validation
+      if (containsSuspiciousContent(data.name) || 
+          containsSuspiciousContent(data.subject) || 
+          containsSuspiciousContent(data.message)) {
+        throw new Error('Invalid content detected. Please remove any HTML tags or scripts.');
+      }
+      
+      if (!validateSecureEmail(data.email)) {
+        throw new Error('Please enter a valid email address.');
+      }
+      
+      // Sanitize inputs before sending
+      const sanitizedData = {
+        name: sanitizeTextInput(data.name),
+        email: data.email.toLowerCase().trim(),
+        subject: sanitizeTextInput(data.subject),
+        message: sanitizeTextInput(data.message)
+      };
+      
       const { data: result, error } = await supabase.functions.invoke('submit-contact', {
-        body: data
+        body: sanitizedData
       });
 
       if (error) {

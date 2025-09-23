@@ -6,6 +6,17 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+const securityHeaders = {
+  ...corsHeaders,
+  'Content-Type': 'application/json',
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'X-XSS-Protection': '1; mode=block',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Content-Security-Policy': "default-src 'none'; script-src 'none';",
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+};
+
 interface ContactFormData {
   name: string;
   email: string;
@@ -55,7 +66,7 @@ serve(async (req) => {
         }),
         { 
           status: 429, 
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+          headers: securityHeaders
         }
       );
     }
@@ -63,18 +74,41 @@ serve(async (req) => {
     // Parse and validate request body
     const formData: ContactFormData = await req.json();
 
-    // Basic server-side validation
+    // Enhanced server-side validation with security checks
     if (!formData.name?.trim() || formData.name.length > 100) {
       throw new Error('Invalid name');
     }
+    
+    // Check for suspicious patterns in name
+    if (/[<>\"'&]/.test(formData.name) || /javascript:|data:|vbscript:/i.test(formData.name)) {
+      throw new Error('Invalid name format');
+    }
+    
     if (!formData.email?.trim() || formData.email.length > 254 || !formData.email.includes('@')) {
       throw new Error('Invalid email');
     }
+    
+    // Enhanced email validation
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    if (!emailRegex.test(formData.email)) {
+      throw new Error('Invalid email format');
+    }
+    
     if (!formData.subject?.trim() || formData.subject.length > 200) {
       throw new Error('Invalid subject');
     }
+    
+    // Check for suspicious patterns in subject and message
+    if (/[<>]/.test(formData.subject) || /javascript:|data:|vbscript:/i.test(formData.subject)) {
+      throw new Error('Invalid subject format');
+    }
+    
     if (!formData.message?.trim() || formData.message.length < 10 || formData.message.length > 5000) {
       throw new Error('Invalid message');
+    }
+    
+    if (/javascript:|data:|vbscript:|<script|<iframe|<object/i.test(formData.message)) {
+      throw new Error('Message contains invalid content');
     }
 
     // Insert contact submission (triggers will handle sanitization)
@@ -116,12 +150,18 @@ serve(async (req) => {
         message: 'Contact form submitted successfully' 
       }),
       { 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        headers: securityHeaders
       }
     );
 
   } catch (error) {
-    console.error('Contact form submission error:', error);
+    // Structured error logging without exposing sensitive details
+    const errorId = crypto.randomUUID();
+    console.error(`[${errorId}] Contact form error:`, {
+      message: error.message,
+      timestamp: new Date().toISOString(),
+      ip: req.headers.get('x-forwarded-for') || 'unknown'
+    });
     
     // Don't expose detailed error messages to prevent information leakage
     const publicErrorMessage = error.message?.includes('Invalid') || error.message?.includes('Rate limit') 
@@ -130,11 +170,12 @@ serve(async (req) => {
     
     return new Response(
       JSON.stringify({ 
-        error: publicErrorMessage
+        error: publicErrorMessage,
+        errorId: errorId // For support purposes
       }),
       { 
         status: 400, 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        headers: securityHeaders
       }
     );
   }
