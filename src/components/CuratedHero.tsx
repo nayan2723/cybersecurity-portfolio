@@ -5,8 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { LottieGlow } from '@/components/LottieAnimations';
-import { SplineScene } from '@/components/ui/spline-scene';
-import { Spotlight } from '@/components/ui/spotlight';
 
 const CuratedHero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -155,52 +153,69 @@ const CuratedHero = () => {
           </p>
         </motion.div>
 
-        {/* Interactive 3D Scene Card */}
+        {/* Interactive Status Card - Temporary Placeholder */}
         <motion.div 
           className="relative max-w-6xl mx-auto mb-12 rounded-xl overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5 }}
         >
-          <div className="w-full h-[500px] bg-black/[0.96] dark:bg-black/[0.98] relative overflow-hidden border border-primary/10 rounded-xl">
-            <Spotlight
-              className="-top-40 left-0 md:left-60 md:-top-20"
-              fill="white"
-            />
-            
-            <div className="flex flex-col md:flex-row h-full">
-              {/* Left content */}
-              <div className="flex-1 p-8 md:p-12 relative z-10 flex flex-col justify-center">
-                <h3 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
-                  Interactive 3D
-                </h3>
-                <p className="mt-4 text-neutral-300 max-w-lg text-base md:text-lg">
-                  Cybersecurity Student & Full-Stack Developer. Creating immersive experiences 
-                  that capture attention and enhance design.
-                </p>
-                <div className="mt-8 space-y-3">
+          <div className="w-full min-h-[500px] bg-gradient-to-br from-background via-muted/30 to-background relative overflow-hidden border border-primary/20 rounded-xl p-8 md:p-12">
+            <div className="relative z-10">
+              <h3 className="text-4xl md:text-5xl font-bold mb-4">
+                Interactive <span className="text-primary">Experience</span>
+              </h3>
+              <p className="text-lg text-foreground/70 mb-8 max-w-2xl">
+                Cybersecurity Student & Full-Stack Developer. Building secure, scalable applications 
+                with modern technologies.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-cyber-green rounded-full animate-pulse"></div>
-                    <span className="text-sm text-neutral-400 font-mono">
-                      Status: <span className="text-cyber-green">In the Zone</span>
+                    <div className="w-3 h-3 bg-cyber-green rounded-full animate-pulse"></div>
+                    <span className="text-sm text-foreground/60 font-mono">
+                      Status: <span className="text-cyber-green font-bold">In the Zone</span>
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-cyber-blue rounded-full animate-pulse"></div>
-                    <span className="text-sm text-neutral-400 font-mono">
-                      Mode: <span className="text-cyber-blue">Full Stack Development</span>
+                    <div className="w-3 h-3 bg-cyber-blue rounded-full animate-pulse"></div>
+                    <span className="text-sm text-foreground/60 font-mono">
+                      Mode: <span className="text-cyber-blue font-bold">Full Stack Development</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-3 h-3 bg-neon-pink rounded-full animate-pulse"></div>
+                    <span className="text-sm text-foreground/60 font-mono">
+                      Focus: <span className="text-neon-pink font-bold">Maximum Productivity</span>
                     </span>
                   </div>
                 </div>
+                
+                <div className="bg-muted/20 rounded-lg p-6 border border-primary/10">
+                  <h4 className="text-sm font-mono text-primary mb-4">Quick Stats</h4>
+                  <div className="space-y-3">
+                    <div className="flex justify-between">
+                      <span className="text-xs text-foreground/50">Projects Completed</span>
+                      <span className="text-sm font-bold text-cyber-green">15+</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-xs text-foreground/50">Technologies</span>
+                      <span className="text-sm font-bold text-cyber-blue">20+</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-xs text-foreground/50">Response Time</span>
+                      <span className="text-sm font-bold text-primary">24h</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-
-              {/* Right content - 3D Scene */}
-              <div className="flex-1 relative min-h-[250px] md:min-h-0">
-                <SplineScene 
-                  scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                  className="w-full h-full"
-                />
-              </div>
+            </div>
+            
+            {/* Animated background elements */}
+            <div className="absolute inset-0 opacity-30">
+              <div className="absolute top-10 left-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute bottom-10 right-10 w-40 h-40 bg-cyber-blue/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
             </div>
           </div>
         </motion.div>
