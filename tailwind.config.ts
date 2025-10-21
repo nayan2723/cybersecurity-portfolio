@@ -81,6 +81,16 @@ export default {
 						height: '0'
 					}
 				},
+				'spotlight': {
+					'0%': {
+						opacity: '0',
+						transform: 'translate(-72%, -62%) scale(0.5)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translate(-50%, -40%) scale(1)'
+					}
+				},
 				'morph': {
 					'0%, 100%': {
 						borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
@@ -185,6 +195,7 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
+				'spotlight': 'spotlight 2s ease 0.75s 1 forwards',
 				'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
 				'float': 'float 3s ease-in-out infinite',
 				'float-delayed': 'float-delayed 4s ease-in-out infinite 0.5s',

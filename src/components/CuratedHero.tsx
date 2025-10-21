@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { LottieGlow } from '@/components/LottieAnimations';
+import { SplineScene } from '@/components/ui/splite';
+import { Spotlight } from '@/components/ui/spotlight';
 
 const CuratedHero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -153,60 +155,38 @@ const CuratedHero = () => {
           </p>
         </motion.div>
 
-        {/* Morphing Blob Animation */}
+        {/* Interactive 3D Scene */}
         <motion.div 
-          className="relative max-w-lg mx-auto mb-12 h-64 rounded-xl overflow-hidden"
+          className="relative max-w-4xl mx-auto mb-12 h-[500px] rounded-xl overflow-hidden bg-black/[0.96]"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5 }}
         >
-          {/* Main morphing blob */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative w-48 h-48">
-              {/* Primary blob */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyber-blue/30 to-primary/20 rounded-full blur-xl animate-[morph_8s_ease-in-out_infinite]"></div>
-              
-              {/* Secondary blob */}
-              <div className="absolute inset-4 bg-gradient-to-tl from-neon-pink/20 to-cyber-green/30 rounded-full blur-lg animate-[morph-reverse_10s_ease-in-out_infinite]"></div>
-              
-              {/* Tertiary blob */}
-              <div className="absolute inset-8 bg-gradient-to-r from-primary/40 to-cyber-blue/30 rounded-full blur-md animate-[morph-slow_12s_ease-in-out_infinite]"></div>
-              
-              {/* Core glow */}
-              <div className="absolute inset-16 bg-primary/60 rounded-full blur-sm animate-pulse"></div>
+          <Spotlight
+            className="-top-40 left-0 md:left-60 md:-top-20"
+            fill="white"
+          />
+          
+          <div className="flex flex-col md:flex-row h-full">
+            {/* Left content - Status & Info */}
+            <div className="flex-1 p-8 relative z-10 flex flex-col justify-center">
+              <h3 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
+                Interactive 3D
+              </h3>
+              <p className="mt-4 text-neutral-300 max-w-lg">
+                Cybersecurity Student in the Zone
+              </p>
+              <div className="mt-6 text-sm text-neutral-400 font-mono">
+                Status: <span className="text-primary animate-pulse">In the Zone</span>
+              </div>
             </div>
-          </div>
-          
-          {/* Digital rain overlay */}
-          <div className="absolute inset-0 opacity-10 overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-full">
-              {Array.from({ length: 20 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute text-xs font-mono text-cyber-green animate-[rain_4s_linear_infinite]"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    animationDelay: `${Math.random() * 4}s`,
-                    animationDuration: `${3 + Math.random() * 2}s`
-                  }}
-                >
-                  {Math.random() > 0.5 ? '1' : '0'}
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          {/* Floating code elements */}
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-4 left-4 text-xs font-mono text-primary/30 animate-float">{'<dev>'}</div>
-            <div className="absolute top-8 right-8 text-xs font-mono text-cyber-blue/40 animate-float-delayed">{'{...}'}</div>
-            <div className="absolute bottom-12 left-8 text-xs font-mono text-neon-pink/30 animate-float-slow">{'[]'}</div>
-            <div className="absolute bottom-6 right-6 text-xs font-mono text-cyber-green/40 animate-float">{'=>'}</div>
-          </div>
-          
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center">
-            <div className="text-sm text-foreground/60 font-mono">
-              Status: <span className="text-primary animate-pulse">In the Zone</span>
+
+            {/* Right content - 3D Scene */}
+            <div className="flex-1 relative min-h-[300px] md:min-h-0">
+              <SplineScene 
+                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                className="w-full h-full"
+              />
             </div>
           </div>
         </motion.div>
