@@ -54,14 +54,14 @@
     --pos-y: 91.51%;
     --spread-x: 120.24%;
     --spread-y: 103.18%;
-    --color-1: #c96287;
-    --color-2: #c66c64;
-    --color-3: #cc7d23;
-    --color-4: #37140a;
-    --color-5: #000;
+    --color-1: #7047eb;
+    --color-2: #5423e7;
+    --color-3: #ffc233;
+    --color-4: #f53d6b;
+    --color-5: #121217;
     --border-angle: 190deg;
-    --border-color-1: hsla(340, 78%, 90%, 0.1);
-    --border-color-2: hsla(340, 75%, 90%, 0.6);
+    --border-color-1: hsla(258, 79%, 70%, 0.3);
+    --border-color-2: hsla(258, 79%, 52%, 0.8);
     --stop-1: 0%;
     --stop-2: 8.8%;
     --stop-3: 21.44%;
@@ -70,13 +70,13 @@
   }
 
   .gradient-button-variant {
-    --color-1: #000022;
-    --color-2: #1f3f6d;
-    --color-3: #469396;
-    --color-4: #f1ffa5;
+    --color-1: #121217;
+    --color-2: #5423e7;
+    --color-3: #7047eb;
+    --color-4: #ffc233;
     --border-angle: 200deg;
-    --border-color-1: hsla(320, 75%, 90%, 0.6);
-    --border-color-2: hsla(320, 50%, 90%, 0.15);
+    --border-color-1: hsla(43, 100%, 70%, 0.6);
+    --border-color-2: hsla(43, 100%, 60%, 0.15);
   }
 
   .gradient-button-variant:hover {
@@ -84,10 +84,10 @@
     --pos-y: 95.51%;
     --spread-x: 110.24%;
     --spread-y: 110.2%;
-    --color-1: #000020;
-    --color-2: #f1ffa5;
-    --color-3: #469396;
-    --color-4: #1f3f6d;
+    --color-1: #121217;
+    --color-2: #ffc233;
+    --color-3: #7047eb;
+    --color-4: #5423e7;
     --color-5: #000;
     --stop-1: 0%;
     --stop-2: 10%;
@@ -95,8 +95,8 @@
     --stop-4: 71.34%;
     --stop-5: 90.76%;
     --border-angle: 210deg;
-    --border-color-1: hsla(320, 75%, 90%, 0.2);
-    --border-color-2: hsla(320, 50%, 90%, 0.75);
+    --border-color-1: hsla(258, 79%, 70%, 0.3);
+    --border-color-2: hsla(43, 100%, 60%, 0.75);
   }
 
   .loader-cell {
@@ -231,42 +231,42 @@ All colors MUST be HSL.
   :root {
     /* Light Theme - Clean & Professional */
     --background: 0 0% 100%;
-    --foreground: 222 16% 16%;
+    --foreground: 240 20% 9%;
     
     --card: 0 0% 100%;
-    --card-foreground: 222 16% 16%;
+    --card-foreground: 240 20% 9%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 222 16% 16%;
+    --popover-foreground: 240 20% 9%;
     
-    --primary: 222 47% 11%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 258 79% 52%;
+    --primary-foreground: 0 0% 100%;
     
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 16% 16%;
+    --secondary: 240 14% 97%;
+    --secondary-foreground: 240 14% 48%;
     
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 240 14% 97%;
+    --muted-foreground: 240 14% 48%;
     
-    --accent: 210 40% 96%;
-    --accent-foreground: 222 16% 16%;
+    --accent: 43 100% 60%;
+    --accent-foreground: 240 20% 9%;
     
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 343 89% 59%;
+    --destructive-foreground: 0 0% 100%;
     
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 222 47% 11%;
+    --border: 240 14% 83%;
+    --input: 240 14% 83%;
+    --ring: 258 79% 52%;
     
     --radius: 0.5rem;
     
     /* Light theme specific colors */
     --cyber-green: 142 76% 36%;
-    --cyber-blue: 221 83% 53%;
-    --cyber-purple: 262 83% 58%;
-    --neon-pink: 330 81% 60%;
-    --neon-orange: 25 95% 53%;
-    --electric-blue: 199 95% 50%;
+    --cyber-blue: 258 79% 52%;
+    --cyber-purple: 258 81% 60%;
+    --neon-pink: 343 89% 59%;
+    --neon-orange: 43 100% 60%;
+    --electric-blue: 258 79% 52%;
   }
 
   .dark {
