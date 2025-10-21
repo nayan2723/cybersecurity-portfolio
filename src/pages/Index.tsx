@@ -33,15 +33,8 @@ const DotScreenShader = lazy<ComponentType>(async () => {
 const Index = () => {
   return (
     <SEOHead>
-      {/* Animated Dot Shader Background */}
-      <div className="fixed inset-0 -z-10">
-        <Suspense fallback={null}>
-          <DotScreenShader />
-        </Suspense>
-      </div>
-      
       <motion.div 
-        className="min-h-screen text-foreground relative"
+        className="min-h-screen bg-background text-foreground relative"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
