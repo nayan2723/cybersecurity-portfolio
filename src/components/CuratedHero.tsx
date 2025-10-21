@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { LottieGlow } from '@/components/LottieAnimations';
+import { SplineScene } from '@/components/ui/spline-scene';
+import { Spotlight } from '@/components/ui/spotlight';
 
 const CuratedHero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -153,47 +155,44 @@ const CuratedHero = () => {
           </p>
         </motion.div>
 
-        {/* Animated Status Card */}
+        {/* Interactive 3D Scene */}
         <motion.div 
-          className="relative max-w-3xl mx-auto mb-12 rounded-xl overflow-hidden"
+          className="relative max-w-4xl mx-auto mb-12 h-[500px] rounded-xl overflow-hidden bg-gradient-to-br from-background to-muted/30"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5 }}
         >
-          <div className="relative bg-gradient-to-br from-background via-muted/50 to-background p-8 rounded-xl border border-primary/20 backdrop-blur-sm">
-            {/* Animated gradient background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-cyber-blue/5 via-primary/5 to-neon-pink/5 animate-pulse"></div>
-            
-            {/* Content */}
-            <div className="relative z-10">
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-cyber-green rounded-full animate-pulse"></div>
-                  <span className="text-sm font-mono text-foreground/70">Status Monitor</span>
+          <Spotlight
+            className="-top-40 left-0 md:left-60 md:-top-20"
+            fill="white"
+          />
+          
+          <div className="flex flex-col md:flex-row h-full">
+            {/* Left content - Status & Info */}
+            <div className="flex-1 p-8 relative z-10 flex flex-col justify-center bg-gradient-to-br from-background/90 to-transparent backdrop-blur-sm">
+              <h3 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/60">
+                Interactive 3D
+              </h3>
+              <p className="mt-4 text-foreground/70 max-w-lg">
+                Cybersecurity Student & Developer
+              </p>
+              <div className="mt-6 space-y-2">
+                <div className="text-sm text-foreground/60 font-mono">
+                  Status: <span className="text-primary animate-pulse">In the Zone 🚀</span>
                 </div>
-                <div className="text-xs font-mono text-primary animate-pulse">ACTIVE</div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-center justify-between py-3 border-b border-primary/10">
-                  <span className="text-sm font-mono text-foreground/60">Current Status:</span>
-                  <span className="text-lg font-bold text-primary">In the Zone 🚀</span>
-                </div>
-                
-                <div className="flex items-center justify-between py-3 border-b border-primary/10">
-                  <span className="text-sm font-mono text-foreground/60">Focus Level:</span>
-                  <div className="flex gap-1">
-                    {[1,2,3,4,5].map((i) => (
-                      <div key={i} className="w-2 h-6 bg-cyber-green rounded animate-pulse" style={{animationDelay: `${i * 0.1}s`}}></div>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="flex items-center justify-between py-3">
-                  <span className="text-sm font-mono text-foreground/60">Mode:</span>
-                  <span className="text-sm font-bold text-cyber-blue">Full Stack Development</span>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-cyber-green rounded-full animate-pulse"></div>
+                  <span className="text-xs text-foreground/50">Available for Projects</span>
                 </div>
               </div>
+            </div>
+
+            {/* Right content - 3D Scene */}
+            <div className="flex-1 relative min-h-[300px] md:min-h-0">
+              <SplineScene 
+                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                className="w-full h-full"
+              />
             </div>
           </div>
         </motion.div>
