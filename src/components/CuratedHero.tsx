@@ -155,44 +155,52 @@ const CuratedHero = () => {
           </p>
         </motion.div>
 
-        {/* Interactive 3D Scene */}
+        {/* Interactive 3D Scene Card */}
         <motion.div 
-          className="relative max-w-4xl mx-auto mb-12 h-[500px] rounded-xl overflow-hidden bg-gradient-to-br from-background to-muted/30"
+          className="relative max-w-6xl mx-auto mb-12 rounded-xl overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5 }}
         >
-          <Spotlight
-            className="-top-40 left-0 md:left-60 md:-top-20"
-            fill="white"
-          />
-          
-          <div className="flex flex-col md:flex-row h-full">
-            {/* Left content - Status & Info */}
-            <div className="flex-1 p-8 relative z-10 flex flex-col justify-center bg-gradient-to-br from-background/90 to-transparent backdrop-blur-sm">
-              <h3 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/60">
-                Interactive 3D
-              </h3>
-              <p className="mt-4 text-foreground/70 max-w-lg">
-                Cybersecurity Student & Developer
-              </p>
-              <div className="mt-6 space-y-2">
-                <div className="text-sm text-foreground/60 font-mono">
-                  Status: <span className="text-primary animate-pulse">In the Zone 🚀</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-cyber-green rounded-full animate-pulse"></div>
-                  <span className="text-xs text-foreground/50">Available for Projects</span>
+          <div className="w-full h-[500px] bg-black/[0.96] dark:bg-black/[0.98] relative overflow-hidden border border-primary/10 rounded-xl">
+            <Spotlight
+              className="-top-40 left-0 md:left-60 md:-top-20"
+              fill="white"
+            />
+            
+            <div className="flex flex-col md:flex-row h-full">
+              {/* Left content */}
+              <div className="flex-1 p-8 md:p-12 relative z-10 flex flex-col justify-center">
+                <h3 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
+                  Interactive 3D
+                </h3>
+                <p className="mt-4 text-neutral-300 max-w-lg text-base md:text-lg">
+                  Cybersecurity Student & Full-Stack Developer. Creating immersive experiences 
+                  that capture attention and enhance design.
+                </p>
+                <div className="mt-8 space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-cyber-green rounded-full animate-pulse"></div>
+                    <span className="text-sm text-neutral-400 font-mono">
+                      Status: <span className="text-cyber-green">In the Zone</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-cyber-blue rounded-full animate-pulse"></div>
+                    <span className="text-sm text-neutral-400 font-mono">
+                      Mode: <span className="text-cyber-blue">Full Stack Development</span>
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Right content - 3D Scene */}
-            <div className="flex-1 relative min-h-[300px] md:min-h-0">
-              <SplineScene 
-                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                className="w-full h-full"
-              />
+              {/* Right content - 3D Scene */}
+              <div className="flex-1 relative min-h-[250px] md:min-h-0">
+                <SplineScene 
+                  scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                  className="w-full h-full"
+                />
+              </div>
             </div>
           </div>
         </motion.div>
