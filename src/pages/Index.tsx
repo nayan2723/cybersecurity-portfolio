@@ -17,7 +17,7 @@ import SmoothScroll from '@/components/SmoothScroll';
 import SEOHead from '@/components/SEOHead';
 import FloatingResumeButton from '@/components/FloatingResumeButton';
 import ResumeButton from '@/components/ui/resume-button';
-import { Button } from '@/components/ui/button';
+import { GradientButton } from '@/components/ui/gradient-button';
 import { Briefcase } from 'lucide-react';
 
 const DotScreenShader = lazy<ComponentType>(async () => {
@@ -77,14 +77,14 @@ const Index = () => {
                     text="Download My Resume"
                     className="cyber-button"
                   />
-                  <Button 
-                    variant="outline"
+                  <GradientButton 
+                    variant="variant"
                     size="lg"
                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                   >
                     <Briefcase className="w-4 h-4 mr-2" />
                     Let's Work Together
-                  </Button>
+                  </GradientButton>
                 </div>
               </motion.div>
             </div>

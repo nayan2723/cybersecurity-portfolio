@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { GradientButton } from '@/components/ui/gradient-button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
@@ -130,14 +130,14 @@ const Contact = () => {
   const RickRollModal = () => (
     <div className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4">
       <div className="relative max-w-4xl w-full">
-        <Button
+        <GradientButton
           onClick={() => setShowRickRoll(false)}
-          className="absolute -top-12 right-0 bg-red-600 hover:bg-red-700 text-white"
+          className="absolute -top-12 right-0"
           size="sm"
         >
           <X className="w-4 h-4 mr-2" />
           Close
-        </Button>
+        </GradientButton>
         <div className="relative w-full">
           <video
             autoPlay
@@ -261,9 +261,9 @@ const Contact = () => {
                     )}
                   />
                   
-                  <Button 
+                  <GradientButton 
                     type="submit" 
-                    className="w-full cyber-button" 
+                    className="w-full" 
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -272,7 +272,7 @@ const Contact = () => {
                       <Send className="w-4 h-4 mr-2" />
                     )}
                     {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </Button>
+                  </GradientButton>
                 </form>
               </Form>
             </CardContent>
@@ -335,15 +335,15 @@ const Contact = () => {
                     text="View My Resume"
                     className="flex-1"
                   />
-                  <Button 
-                    variant="ghost" 
+                  <GradientButton 
+                    variant="variant"
                     size="sm"
-                    className="flex-1 text-primary hover:bg-primary/10"
+                    className="flex-1"
                     onClick={() => window.open('https://www.linkedin.com/in/nayan-kshitij', '_blank')}
                   >
                     <Linkedin className="w-4 h-4 mr-2" />
                     LinkedIn Profile
-                  </Button>
+                  </GradientButton>
                 </div>
               </CardContent>
             </Card>

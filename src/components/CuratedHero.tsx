@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
-import { Button } from '@/components/ui/button';
+import { GradientButton } from '@/components/ui/gradient-button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { LottieGlow } from '@/components/LottieAnimations';
@@ -227,24 +227,23 @@ const CuratedHero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.8 }}
         >
-          <Button 
+          <GradientButton 
             size="lg" 
-            variant="primary" 
             className="hero-cta group"
             onClick={scrollToProjects}
           >
             View My Work
             <ArrowDown className="w-4 h-4 ml-2 group-hover:animate-bounce" />
-          </Button>
-          <Button 
+          </GradientButton>
+          <GradientButton 
             size="lg" 
-            variant="outline" 
+            variant="variant"
             className="hero-cta"
             onClick={() => window.open('/Nayan_resume_final.pdf', '_blank')}
           >
             <Download className="w-4 h-4 mr-2" />
             Download Resume
-          </Button>
+          </GradientButton>
         </motion.div>
 
         {/* Social Links */}

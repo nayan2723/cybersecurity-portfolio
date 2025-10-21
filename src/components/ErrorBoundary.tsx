@@ -1,6 +1,6 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { GradientButton } from '@/components/ui/gradient-button';
 
 interface Props {
   children: ReactNode;
@@ -62,23 +62,22 @@ class ErrorBoundary extends Component<Props, State> {
               </div>
               
               <div className="space-y-3">
-                <Button 
+                <GradientButton 
                   onClick={this.handleReload}
                   className="w-full"
-                  variant="default"
                 >
                   <RefreshCw className="w-4 h-4 mr-2" />
                   Try Again
-                </Button>
+                </GradientButton>
                 
-                <Button 
+                <GradientButton 
                   onClick={this.handleGoHome}
                   className="w-full"
-                  variant="outline"
+                  variant="variant"
                 >
                   <Home className="w-4 h-4 mr-2" />
                   Go Home
-                </Button>
+                </GradientButton>
               </div>
               
               {import.meta.env.DEV && this.state.error && (
