@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Suspense, lazy, ComponentType } from 'react';
 import FullscreenNav from '@/components/FullscreenNav';
 import CuratedHero from '@/components/CuratedHero';
 import CuratedProjects from '@/components/CuratedProjects';
@@ -19,11 +20,28 @@ import ResumeButton from '@/components/ui/resume-button';
 import { Button } from '@/components/ui/button';
 import { Briefcase } from 'lucide-react';
 
+const DotScreenShader = lazy<ComponentType>(async () => {
+  try {
+    const module = await import('@/components/ui/dot-shader-background');
+    return { default: module.DotScreenShader };
+  } catch (error) {
+    console.error('Failed to load DotScreenShader:', error);
+    return { default: () => null as any };
+  }
+});
+
 const Index = () => {
   return (
     <SEOHead>
+      {/* Animated Dot Shader Background */}
+      <div className="fixed inset-0 -z-10">
+        <Suspense fallback={null}>
+          <DotScreenShader />
+        </Suspense>
+      </div>
+      
       <motion.div 
-        className="min-h-screen bg-background text-foreground relative"
+        className="min-h-screen text-foreground relative"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
