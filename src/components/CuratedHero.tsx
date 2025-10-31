@@ -11,46 +11,49 @@ const CuratedHero = () => {
   const typewriterRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    // Optimize GSAP animations - skip .hero-title to improve LCP
-    const tl = gsap.timeline({ delay: 0.1 });
-    
-    // Force GPU acceleration and prevent layout thrashing
-    gsap.set(['.hero-avatar', '.hero-badge', '.hero-cta'], { 
-      willChange: 'transform, opacity',
-      force3D: true,
-      transformPerspective: 1000
-    });
-    
-    tl.from('.hero-avatar', {
-      scale: 0,
-      rotation: 180,
-      duration: 0.8,
-      ease: 'elastic.out(1, 0.5)',
-      force3D: true
-    })
-    .from('.hero-badge', {
-      y: 30,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.08,
-      force3D: true
-    }, '-=0.4')
-    .from('.hero-cta', {
-      y: 30,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.08,
-      force3D: true
-    }, '-=0.2')
-    .then(() => {
-      // Clean up will-change after animation
+    // Defer GSAP animations to reduce main-thread work during initial load
+    const timeoutId = setTimeout(() => {
+      // Optimize GSAP animations - skip .hero-title to improve LCP
+      const tl = gsap.timeline();
+      
+      // Force GPU acceleration and prevent layout thrashing
       gsap.set(['.hero-avatar', '.hero-badge', '.hero-cta'], { 
-        willChange: 'auto',
-        clearProps: 'transform'
+        willChange: 'transform, opacity',
+        force3D: true,
+        transformPerspective: 1000
       });
-    });
+      
+      tl.from('.hero-avatar', {
+        scale: 0,
+        rotation: 180,
+        duration: 0.8,
+        ease: 'elastic.out(1, 0.5)',
+        force3D: true
+      })
+      .from('.hero-badge', {
+        y: 30,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.08,
+        force3D: true
+      }, '-=0.4')
+      .from('.hero-cta', {
+        y: 30,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.08,
+        force3D: true
+      }, '-=0.2')
+      .then(() => {
+        // Clean up will-change after animation
+        gsap.set(['.hero-avatar', '.hero-badge', '.hero-cta'], { 
+          willChange: 'auto',
+          clearProps: 'transform'
+        });
+      });
+    }, 100); // Defer by 100ms to prioritize initial render
 
-    // Optimized typewriter effect - use RAF for better performance
+    // Optimized typewriter effect - defer to reduce main-thread work
     const typewriter = typewriterRef.current;
     if (typewriter) {
       const text = "Breaking systems and building them again.";
@@ -58,25 +61,34 @@ const CuratedHero = () => {
       let lastTime = 0;
       const typingSpeed = 50;
       
-      const typeChar = (timestamp: number) => {
-        if (timestamp - lastTime >= typingSpeed) {
-          if (index < text.length) {
-            // Batch DOM updates to prevent reflows
-            typewriter.textContent += text.charAt(index);
-            index++;
-            lastTime = timestamp;
-          } else {
-            return;
+      // Defer typewriter animation
+      const startTyping = setTimeout(() => {
+        const typeChar = (timestamp: number) => {
+          if (timestamp - lastTime >= typingSpeed) {
+            if (index < text.length) {
+              // Batch DOM updates to prevent reflows
+              typewriter.textContent += text.charAt(index);
+              index++;
+              lastTime = timestamp;
+            } else {
+              return;
+            }
           }
-        }
-        if (index < text.length) {
-          requestAnimationFrame(typeChar);
-        }
+          if (index < text.length) {
+            requestAnimationFrame(typeChar);
+          }
+        };
+        
+        requestAnimationFrame(typeChar);
+      }, 500); // Defer typewriter start
+
+      return () => {
+        clearTimeout(timeoutId);
+        clearTimeout(startTyping);
       };
-      
-      const rafId = requestAnimationFrame(typeChar);
-      return () => cancelAnimationFrame(rafId);
     }
+    
+    return () => clearTimeout(timeoutId);
   }, []);
 
   const scrollToProjects = () => {
