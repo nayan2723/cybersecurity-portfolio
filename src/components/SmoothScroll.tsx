@@ -18,12 +18,15 @@ const SmoothScroll = () => {
           const targetElement = document.getElementById(href.slice(1));
           
           if (targetElement) {
-            const headerHeight = 80; // Account for fixed header
-            const targetPosition = targetElement.offsetTop - headerHeight;
-            
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth'
+            // Use requestAnimationFrame to batch layout reads and avoid forced reflow
+            requestAnimationFrame(() => {
+              const headerHeight = 80; // Account for fixed header
+              const targetPosition = targetElement.offsetTop - headerHeight;
+              
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+              });
             });
           }
         }
