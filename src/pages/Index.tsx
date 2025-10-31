@@ -1,16 +1,16 @@
 import { motion } from 'framer-motion';
 import { Suspense, lazy, ComponentType } from 'react';
-import FullscreenNav from '@/components/FullscreenNav';
 import CuratedHero from '@/components/CuratedHero';
-import ThemeSwitch from '@/components/ThemeSwitch';
 import SmoothScroll from '@/components/SmoothScroll';
 import SEOHead from '@/components/SEOHead';
-import ResumeButton from '@/components/ui/resume-button';
-import { GradientButton } from '@/components/ui/gradient-button';
 import { Briefcase } from 'lucide-react';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
-// Lazy load below-the-fold components to reduce initial bundle size
+// Lazy load components to reduce initial bundle size
+const FullscreenNav = lazy(() => import('@/components/FullscreenNav'));
+const ThemeSwitch = lazy(() => import('@/components/ThemeSwitch'));
+const ResumeButton = lazy(() => import('@/components/ui/resume-button'));
+const GradientButton = lazy(() => import('@/components/ui/gradient-button').then(m => ({ default: m.GradientButton })));
 const EnhancedSkills = lazy(() => import('@/components/EnhancedSkills'));
 const CuratedProjects = lazy(() => import('@/components/CuratedProjects'));
 const QuirkyAbout = lazy(() => import('@/components/QuirkyAbout'));
@@ -41,8 +41,10 @@ const Index = () => {
         transition={{ duration: 1 }}
       >
       <SmoothScroll />
-      <FullscreenNav />
-      <ThemeSwitch />
+      <Suspense fallback={null}>
+        <FullscreenNav />
+        <ThemeSwitch />
+      </Suspense>
       
       <main className="relative">
         <section id="home">
@@ -64,22 +66,24 @@ const Index = () => {
                 <p className="text-xl text-foreground/70 mb-8 max-w-2xl mx-auto">
                   Check out my detailed resume with all my projects, achievements, and that one time I actually fixed a bug on the first try.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <ResumeButton 
-                    variant="primary" 
-                    size="lg"
-                    text="Download My Resume"
-                    className="cyber-button"
-                  />
-                  <GradientButton 
-                    variant="variant"
-                    size="lg"
-                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  >
-                    <Briefcase className="w-4 h-4 mr-2" />
-                    Let's Work Together
-                  </GradientButton>
-                </div>
+                <Suspense fallback={<div className="flex flex-col sm:flex-row gap-4 justify-center h-14" />}>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <ResumeButton 
+                      variant="primary" 
+                      size="lg"
+                      text="Download My Resume"
+                      className="cyber-button"
+                    />
+                    <GradientButton 
+                      variant="variant"
+                      size="lg"
+                      onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                    >
+                      <Briefcase className="w-4 h-4 mr-2" />
+                      Let's Work Together
+                    </GradientButton>
+                  </div>
+                </Suspense>
               </motion.div>
             </div>
           </div>
