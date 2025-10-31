@@ -5,7 +5,7 @@ const SmoothScroll = () => {
     // Add smooth scrolling behavior to the document
     document.documentElement.style.scrollBehavior = 'smooth';
     
-    // Enhanced smooth scroll for anchor links
+    // Enhanced smooth scroll for anchor links - optimized to prevent forced reflows
     const handleClick = (e: Event) => {
       const target = e.target as HTMLElement;
       
@@ -18,15 +18,17 @@ const SmoothScroll = () => {
           const targetElement = document.getElementById(href.slice(1));
           
           if (targetElement) {
-            // Use requestAnimationFrame to batch layout reads and avoid forced reflow
-            requestAnimationFrame(() => {
-              const headerHeight = 80; // Account for fixed header
-              const targetPosition = targetElement.offsetTop - headerHeight;
-              
-              window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-              });
+            // Use scrollIntoView with block: 'start' to avoid reading offsetTop
+            // This prevents forced reflow by letting the browser handle positioning
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            
+            // Adjust for fixed header without forcing layout calculation
+            window.scrollBy({
+              top: -80,
+              behavior: 'smooth'
             });
           }
         }
