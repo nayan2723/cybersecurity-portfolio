@@ -42,6 +42,7 @@ const FloatingResumeButton = () => {
                     <button
                       onClick={() => setIsExpanded(false)}
                       className="text-foreground/60 hover:text-foreground p-1"
+                      aria-label="Close quick access menu"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -75,6 +76,7 @@ const FloatingResumeButton = () => {
               className="bg-primary text-primary-foreground p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
+              aria-label={isExpanded ? "Close quick access menu" : "Open resume and contact options"}
               animate={{
                 boxShadow: [
                   "0 4px 20px rgba(0, 0, 0, 0.3)",

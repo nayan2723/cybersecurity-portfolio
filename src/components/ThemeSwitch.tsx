@@ -67,6 +67,7 @@ const ThemeSwitch = () => {
           variant={theme === 'hacker' ? 'matrix' : 'outline'}
           size="icon"
           className={`${theme === 'hacker' ? 'animate-cyberpulse border-cyber-green text-cyber-green' : ''}`}
+          aria-label={`Current theme: ${currentTheme?.label}. Click to change theme`}
         >
           <CurrentIcon className="h-4 w-4" />
         </Button>

@@ -103,6 +103,7 @@ const FullscreenNav = () => {
             size="sm"
             onClick={() => setIsOpen(!isOpen)}
             className="relative z-50 md:hidden"
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           >
             <motion.div
               animate={{ rotate: isOpen ? 180 : 0 }}
