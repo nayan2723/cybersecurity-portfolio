@@ -566,3 +566,13 @@ All colors MUST be HSL.
 .project-swiper .swiper-button-prev {
   color: hsl(var(--primary));
 }
+
+/* Lovable Badge Accessibility Fix - Increase close button touch target size */
+#lovable-badge-close {
+  min-width: 24px !important;
+  min-height: 24px !important;
+  padding: 4px 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
