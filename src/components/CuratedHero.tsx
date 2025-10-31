@@ -11,38 +11,49 @@ const CuratedHero = () => {
   const typewriterRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    // Optimize GSAP animations - reduced delay for faster LCP
+    // Optimize GSAP animations - use transform3d for GPU acceleration to prevent forced reflows
     const tl = gsap.timeline({ delay: 0.1 });
     
-    // Batch DOM reads/writes to prevent forced reflows
-    gsap.set(['.hero-avatar', '.hero-badge', '.hero-title', '.hero-cta'], { willChange: 'transform, opacity' });
+    // Force GPU acceleration and prevent layout thrashing
+    gsap.set(['.hero-avatar', '.hero-badge', '.hero-title', '.hero-cta'], { 
+      willChange: 'transform, opacity',
+      force3D: true,
+      transformPerspective: 1000
+    });
     
     tl.from('.hero-avatar', {
       scale: 0,
       rotation: 180,
       duration: 0.8,
-      ease: 'elastic.out(1, 0.5)'
+      ease: 'elastic.out(1, 0.5)',
+      force3D: true
     })
     .from('.hero-badge', {
       y: 30,
       opacity: 0,
       duration: 0.5,
-      stagger: 0.08
+      stagger: 0.08,
+      force3D: true
     }, '-=0.4')
     .from('.hero-title', {
       y: 50,
       opacity: 0,
-      duration: 0.6
+      duration: 0.6,
+      force3D: true
     }, '-=0.2')
     .from('.hero-cta', {
       y: 30,
       opacity: 0,
       duration: 0.5,
-      stagger: 0.08
+      stagger: 0.08,
+      force3D: true
     }, '-=0.2')
     .then(() => {
       // Clean up will-change after animation
-      gsap.set(['.hero-avatar', '.hero-badge', '.hero-title', '.hero-cta'], { willChange: 'auto' });
+      gsap.set(['.hero-avatar', '.hero-badge', '.hero-title', '.hero-cta'], { 
+        willChange: 'auto',
+        clearProps: 'transform'
+      });
     });
 
     // Optimized typewriter effect - use RAF for better performance
@@ -75,8 +86,11 @@ const CuratedHero = () => {
   }, []);
 
   const scrollToProjects = () => {
-    document.getElementById('curated-projects')?.scrollIntoView({ 
-      behavior: 'smooth' 
+    // Use requestAnimationFrame to avoid forced reflow
+    requestAnimationFrame(() => {
+      document.getElementById('curated-projects')?.scrollIntoView({ 
+        behavior: 'smooth' 
+      });
     });
   };
 
