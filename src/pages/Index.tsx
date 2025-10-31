@@ -2,23 +2,24 @@ import { motion } from 'framer-motion';
 import { Suspense, lazy, ComponentType } from 'react';
 import FullscreenNav from '@/components/FullscreenNav';
 import CuratedHero from '@/components/CuratedHero';
-import CuratedProjects from '@/components/CuratedProjects';
-import QuirkyAbout from '@/components/QuirkyAbout';
-import MiniGames from '@/components/MiniGames';
-import EasterEggs from '@/components/EasterEggs';
-import AnimatedMascot from '@/components/AnimatedMascot';
-import EnhancedSkills from '@/components/EnhancedSkills';
-import BlogSection from '@/components/BlogSection';
-import ComponentShowcase from '@/components/ComponentShowcase';
-import Contact from '@/components/Contact';
-import EnhancedFooter from '@/components/EnhancedFooter';
 import ThemeSwitch from '@/components/ThemeSwitch';
 import SmoothScroll from '@/components/SmoothScroll';
 import SEOHead from '@/components/SEOHead';
-import FloatingResumeButton from '@/components/FloatingResumeButton';
 import ResumeButton from '@/components/ui/resume-button';
 import { GradientButton } from '@/components/ui/gradient-button';
 import { Briefcase } from 'lucide-react';
+import LoadingSpinner from '@/components/LoadingSpinner';
+
+// Lazy load below-the-fold components to reduce initial bundle size
+const EnhancedSkills = lazy(() => import('@/components/EnhancedSkills'));
+const CuratedProjects = lazy(() => import('@/components/CuratedProjects'));
+const QuirkyAbout = lazy(() => import('@/components/QuirkyAbout'));
+const MiniGames = lazy(() => import('@/components/MiniGames'));
+const EasterEggs = lazy(() => import('@/components/EasterEggs'));
+const Contact = lazy(() => import('@/components/Contact'));
+const EnhancedFooter = lazy(() => import('@/components/EnhancedFooter'));
+const AnimatedMascot = lazy(() => import('@/components/AnimatedMascot'));
+const FloatingResumeButton = lazy(() => import('@/components/FloatingResumeButton'));
 
 const DotScreenShader = lazy<ComponentType>(async () => {
   try {
@@ -84,33 +85,51 @@ const Index = () => {
           </div>
         </section>
         
-        <section id="skills">
-          <EnhancedSkills />
-        </section>
+        <Suspense fallback={<div className="py-20 flex justify-center"><LoadingSpinner /></div>}>
+          <section id="skills">
+            <EnhancedSkills />
+          </section>
+        </Suspense>
         
-        <section id="curated-projects">
-          <CuratedProjects />
-        </section>
+        <Suspense fallback={<div className="py-20 flex justify-center"><LoadingSpinner /></div>}>
+          <section id="curated-projects">
+            <CuratedProjects />
+          </section>
+        </Suspense>
         
-        <section id="about">
-          <QuirkyAbout />
-        </section>
+        <Suspense fallback={<div className="py-20 flex justify-center"><LoadingSpinner /></div>}>
+          <section id="about">
+            <QuirkyAbout />
+          </section>
+        </Suspense>
         
-        <section id="games">
-          <MiniGames />
-        </section>
+        <Suspense fallback={<div className="py-20 flex justify-center"><LoadingSpinner /></div>}>
+          <section id="games">
+            <MiniGames />
+          </section>
+        </Suspense>
         
-        <section id="easter-eggs">
-          <EasterEggs />
-        </section>
+        <Suspense fallback={<div className="py-20 flex justify-center"><LoadingSpinner /></div>}>
+          <section id="easter-eggs">
+            <EasterEggs />
+          </section>
+        </Suspense>
         
-        <section id="contact">
-          <Contact />
-        </section>
+        <Suspense fallback={<div className="py-20 flex justify-center"><LoadingSpinner /></div>}>
+          <section id="contact">
+            <Contact />
+          </section>
+        </Suspense>
         
-        <EnhancedFooter />
-        <AnimatedMascot />
-        <FloatingResumeButton />
+        <Suspense fallback={null}>
+          <EnhancedFooter />
+        </Suspense>
+        <Suspense fallback={null}>
+          <AnimatedMascot />
+        </Suspense>
+        <Suspense fallback={null}>
+          <FloatingResumeButton />
+        </Suspense>
       </main>
       </motion.div>
     </SEOHead>

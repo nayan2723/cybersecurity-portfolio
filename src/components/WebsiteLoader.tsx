@@ -6,10 +6,10 @@ const WebsiteLoader = ({ children }: { children: React.ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Minimum loading time
+    // Reduced loading time for better performance
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2500);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
