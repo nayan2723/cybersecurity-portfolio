@@ -11,11 +11,11 @@ const CuratedHero = () => {
   const typewriterRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    // Optimize GSAP animations - use transform3d for GPU acceleration to prevent forced reflows
+    // Optimize GSAP animations - skip .hero-title to improve LCP
     const tl = gsap.timeline({ delay: 0.1 });
     
     // Force GPU acceleration and prevent layout thrashing
-    gsap.set(['.hero-avatar', '.hero-badge', '.hero-title', '.hero-cta'], { 
+    gsap.set(['.hero-avatar', '.hero-badge', '.hero-cta'], { 
       willChange: 'transform, opacity',
       force3D: true,
       transformPerspective: 1000
@@ -35,12 +35,6 @@ const CuratedHero = () => {
       stagger: 0.08,
       force3D: true
     }, '-=0.4')
-    .from('.hero-title', {
-      y: 50,
-      opacity: 0,
-      duration: 0.6,
-      force3D: true
-    }, '-=0.2')
     .from('.hero-cta', {
       y: 30,
       opacity: 0,
@@ -50,7 +44,7 @@ const CuratedHero = () => {
     }, '-=0.2')
     .then(() => {
       // Clean up will-change after animation
-      gsap.set(['.hero-avatar', '.hero-badge', '.hero-title', '.hero-cta'], { 
+      gsap.set(['.hero-avatar', '.hero-badge', '.hero-cta'], { 
         willChange: 'auto',
         clearProps: 'transform'
       });
@@ -142,7 +136,7 @@ const CuratedHero = () => {
         {/* Main Title */}
         <motion.div 
           className="hero-title mb-6"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 1 }}
           animate={{ 
             opacity: 1, 
             y: 0,
@@ -150,7 +144,7 @@ const CuratedHero = () => {
             scale: [1, 1.02, 1, 1.02, 1]
           }}
           transition={{ 
-            delay: 0.8,
+            delay: 0,
             rotateY: {
               duration: 3,
               repeat: Infinity,

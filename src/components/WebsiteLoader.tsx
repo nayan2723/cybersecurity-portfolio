@@ -6,12 +6,8 @@ const WebsiteLoader = ({ children }: { children: React.ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Minimal loading time to improve LCP
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 300);
-
-    return () => clearTimeout(timer);
+    // Skip loader entirely for better LCP
+    setIsLoading(false);
   }, []);
 
   return (
