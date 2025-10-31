@@ -319,7 +319,7 @@ const MiniGames = () => {
                     <div className="text-center">
                       <Gamepad2 className="w-16 h-16 text-foreground/30 mx-auto mb-4" />
                       <p className="text-foreground/60">Select a game to start playing!</p>
-                      <p className="text-sm text-foreground/40 mt-2">
+                      <p className="text-sm text-foreground/60 mt-2">
                         Perfect for procrastinating from real work 😄
                       </p>
                     </div>
