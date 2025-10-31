@@ -301,6 +301,7 @@ const CuratedHero = () => {
               className="hero-cta p-3 rounded-full bg-muted/20 hover:bg-primary/20 transition-colors group"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
+              aria-label={social.label}
             >
               <social.icon className="w-5 h-5 group-hover:text-primary transition-colors" />
             </motion.a>
