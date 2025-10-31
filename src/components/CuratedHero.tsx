@@ -11,49 +11,66 @@ const CuratedHero = () => {
   const typewriterRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    // GSAP animations for hero elements
-    const tl = gsap.timeline({ delay: 0.5 });
+    // Optimize GSAP animations - reduced delay for faster LCP
+    const tl = gsap.timeline({ delay: 0.1 });
+    
+    // Batch DOM reads/writes to prevent forced reflows
+    gsap.set(['.hero-avatar', '.hero-badge', '.hero-title', '.hero-cta'], { willChange: 'transform, opacity' });
     
     tl.from('.hero-avatar', {
       scale: 0,
       rotation: 180,
-      duration: 1,
+      duration: 0.8,
       ease: 'elastic.out(1, 0.5)'
     })
     .from('.hero-badge', {
       y: 30,
       opacity: 0,
-      duration: 0.6,
-      stagger: 0.1
-    }, '-=0.5')
+      duration: 0.5,
+      stagger: 0.08
+    }, '-=0.4')
     .from('.hero-title', {
       y: 50,
       opacity: 0,
-      duration: 0.8
-    }, '-=0.3')
+      duration: 0.6
+    }, '-=0.2')
     .from('.hero-cta', {
       y: 30,
       opacity: 0,
-      duration: 0.6,
-      stagger: 0.1
-    }, '-=0.3');
+      duration: 0.5,
+      stagger: 0.08
+    }, '-=0.2')
+    .then(() => {
+      // Clean up will-change after animation
+      gsap.set(['.hero-avatar', '.hero-badge', '.hero-title', '.hero-cta'], { willChange: 'auto' });
+    });
 
-    // Typewriter effect
+    // Optimized typewriter effect - use RAF for better performance
     const typewriter = typewriterRef.current;
     if (typewriter) {
       const text = "Breaking systems and building them again.";
       let index = 0;
+      let lastTime = 0;
+      const typingSpeed = 50;
       
-      const typeWriterInterval = setInterval(() => {
-        if (index < text.length) {
-          typewriter.textContent += text.charAt(index);
-          index++;
-        } else {
-          clearInterval(typeWriterInterval);
+      const typeChar = (timestamp: number) => {
+        if (timestamp - lastTime >= typingSpeed) {
+          if (index < text.length) {
+            // Batch DOM updates to prevent reflows
+            typewriter.textContent += text.charAt(index);
+            index++;
+            lastTime = timestamp;
+          } else {
+            return;
+          }
         }
-      }, 50);
-
-      return () => clearInterval(typeWriterInterval);
+        if (index < text.length) {
+          requestAnimationFrame(typeChar);
+        }
+      };
+      
+      const rafId = requestAnimationFrame(typeChar);
+      return () => cancelAnimationFrame(rafId);
     }
   }, []);
 

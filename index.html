@@ -11,8 +11,8 @@
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#00ff88" />
     
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://ywhfbnjzgdpdunlbkjhk.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';" />
+    <!-- Security Headers with CDN allowed -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://ywhfbnjzgdpdunlbkjhk.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';" />
     <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
@@ -28,19 +28,36 @@
     <meta name="twitter:description" content="Cybersecurity enthusiast and CSE student at Bennett University" />
     <meta name="twitter:image" content="https://i.ibb.co/LhYB87c6/Urban-Stillness-Amidst-Evening-Rush.png" />
     
-    <!-- Preconnect to font providers for faster DNS resolution -->
+    <!-- Preconnect to font providers and CDN for faster DNS resolution -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     
-    <!-- Preload critical fonts for LCP optimization -->
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+      /* Inline critical styles for immediate render */
+      body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+      #root { min-height: 100vh; }
+      .loading-fallback { 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        min-height: 100vh; 
+        background: #000; 
+        color: #00ff88; 
+      }
+    </style>
+    
+    <!-- Preload critical fonts for LCP optimization with font-display swap -->
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" crossorigin>
     
-    <!-- Async load fonts to prevent render blocking -->
+    <!-- Async load fonts to prevent render blocking with font-display swap -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
     
-    <!-- Magic CSS for special effects -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/miniMAC/magic@master/dist/magic.min.css">
+    <!-- Defer Magic CSS to avoid render blocking -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/miniMAC/magic@master/dist/magic.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/miniMAC/magic@master/dist/magic.min.css"></noscript>
   </head>
 
   <body>

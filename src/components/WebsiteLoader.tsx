@@ -6,10 +6,10 @@ const WebsiteLoader = ({ children }: { children: React.ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Reduced loading time for better performance
+    // Minimal loading time to improve LCP
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 300);
 
     return () => clearTimeout(timer);
   }, []);
@@ -24,46 +24,8 @@ const WebsiteLoader = ({ children }: { children: React.ReactNode }) => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
           >
-            {/* Dynamic Background Effects */}
-            <div className="absolute inset-0">
-              {/* Animated Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyber-green/10 via-transparent to-cyber-blue/10 animate-pulse"></div>
-              
-              {/* Moving Particles */}
-              {[...Array(20)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-cyber-green rounded-full opacity-60"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                  }}
-                  animate={{
-                    y: [0, -100, 0],
-                    opacity: [0.6, 1, 0.6],
-                    scale: [1, 1.5, 1],
-                  }}
-                  transition={{
-                    duration: 3 + Math.random() * 2,
-                    repeat: Infinity,
-                    delay: Math.random() * 2,
-                  }}
-                />
-              ))}
-              
-              {/* Scanning Line Effect */}
-              <motion.div
-                className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-cyber-green to-transparent opacity-80"
-                animate={{
-                  y: [0, window.innerHeight || 800],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              />
-            </div>
+            {/* Simplified Background - removed heavy animations */}
+            <div className="absolute inset-0 bg-gradient-to-br from-cyber-green/10 via-transparent to-cyber-blue/10"></div>
             {/* Animated Loader */}
             <motion.div
               className="mb-8 relative z-10"
