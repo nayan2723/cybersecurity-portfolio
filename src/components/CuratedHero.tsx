@@ -191,7 +191,7 @@ const CuratedHero = () => {
           </p>
         </motion.div>
 
-        {/* Interactive Status Card - Temporary Placeholder */}
+        {/* Interactive Status Card with QR Business Card */}
         <motion.div 
           className="relative max-w-6xl mx-auto mb-12 rounded-xl overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
@@ -199,16 +199,19 @@ const CuratedHero = () => {
           transition={{ delay: 1.5 }}
         >
           <div className="w-full min-h-[500px] bg-gradient-to-br from-background via-muted/30 to-background relative overflow-hidden border border-primary/20 rounded-xl p-8 md:p-12">
-            <div className="relative z-10">
-              <h3 className="text-4xl md:text-5xl font-bold mb-4">
-                Interactive <span className="text-primary">Experience</span>
+            <div className="relative z-10 flex flex-col items-center justify-center h-full">
+              <h3 className="text-4xl md:text-5xl font-bold mb-4 text-center">
+                Connect With <span className="text-primary">Me</span>
               </h3>
-              <p className="text-lg text-foreground/70 mb-8 max-w-2xl">
-                Cybersecurity Student & Full-Stack Developer. Building secure, scalable applications 
-                with modern technologies.
+              <p className="text-lg text-foreground/70 mb-8 max-w-2xl text-center">
+                Scan my digital business card to instantly save my contact information
               </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+              <div className="flex justify-center mb-8">
+                <QRBusinessCard />
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 w-full max-w-4xl">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 bg-cyber-green rounded-full animate-pulse"></div>
@@ -282,9 +285,6 @@ const CuratedHero = () => {
             <Download className="w-4 h-4 mr-2" />
             Download Resume
           </GradientButton>
-          <div className="hero-cta">
-            <QRBusinessCard />
-          </div>
         </motion.div>
 
         {/* Social Links */}
