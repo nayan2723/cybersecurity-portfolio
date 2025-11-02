@@ -13,6 +13,7 @@ import { contactFormSchema, type ContactFormData } from '@/lib/contact-validatio
 import { supabase } from '@/integrations/supabase/client';
 import type { ContactSubmissionInsert } from '@/integrations/supabase/simple-types';
 import { sanitizeTextInput, validateSecureEmail, containsSuspiciousContent } from '@/lib/security-utils';
+import QRBusinessCard from '@/components/QRBusinessCard';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -317,6 +318,14 @@ const Contact = () => {
                   </a>
                 ))}
               </div>
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-bold text-primary mb-6">Quick Contact</h3>
+              <p className="text-foreground/70 mb-4 text-sm">
+                Perfect for conferences and networking events - scan to save my contact info instantly!
+              </p>
+              <QRBusinessCard />
             </div>
 
             <Card className="cyber-card">
