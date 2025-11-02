@@ -5,6 +5,7 @@ import { GradientButton } from '@/components/ui/gradient-button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { LottieGlow } from '@/components/LottieAnimations';
+import QRBusinessCard from '@/components/QRBusinessCard';
 
 const CuratedHero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -281,6 +282,9 @@ const CuratedHero = () => {
             <Download className="w-4 h-4 mr-2" />
             Download Resume
           </GradientButton>
+          <div className="hero-cta">
+            <QRBusinessCard />
+          </div>
         </motion.div>
 
         {/* Social Links */}
