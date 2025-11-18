@@ -113,7 +113,7 @@ export type Database = {
           accessed_record_id: string | null
           created_at: string | null
           id: string
-          ip_address: unknown | null
+          ip_address: unknown
           success: boolean | null
           user_agent: string | null
           user_id: string | null
@@ -123,7 +123,7 @@ export type Database = {
           accessed_record_id?: string | null
           created_at?: string | null
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           success?: boolean | null
           user_agent?: string | null
           user_id?: string | null
@@ -133,7 +133,7 @@ export type Database = {
           accessed_record_id?: string | null
           created_at?: string | null
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           success?: boolean | null
           user_agent?: string | null
           user_id?: string | null
@@ -279,24 +279,15 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      cleanup_old_rate_limits: {
-        Args: Record<PropertyKey, never>
-        Returns: undefined
-      }
+      cleanup_old_rate_limits: { Args: never; Returns: undefined }
       encrypt_password: {
         Args: { encryption_key?: string; password_text: string }
         Returns: string
       }
-      get_next_queue_position: {
-        Args: Record<PropertyKey, never>
-        Returns: number
-      }
-      get_registration_count: {
-        Args: Record<PropertyKey, never>
-        Returns: number
-      }
+      get_next_queue_position: { Args: never; Returns: number }
+      get_registration_count: { Args: never; Returns: number }
       get_waiting_list_admin_view: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           contacted: boolean
           created_at: string
