@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { EvervaultCard } from '@/components/ui/evervault-card';
+import { EmojiReactor } from '@/components/EmojiReactor';
 import { 
   ExternalLink, 
   Github, 
@@ -241,12 +242,24 @@ const CuratedProjects = () => {
               >
                 <Card className="h-full overflow-hidden bg-muted/5 border-primary/20 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10">
                   <div className="relative overflow-hidden">
-                    {/* Project Image/Icon with EvervaultCard Effect */}
-                    <div className="h-48 relative bg-gradient-to-br from-primary/10 to-cyber-blue/10">
-                      <EvervaultCard 
-                        text={project.image}
-                        className="absolute inset-0 w-full h-full"
-                      />
+                    {/* Project Image/Icon with centered emoji */}
+                    <div className="h-48 relative bg-gradient-to-br from-primary/10 to-cyber-blue/10 flex items-center justify-center overflow-hidden">
+                      {/* Background effect */}
+                      <div className="absolute inset-0">
+                        <EvervaultCard 
+                          text=""
+                          className="absolute inset-0 w-full h-full"
+                        />
+                      </div>
+                      
+                      {/* Centered emoji */}
+                      <motion.div 
+                        className="relative z-10 text-7xl"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        {project.image}
+                      </motion.div>
                       
                       {/* Featured Badge */}
                       <Badge 
@@ -280,7 +293,7 @@ const CuratedProjects = () => {
                       </div>
 
                       {/* Technologies */}
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2 mb-4">
                         {project.technologies.slice(0, 4).map((tech, idx) => (
                           <Badge key={idx} variant="outline" size="sm">
                             {tech}
@@ -292,6 +305,9 @@ const CuratedProjects = () => {
                           </Badge>
                         )}
                       </div>
+
+                      {/* Emoji Reactor */}
+                      <EmojiReactor projectId={project.id} className="mt-auto" />
                     </CardContent>
                   </div>
                 </Card>
@@ -323,11 +339,8 @@ const CuratedProjects = () => {
                   <Card className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 hover:border-primary/30">
                     <CardContent className="p-6">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 relative">
-                          <EvervaultCard 
-                            text={project.image}
-                            className="absolute inset-0 w-full h-full"
-                          />
+                        <div className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-primary/10 to-cyber-blue/10 rounded-lg">
+                          <span className="text-2xl">{project.image}</span>
                         </div>
                         <div className="flex-1">
                           <h3 className="font-bold group-hover:text-primary transition-colors">
