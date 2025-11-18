@@ -76,7 +76,7 @@ const SEOHead = ({
       "url": url,
       "image": image,
       "sameAs": [
-        "https://github.com/nayankumar-cybersec",
+        "https://github.com/nayan2723",
         "https://www.linkedin.com/in/nayan-kshitij"
       ],
       "knowsAbout": [

@@ -295,7 +295,7 @@ const CuratedHero = () => {
           transition={{ delay: 2.1 }}
         >
           {[
-            { icon: Github, href: "https://github.com/nayankumar-cybersec", label: "GitHub" },
+            { icon: Github, href: "https://github.com/nayan2723", label: "GitHub" },
             { icon: Linkedin, href: "https://www.linkedin.com/in/nayan-kshitij", label: "LinkedIn" },
             { icon: Mail, href: "mailto:nayankshitij128@gmail.com", label: "Email" }
           ].map((social, index) => (

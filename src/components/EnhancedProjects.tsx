@@ -16,7 +16,7 @@ const EnhancedProjects = () => {
       image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f',
       technologies: ['React', 'Supabase', 'AI Models', 'Real-time Chat', 'TailwindCSS'],
       liveUrl: 'https://fharma-health-bridge-ui-nayan2723s-projects.vercel.app/',
-      githubUrl: 'https://github.com/nayankumar-cybersec/fharma-health-bridge-ui',
+      githubUrl: 'https://github.com/nayan2723/fharma-health-bridge-ui',
       featured: true,
       magicClass: 'magictime slideDown'
     },
@@ -66,7 +66,7 @@ const EnhancedProjects = () => {
       image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085',
       technologies: ['React', 'TailwindCSS', 'Vercel', 'TypeScript', 'Framer Motion'],
       liveUrl: 'https://nayan-cyber-folio.vercel.app/',
-      githubUrl: 'https://github.com/nayankumar-cybersec/cybersecurity-portfolio',
+      githubUrl: 'https://github.com/nayan2723/cybersecurity-portfolio',
       featured: false,
       magicClass: 'magictime foolishIn'
     },
@@ -278,7 +278,7 @@ const EnhancedProjects = () => {
             </p>
             <Button 
               className="cyber-button animate__animated animate__pulse animate__infinite"
-              onClick={() => window.open('https://github.com/nayankumar-cybersec', '_blank')}
+              onClick={() => window.open('https://github.com/nayan2723', '_blank')}
             >
               <Github className="w-4 h-4 mr-2" />
               Visit GitHub
