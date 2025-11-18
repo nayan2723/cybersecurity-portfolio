@@ -225,27 +225,14 @@ const EnhancedFooter = () => {
 
         {/* Bottom Bar */}
         <motion.div 
-          className="border-t border-border/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+          className="border-t border-border/50 pt-8 flex flex-col md:flex-row justify-center items-center gap-4"
           data-aos="fade-up"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <div className="text-sm text-foreground/60 animate__animated animate__fadeInLeft">
-            <span>© {currentYear} Nayan Kshitij. Crafted with </span>
-            <motion.span
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 1, repeat: Infinity }}
-              className="inline-block text-red-500"
-            >
-              <Heart className="w-4 h-4 inline" />
-            </motion.span>
-            <span> and lots of ☕</span>
-          </div>
-          
-          <div className="text-sm text-foreground/60 font-mono animate__animated animate__fadeInRight">
-            <span className="text-cyber-green">Built with:</span>
-            <span className="ml-2">React + TypeScript + Three.js + ❤️</span>
+          <div className="text-sm text-foreground/60 animate__animated animate__fadeIn">
+            <span>© {currentYear} Nayan Kshitij. All rights reserved.</span>
           </div>
         </motion.div>
 
