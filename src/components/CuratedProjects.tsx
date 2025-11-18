@@ -122,6 +122,44 @@ const CuratedProjects = () => {
       achievements: ["Pixel-perfect UI replica", "Cross-device responsive", "Complex component structure"],
       liveUrl: "#",
       githubUrl: "#"
+    },
+    {
+      id: 8,
+      title: "TravelTactix – Gamified AI Travel Companion",
+      description: "AI-powered travel companion app with multi-day itineraries, cultural lessons, gamified missions, AR landmark scanning, and real-time crowd monitoring. Built for interactive, immersive travel experiences across India.",
+      category: "ai",
+      featured: true,
+      image: "🗺️",
+      technologies: ["AI/ML", "AR Technology", "React", "Geolocation APIs", "Real-time Data"],
+      achievements: ["AI-powered itineraries", "AR landmark detection", "Gamified missions & rewards"],
+      liveUrl: "#",
+      githubUrl: "#",
+      caseStudy: true
+    },
+    {
+      id: 9,
+      title: "AI/ML Sentiment Analysis Model",
+      description: "End-to-end text sentiment classifier using ML and NLP techniques. Implements tokenization, embeddings, and multiple machine learning models to achieve high accuracy in sentiment detection.",
+      category: "ai",
+      featured: true,
+      image: "🧠",
+      technologies: ["Python", "Scikit-learn", "NLP", "TensorFlow/PyTorch", "Text Embeddings"],
+      achievements: ["Multi-model ensemble", "Tokenization pipeline", "High accuracy classification"],
+      liveUrl: "#",
+      githubUrl: "#",
+      caseStudy: true
+    },
+    {
+      id: 10,
+      title: "Emoji Reactor – Real-Time Emotion Detection",
+      description: "Real-time facial expression and pose detection application using computer vision. Detects emotions and body language, then displays matching emojis instantly in a separate window.",
+      category: "ai",
+      featured: false,
+      image: "😊",
+      technologies: ["Python", "MediaPipe", "OpenCV", "Computer Vision", "Real-time Processing"],
+      achievements: ["Real-time face detection", "Pose estimation", "Instant emoji mapping"],
+      liveUrl: "#",
+      githubUrl: "#"
     }
   ];
 
