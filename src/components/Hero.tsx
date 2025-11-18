@@ -93,16 +93,16 @@ const Hero = () => {
 
           <div className="flex items-center gap-6 pt-4">
             <a 
-              href="https://linkedin.com" 
-              target="_blank" 
+              href="https://linkedin.com/in/nayan-kshitij" 
+              target="_blank"
               rel="noopener noreferrer"
               className="text-foreground/60 hover:text-primary transition-colors p-2 hover:bg-primary/10 rounded-lg"
             >
               <Linkedin className="w-6 h-6" />
             </a>
             <a 
-              href="https://github.com" 
-              target="_blank" 
+              href="https://github.com/nayan2723" 
+              target="_blank"
               rel="noopener noreferrer"
               className="text-foreground/60 hover:text-primary transition-colors p-2 hover:bg-primary/10 rounded-lg"
             >

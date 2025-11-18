@@ -256,7 +256,7 @@ const EnhancedHero = () => {
           >
             {[
               { icon: Linkedin, href: "https://www.linkedin.com/in/nayan-kshitij", color: "hover:text-cyber-blue" },
-              { icon: Github, href: "https://github.com/nayankumar-cybersec", color: "hover:text-cyber-green" }
+              { icon: Github, href: "https://github.com/nayan2723", color: "hover:text-cyber-green" }
             ].map(({ icon: Icon, href, color }, index) => (
               <motion.a
                 key={index}

@@ -19,7 +19,7 @@ const EnhancedFooter = () => {
   const socialLinks = [
     {
       icon: <Github className="w-5 h-5" />,
-      href: "https://github.com/nayankumar-cybersec",
+      href: "https://github.com/nayan2723",
       label: "GitHub",
       hoverColor: "hover:text-cyber-green"
     },

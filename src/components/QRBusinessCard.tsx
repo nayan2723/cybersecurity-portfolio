@@ -27,7 +27,7 @@ const QRBusinessCard = () => {
     phone: "+91-9100606434",
     website: "https://nayan-dev.lovable.app",
     linkedin: "https://www.linkedin.com/in/nayan-kshitij",
-    github: "https://github.com/nayankumar-cybersec",
+    github: "https://github.com/nayan2723",
   };
 
   // Generate vCard format
