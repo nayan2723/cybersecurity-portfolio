@@ -99,8 +99,8 @@ Return only the 4 song recommendations, one per line, nothing else.`;
     // Parse the generated songs
     const songs = generatedText
       .split('\n')
-      .filter(line => line.trim() && (line.includes('🎵') || line.includes('🎶')))
-      .map(line => line.trim())
+      .filter((line: string) => line.trim() && (line.includes('🎵') || line.includes('🎶')))
+      .map((line: string) => line.trim())
       .slice(0, 4); // Ensure we only get 4 songs
 
     // Fallback songs if parsing fails or not enough songs generated
@@ -137,7 +137,8 @@ Return only the 4 song recommendations, one per line, nothing else.`;
     });
 
   } catch (error) {
-    console.error('Error in gemini-music-generator function:', error);
+    const err = error instanceof Error ? error : new Error('Unknown error');
+    console.error('Error in gemini-music-generator function:', err);
     
     // Return fallback songs on error
     const fallbackSongs = [
@@ -149,7 +150,7 @@ Return only the 4 song recommendations, one per line, nothing else.`;
 
     return new Response(JSON.stringify({ 
       songs: fallbackSongs,
-      error: error.message,
+      error: err.message,
       source: 'fallback'
     }), {
       status: 200, // Return 200 with fallback to keep UI working
