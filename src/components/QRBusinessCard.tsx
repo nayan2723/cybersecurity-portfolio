@@ -25,7 +25,7 @@ const QRBusinessCard = () => {
     title: "Cybersecurity Enthusiast & Full-Stack Developer",
     email: "nayankshitij128@gmail.com",
     phone: "+91-9100606434",
-    website: "https://nayan-dev.lovable.app",
+    website: "https://nayan-sec.vercel.app",
     linkedin: "https://www.linkedin.com/in/nayan-kshitij",
     github: "https://github.com/nayan2723",
   };

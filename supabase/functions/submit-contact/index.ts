@@ -155,17 +155,18 @@ serve(async (req) => {
     );
 
   } catch (error) {
+    const err = error instanceof Error ? error : new Error('Unknown error');
     // Structured error logging without exposing sensitive details
     const errorId = crypto.randomUUID();
     console.error(`[${errorId}] Contact form error:`, {
-      message: error.message,
+      message: err.message,
       timestamp: new Date().toISOString(),
       ip: req.headers.get('x-forwarded-for') || 'unknown'
     });
     
     // Don't expose detailed error messages to prevent information leakage
-    const publicErrorMessage = error.message?.includes('Invalid') || error.message?.includes('Rate limit') 
-      ? error.message 
+    const publicErrorMessage = err.message?.includes('Invalid') || err.message?.includes('Rate limit') 
+      ? err.message 
       : 'An error occurred while processing your request. Please try again later.';
     
     return new Response(
