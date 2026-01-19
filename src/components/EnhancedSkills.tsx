@@ -199,31 +199,37 @@ const EnhancedSkills = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
             {[
               { name: "CEH", fullName: "Certified Ethical Hacker", icon: <Bug className="w-5 h-5" />, status: "in-progress" },
-              { name: "OSCP", fullName: "Offensive Security Certified Professional", icon: <Search className="w-5 h-5" />, status: "in-progress" },
-              { name: "CISSP", fullName: "Certified Information Systems Security Professional", icon: <Lock className="w-5 h-5" />, status: "in-progress" },
-              { name: "Security+", fullName: "CompTIA Security+", icon: <Shield className="w-5 h-5" />, status: "in-progress" },
-              { name: "CISM", fullName: "Certified Information Security Manager", icon: <Server className="w-5 h-5" />, status: "in-progress" },
-              { name: "GSEC", fullName: "GIAC Security Essentials", icon: <Terminal className="w-5 h-5" />, status: "in-progress" }
+              { name: "OSCP", fullName: "Offensive Security Certified Professional", icon: <Search className="w-5 h-5" />, status: "locked" },
+              { name: "CISSP", fullName: "Certified Information Systems Security Professional", icon: <Lock className="w-5 h-5" />, status: "locked" },
+              { name: "Security+", fullName: "CompTIA Security+", icon: <Shield className="w-5 h-5" />, status: "locked" },
+              { name: "CISM", fullName: "Certified Information Security Manager", icon: <Server className="w-5 h-5" />, status: "locked" },
+              { name: "GSEC", fullName: "GIAC Security Essentials", icon: <Terminal className="w-5 h-5" />, status: "locked" }
             ].map((cert, index) => (
               <motion.div
                 key={cert.name}
-                className="cyber-card p-4 text-center relative group hover:scale-105 transition-all duration-300 opacity-90"
+                className={`cyber-card p-4 text-center relative group hover:scale-105 transition-all duration-300 ${cert.status === 'locked' ? 'opacity-75' : 'opacity-90'}`}
                 whileHover={{ y: -2 }}
               >
                 <div className="absolute top-2 right-2">
-                  <motion.div 
-                    className="w-2 h-2 rounded-full bg-yellow-500"
-                    animate={{ opacity: [0.5, 1, 0.5] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                    title="In Progress"
-                  />
+                  {cert.status === 'in-progress' ? (
+                    <motion.div 
+                      className="w-2 h-2 rounded-full bg-yellow-500"
+                      animate={{ opacity: [0.5, 1, 0.5] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                      title="In Progress"
+                    />
+                  ) : (
+                    <Lock className="w-4 h-4 text-foreground/30" />
+                  )}
                 </div>
                 <div className="text-foreground/50 mb-2 group-hover:text-primary transition-colors">
                   {cert.icon}
                 </div>
                 <h4 className="font-bold text-sm mb-1">{cert.name}</h4>
                 <p className="text-xs text-foreground/40 leading-tight">{cert.fullName}</p>
-                <span className="text-[10px] text-yellow-500 mt-1 block">In Progress</span>
+                {cert.status === 'in-progress' && (
+                  <span className="text-[10px] text-yellow-500 mt-1 block">In Progress</span>
+                )}
               </motion.div>
             ))}
           </div>
