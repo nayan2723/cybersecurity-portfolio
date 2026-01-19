@@ -4,7 +4,6 @@ A modern, responsive portfolio website showcasing my work in cybersecurity, web 
 Built to highlight hands-on skills, real-world projects, and a strong security-focused engineering mindset.
 
 Live Website: **https://nayan-dev.vercel.app/**  
-Repository: *(add GitHub repo link here if this README goes into a public repo)*
 
 ---
 
@@ -62,7 +61,6 @@ The Projects section highlights key cybersecurity & development work:
 - **Cybersecurity Tools & Scripts**
 - **Practice Labs & Writeups**
 
-Each project includes a short description and link to GitHub or a live demo.
 
 ---
 
