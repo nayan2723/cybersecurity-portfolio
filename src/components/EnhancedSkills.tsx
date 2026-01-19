@@ -198,26 +198,98 @@ const EnhancedSkills = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
             {[
-              { name: "CEH", fullName: "Certified Ethical Hacker", icon: <Bug className="w-5 h-5" /> },
-              { name: "OSCP", fullName: "Offensive Security Certified Professional", icon: <Search className="w-5 h-5" /> },
-              { name: "CISSP", fullName: "Certified Information Systems Security Professional", icon: <Lock className="w-5 h-5" /> },
-              { name: "Security+", fullName: "CompTIA Security+", icon: <Shield className="w-5 h-5" /> },
-              { name: "CISM", fullName: "Certified Information Security Manager", icon: <Server className="w-5 h-5" /> },
-              { name: "GSEC", fullName: "GIAC Security Essentials", icon: <Terminal className="w-5 h-5" /> }
+              { name: "CEH", fullName: "Certified Ethical Hacker", icon: <Bug className="w-5 h-5" />, status: "in-progress" },
+              { name: "OSCP", fullName: "Offensive Security Certified Professional", icon: <Search className="w-5 h-5" />, status: "in-progress" },
+              { name: "CISSP", fullName: "Certified Information Systems Security Professional", icon: <Lock className="w-5 h-5" />, status: "in-progress" },
+              { name: "Security+", fullName: "CompTIA Security+", icon: <Shield className="w-5 h-5" />, status: "in-progress" },
+              { name: "CISM", fullName: "Certified Information Security Manager", icon: <Server className="w-5 h-5" />, status: "in-progress" },
+              { name: "GSEC", fullName: "GIAC Security Essentials", icon: <Terminal className="w-5 h-5" />, status: "in-progress" }
             ].map((cert, index) => (
               <motion.div
                 key={cert.name}
-                className="cyber-card p-4 text-center relative group hover:scale-105 transition-all duration-300 opacity-75"
+                className="cyber-card p-4 text-center relative group hover:scale-105 transition-all duration-300 opacity-90"
                 whileHover={{ y: -2 }}
               >
                 <div className="absolute top-2 right-2">
-                  <Lock className="w-4 h-4 text-foreground/30" />
+                  <motion.div 
+                    className="w-2 h-2 rounded-full bg-yellow-500"
+                    animate={{ opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                    title="In Progress"
+                  />
                 </div>
                 <div className="text-foreground/50 mb-2 group-hover:text-primary transition-colors">
                   {cert.icon}
                 </div>
                 <h4 className="font-bold text-sm mb-1">{cert.name}</h4>
                 <p className="text-xs text-foreground/40 leading-tight">{cert.fullName}</p>
+                <span className="text-[10px] text-yellow-500 mt-1 block">In Progress</span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Completed Certifications */}
+        <motion.div 
+          className="mt-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 1.2, duration: 0.8 }}
+        >
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold mb-2">
+              <span className="text-primary">Certifications</span>
+            </h3>
+            <p className="text-sm text-foreground/60">Completed certifications and training</p>
+          </div>
+          
+          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              { 
+                name: "Google Cybersecurity", 
+                provider: "GOOGLE", 
+                year: "2024",
+                description: "Foundational certification covering essential security concepts and best practices.",
+                icon: <Shield className="w-5 h-5" />
+              },
+              { 
+                name: "Introduction to Cybersecurity Tools & Cyberattacks", 
+                provider: "IBM", 
+                year: "2024",
+                description: "Introduction to hacking methodologies and penetration testing.",
+                icon: <Bug className="w-5 h-5" />
+              },
+              { 
+                name: "Ethical Hacking", 
+                provider: "Internshala Trainings", 
+                year: "2025",
+                description: "Comprehensive 8-week training covering Information Security, Computer Networking, Web Development, VAPT of OWASP top 10 vulnerabilities, and automated vulnerability assessment.",
+                icon: <Terminal className="w-5 h-5" />
+              }
+            ].map((cert, index) => (
+              <motion.div
+                key={cert.name}
+                className="cyber-card p-6 relative group hover:scale-105 transition-all duration-300 border-l-4 border-l-primary"
+                whileHover={{ y: -2 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 1.4 + index * 0.1 }}
+              >
+                <div className="absolute top-4 right-4">
+                  <span className="text-xs font-mono text-primary border border-primary px-2 py-1 rounded">
+                    {cert.year}
+                  </span>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="text-primary mt-1">
+                    {cert.icon}
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-bold text-base mb-1 pr-16">{cert.name}</h4>
+                    <p className="text-xs text-primary font-semibold mb-2">{cert.provider}</p>
+                    <p className="text-sm text-foreground/60 leading-relaxed">{cert.description}</p>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
