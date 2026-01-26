@@ -1,4 +1,4 @@
-   Portfolio Website 🔐
+## Portfolio Website 🔐
 
 A modern, responsive portfolio website showcasing my work in cybersecurity, web development, and technical research.  
 Built to highlight hands-on skills, real-world projects, and a strong security-focused engineering mindset.
@@ -63,10 +63,6 @@ The Projects section highlights key cybersecurity & development work:
 
 
 ---
-
-##📬 Contact
-
-Want to reach out?
 
 🌐 Website: https://nayan-dev.vercel.app/
 💼 LinkedIn: https://www.linkedin.com/in/nayan-kshitij/
