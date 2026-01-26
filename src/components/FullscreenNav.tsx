@@ -90,7 +90,7 @@ const FullscreenNav = () => {
             <Button 
               size="sm" 
               variant="outline"
-              onClick={() => window.open('/Nayan_resume_final.pdf', '_blank')}
+              onClick={() => window.open('/Resume.pdf', '_blank')}
             >
               <Download className="w-4 h-4 mr-2" />
               Resume
@@ -214,7 +214,7 @@ const FullscreenNav = () => {
                   variant="primary" 
                   size="lg" 
                   className="group"
-                  onClick={() => window.open('/Nayan_resume_final.pdf', '_blank')}
+                  onClick={() => window.open('/Resume.pdf', '_blank')}
                 >
                   <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
                   Download Resume
