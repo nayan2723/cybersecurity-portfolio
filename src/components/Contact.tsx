@@ -10,8 +10,6 @@ import { Mail, MapPin, Phone, Send, Github, Linkedin, Twitter, Loader2, X } from
 import ResumeButton from '@/components/ui/resume-button';
 import { useToast } from '@/hooks/use-toast';
 import { contactFormSchema, type ContactFormData } from '@/lib/contact-validation';
-import { supabase } from '@/integrations/supabase/client';
-import type { ContactSubmissionInsert } from '@/integrations/supabase/simple-types';
 import { sanitizeTextInput, validateSecureEmail, containsSuspiciousContent } from '@/lib/security-utils';
 import QRBusinessCard from '@/components/QRBusinessCard';
 
@@ -53,17 +51,31 @@ const Contact = () => {
         message: sanitizeTextInput(data.message)
       };
       
-      const { data: result, error } = await supabase.functions.invoke('submit-contact', {
-        body: sanitizedData
+      // Call MongoDB API endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sanitizedData),
       });
 
-      if (error) {
-        throw error;
+      // Check if response is OK before parsing JSON
+      if (!response.ok) {
+        // Try to parse error message from response
+        let errorMessage = 'Failed to send message. Please try again later.';
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.error || errorMessage;
+        } catch (parseError) {
+          // If response is not JSON, use status text
+          errorMessage = response.statusText || errorMessage;
+        }
+        throw new Error(errorMessage);
       }
 
-      if (result?.error) {
-        throw new Error(result.error);
-      }
+      // Parse successful response
+      const result = await response.json();
 
       toast({
         title: "Message Sent!",
@@ -77,9 +89,22 @@ const Contact = () => {
     } catch (error: any) {
       console.error('Contact form error:', error);
       
-      const errorMessage = error.message?.includes('Rate limit') 
-        ? 'Too many submissions. Please wait before sending another message.'
-        : 'Failed to send message. Please try again later.';
+      // Extract meaningful error message
+      let errorMessage = 'Failed to send message. Please try again later.';
+      
+      if (error.message) {
+        // Use the error message from API if available
+        if (error.message.includes('Rate limit')) {
+          errorMessage = 'Too many submissions. Please wait before sending another message.';
+        } else if (error.message.includes('Invalid')) {
+          errorMessage = error.message;
+        } else if (error.message.includes('network') || error.message.includes('fetch')) {
+          errorMessage = 'Network error. Please check your connection and try again.';
+        } else {
+          // For other errors, use generic message (detailed error logged server-side)
+          errorMessage = 'Failed to send message. Please try again later.';
+        }
+      }
       
       toast({
         title: "Error",

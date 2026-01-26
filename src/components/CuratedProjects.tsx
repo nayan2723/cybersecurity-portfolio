@@ -43,7 +43,7 @@ const CuratedProjects = () => {
       category: "ai",
       featured: true,
       image: "🏥",
-      technologies: ["React", "Supabase", "AI Models", "Real-time Chat", "TailwindCSS"],
+      technologies: ["React", "Backend", "AI Models", "Real-time Chat", "TailwindCSS"],
       achievements: ["AI medicine recommendations", "Live chat system", "Rural healthcare bridge"],
       liveUrl: "https://fharma-health-bridge-ui-nayan2723s-projects.vercel.app/",
       githubUrl: "https://github.com/nayan2723/fharma-health-bridge-ui",

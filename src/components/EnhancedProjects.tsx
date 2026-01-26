@@ -14,7 +14,7 @@ const EnhancedProjects = () => {
       title: 'Fharma – Bridging Rural & Urban Healthcare',
       description: 'Full-stack web app with AI-powered medicine recommendation system and doctor-patient live chat functionality.',
       image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f',
-      technologies: ['React', 'Supabase', 'AI Models', 'Real-time Chat', 'TailwindCSS'],
+      technologies: ['React', 'Backend', 'AI Models', 'Real-time Chat', 'TailwindCSS'],
       liveUrl: 'https://fharma-health-bridge-ui-nayan2723s-projects.vercel.app/',
       githubUrl: 'https://github.com/nayan2723/fharma-health-bridge-ui',
       featured: true,

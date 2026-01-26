@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { supabase } from '@/integrations/supabase/client';
 import { 
   Smile, 
   Coffee, 
@@ -260,43 +259,11 @@ const EasterEggs = () => {
   };
 
   const generateSong = async () => {
-    try {
-      const { data, error } = await supabase.functions.invoke('gemini-music-generator', {
-        body: {
-          mood: currentMood,
-          language: 'both' // Can be 'english', 'hindi', or 'both'
-        }
-      });
-
-      if (error) {
-        console.error('Error calling Gemini music generator:', error);
-        // Fallback to hardcoded songs
-        const moodKey = currentMood as keyof typeof moodSongs;
-        const songsForMood = moodSongs[moodKey] || moodSongs.happy;
-        const randomSong = songsForMood[Math.floor(Math.random() * songsForMood.length)];
-        setGhibliCharacter(randomSong);
-        return;
-      }
-
-      if (data && data.songs && data.songs.length > 0) {
-        const randomSong = data.songs[Math.floor(Math.random() * data.songs.length)];
-        setGhibliCharacter(randomSong);
-        console.log(`Generated song via ${data.source}:`, randomSong);
-      } else {
-        // Fallback to hardcoded songs
-        const moodKey = currentMood as keyof typeof moodSongs;
-        const songsForMood = moodSongs[moodKey] || moodSongs.happy;
-        const randomSong = songsForMood[Math.floor(Math.random() * songsForMood.length)];
-        setGhibliCharacter(randomSong);
-      }
-    } catch (error) {
-      console.error('Error generating song:', error);
-      // Fallback to hardcoded songs
-      const moodKey = currentMood as keyof typeof moodSongs;
-      const songsForMood = moodSongs[moodKey] || moodSongs.happy;
-      const randomSong = songsForMood[Math.floor(Math.random() * songsForMood.length)];
-      setGhibliCharacter(randomSong);
-    }
+    // Use hardcoded songs directly (removed Supabase dependency)
+    const moodKey = currentMood as keyof typeof moodSongs;
+    const songsForMood = moodSongs[moodKey] || moodSongs.happy;
+    const randomSong = songsForMood[Math.floor(Math.random() * songsForMood.length)];
+    setGhibliCharacter(randomSong);
   };
 
   const triggerBlueScreen = () => {
