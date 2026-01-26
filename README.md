@@ -85,4 +85,4 @@ git clone https://github.com/your-username/your-portfolio-repo.git
 cd your-portfolio-repo
 npm install
 npm run dev
-http://localhost:3000
+http://localhost
