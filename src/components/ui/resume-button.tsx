@@ -20,7 +20,7 @@ const ResumeButton = ({
   text = 'View Resume'
 }: ResumeButtonProps) => {
   const handleResumeClick = () => {
-    window.open('/Nayan_resume_final.pdf', '_blank');
+    window.open('public/Nayan_resume_final.pdf.pdf', '_blank');
   };
 
   const IconComponent = iconType === 'download' ? Download : FileText;
