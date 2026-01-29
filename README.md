@@ -18,7 +18,7 @@ This website serves as my professional portfolio where I showcase:
 - Certifications & achievements
 - Contact + social links
 
-It is designed with a clean UI, fast loading, and a mobile-first approach.
+It is designed with a clean UI and fast loading
 
 ---
 
