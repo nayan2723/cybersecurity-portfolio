@@ -46,8 +46,6 @@ The stack is intentionally lightweight and fast:
   - Certifications
   - Experience
   - Contact
-- SEO-optimized layout and meta tags
-- Fast deployment via Vercel CDN
 
 ---
 
