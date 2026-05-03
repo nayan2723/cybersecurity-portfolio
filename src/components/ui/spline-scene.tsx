@@ -1,4 +1,5 @@
-import { Suspense, lazy, useState, useEffect, ComponentType } from 'react';
+import { Suspense, lazy, useState, useEffect } from 'react';
+import type { FC } from 'react';
 
 // Type for Spline component props
 interface SplineProps {
@@ -8,24 +9,25 @@ interface SplineProps {
   onError?: (error: Error) => void;
 }
 
+const SplineLoadFailed: FC<SplineProps> = () => (
+  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-background/50 to-muted/30">
+    <div className="text-center p-8">
+      <div className="text-4xl mb-4 opacity-50">🎨</div>
+      <p className="text-muted-foreground text-sm">3D Module Unavailable</p>
+    </div>
+  </div>
+);
+
 // Lazy load Spline with comprehensive error handling
-const LazySpline = lazy<ComponentType<SplineProps>>(async () => {
+const LazySpline = lazy(async () => {
   try {
     const module = await import('@splinetool/react-spline');
     return { default: module.default };
   } catch (error) {
     console.error('Failed to load Spline module:', error);
-    // Return a fallback component
     return {
-      default: () => (
-        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-background/50 to-muted/30">
-          <div className="text-center p-8">
-            <div className="text-4xl mb-4 opacity-50">🎨</div>
-            <p className="text-muted-foreground text-sm">3D Module Unavailable</p>
-          </div>
-        </div>
-      )
-    } as any;
+      default: SplineLoadFailed,
+    };
   }
 });
 

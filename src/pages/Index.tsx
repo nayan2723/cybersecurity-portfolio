@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Suspense, lazy, ComponentType, useRef } from 'react';
+import { Suspense, lazy, useRef } from 'react';
+import type { FC } from 'react';
 import CuratedHero from '@/components/CuratedHero';
 import SmoothScroll from '@/components/SmoothScroll';
 import SEOHead from '@/components/SEOHead';
@@ -22,13 +23,15 @@ const EnhancedFooter = lazy(() => import('@/components/EnhancedFooter'));
 const AnimatedMascot = lazy(() => import('@/components/AnimatedMascot'));
 const FloatingResumeButton = lazy(() => import('@/components/FloatingResumeButton'));
 
-const DotScreenShader = lazy<ComponentType>(async () => {
+const DotScreenShaderFallback: FC = () => null;
+
+const DotScreenShader = lazy(async () => {
   try {
     const module = await import('@/components/ui/dot-shader-background');
     return { default: module.DotScreenShader };
   } catch (error) {
     console.error('Failed to load DotScreenShader:', error);
-    return { default: () => null as any };
+    return { default: DotScreenShaderFallback };
   }
 });
 

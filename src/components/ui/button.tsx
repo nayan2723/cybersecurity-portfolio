@@ -64,9 +64,22 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, loading = false, leftIcon, rightIcon, children, disabled, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button"
+    // Radix Slot requires exactly ONE React element child; do not nest loader + wrapper beside it.
+    if (asChild) {
+      return (
+        <Slot
+          className={cn(buttonVariants({ variant, size, loading: false, className }))}
+          ref={ref}
+          {...props}
+        >
+          {children}
+        </Slot>
+      )
+    }
+
     return (
-      <Comp
+      <button
+        type="button"
         className={cn(buttonVariants({ variant, size, loading, className }))}
         ref={ref}
         disabled={disabled || loading}
@@ -82,7 +95,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           {children}
           {rightIcon && <span className="flex items-center">{rightIcon}</span>}
         </div>
-      </Comp>
+      </button>
     )
   }
 )

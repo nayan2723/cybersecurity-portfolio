@@ -2,37 +2,37 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
+const TERMINAL_COMMANDS = [
+  { command: '$ whoami', output: 'Cybersecurity enthusiast with a focus on ethical hacking and secure development' },
+  { command: '$ education', output: 'B.Tech CSE @ Bennett University | Expected 2027' },
+  { command: '$ location', output: 'India' },
+  { command: '$ interests', output: 'cybersecurity, ethical hacking, web development' },
+];
+
+const INTEREST_BLOCKS = [
+  {
+    title: 'Cybersecurity',
+    description: 'Passionate about ethical hacking, penetration testing, and security threat analysis.',
+    icon: '🛡️',
+    animateClass: 'magictime puffIn'
+  },
+  {
+    title: 'Web Development',
+    description: 'Designing & making websites with modern technologies and secure practices.',
+    icon: '💻',
+    animateClass: 'magictime slideDownReturn'
+  },
+  {
+    title: 'LAMP Stack',
+    description: 'Building secure web applications using Linux, Apache, MySQL, and PHP.',
+    icon: '🔧',
+    animateClass: 'magictime slideUpReturn'
+  }
+];
+
 const EnhancedAbout = () => {
   const terminalRef = useRef(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-
-  const terminalCommands = [
-    { command: '$ whoami', output: 'Cybersecurity enthusiast with a focus on ethical hacking and secure development' },
-    { command: '$ education', output: 'B.Tech CSE @ Bennett University | Expected 2027' },
-    { command: '$ location', output: 'India' },
-    { command: '$ interests', output: 'cybersecurity, ethical hacking, web development' },
-  ];
-
-  const interests = [
-    {
-      title: 'Cybersecurity',
-      description: 'Passionate about ethical hacking, penetration testing, and security threat analysis.',
-      icon: '🛡️',
-      animateClass: 'magictime puffIn'
-    },
-    {
-      title: 'Web Development',
-      description: 'Designing & making websites with modern technologies and secure practices.',
-      icon: '💻',
-      animateClass: 'magictime slideDownReturn'
-    },
-    {
-      title: 'LAMP Stack',
-      description: 'Building secure web applications using Linux, Apache, MySQL, and PHP.',
-      icon: '🔧',
-      animateClass: 'magictime slideUpReturn'
-    }
-  ];
 
   useEffect(() => {
     // Terminal typewriter effect with GSAP
@@ -122,7 +122,7 @@ const EnhancedAbout = () => {
             >
               <CardContent className="p-6">
                 <div className="space-y-3" ref={terminalRef}>
-                  {terminalCommands.map((cmd, index) => (
+                  {TERMINAL_COMMANDS.map((cmd, index) => (
                     <div key={index} className="space-y-1">
                       <div 
                         className="terminal-text text-primary font-mono"
@@ -156,7 +156,7 @@ const EnhancedAbout = () => {
             </h3>
             
             <div className="space-y-4">
-              {interests.map((interest, index) => (
+              {INTEREST_BLOCKS.map((interest, index) => (
                 <Card 
                   key={index} 
                   ref={(el) => cardsRef.current[index] = el}

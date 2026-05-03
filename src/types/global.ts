@@ -87,7 +87,7 @@ export type ButtonVariant = 'default' | 'destructive' | 'outline' | 'secondary' 
 export type BadgeVariant = 'default' | 'secondary' | 'destructive' | 'outline' | 'success' | 'neon';
 
 // API Response types
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   data?: T;
   error?: string;
   message?: string;

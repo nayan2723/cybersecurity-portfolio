@@ -46,6 +46,7 @@ const MiniGames = () => {
       endGame();
     }
     return () => clearTimeout(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- endGame is defined below and would re-trigger every render
   }, [gameActive, timeLeft]);
 
   const startGame = (game: 'bubbles' | 'robot' | 'whack') => {
@@ -204,6 +205,7 @@ const MiniGames = () => {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- moveRobot is recreated when game logic changes
   }, [currentGame, gameActive]);
 
   return (

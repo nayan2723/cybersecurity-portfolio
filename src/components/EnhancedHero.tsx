@@ -4,6 +4,14 @@ import { gsap } from 'gsap';
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Mail, Download, Terminal, Shield, Code } from 'lucide-react';
 
+const ROLE_TITLES = [
+  'Cybersecurity Enthusiast',
+  'Ethical Hacker',
+  'Security Researcher',
+  'Full Stack Developer',
+  'Penetration Tester'
+] as const;
+
 const EnhancedHero = () => {
   const [displayText, setDisplayText] = useState('');
   const [currentRole, setCurrentRole] = useState(0);
@@ -11,16 +19,8 @@ const EnhancedHero = () => {
   const profileRef = useRef(null);
   const glitchRef = useRef(null);
   
-  const roles = [
-    'Cybersecurity Enthusiast',
-    'Ethical Hacker', 
-    'Security Researcher',
-    'Full Stack Developer',
-    'Penetration Tester'
-  ];
-
   useEffect(() => {
-    const fullText = `${roles[currentRole]} || CSE Student @ Bennett University`;
+    const fullText = `${ROLE_TITLES[currentRole]} || CSE Student @ Bennett University`;
     let index = 0;
     
     const timer = setInterval(() => {
@@ -30,7 +30,7 @@ const EnhancedHero = () => {
       } else {
         clearInterval(timer);
         setTimeout(() => {
-          setCurrentRole((prev) => (prev + 1) % roles.length);
+          setCurrentRole((prev) => (prev + 1) % ROLE_TITLES.length);
           setDisplayText('');
         }, 2000);
       }

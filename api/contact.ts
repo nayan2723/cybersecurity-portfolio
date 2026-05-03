@@ -3,7 +3,23 @@
 // Uses Node.js runtime for MongoDB connection
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import type { Db } from 'mongodb';
 import { MongoClient } from 'mongodb';
+
+function errorMessage(error: unknown): string {
+  if (error instanceof Error) return error.message;
+  return String(error);
+}
+
+function errorStack(error: unknown): string | undefined {
+  if (error instanceof Error) return error.stack;
+  return undefined;
+}
+
+function errorName(error: unknown): string {
+  if (error instanceof Error) return error.name;
+  return '';
+}
 
 // MongoDB connection - using environment variable
 // Note: MONGODB_URI should be set in Vercel environment variables
@@ -20,7 +36,7 @@ const getMongoConfig = () => {
 
 // Cached connection to reuse across invocations
 let cachedClient: MongoClient | null = null;
-let cachedDb: any = null;
+let cachedDb: Db | null = null;
 
 async function connectToDatabase() {
   // Reuse cached connection if available and still connected
@@ -46,9 +62,9 @@ async function connectToDatabase() {
     const config = getMongoConfig();
     uri = config.uri;
     dbName = config.db;
-  } catch (configError: any) {
+  } catch (configError: unknown) {
     console.error('[MongoDB Config Error]', {
-      error: configError.message,
+      error: errorMessage(configError),
       hasUri: !!process.env.MONGODB_URI,
       uriLength: process.env.MONGODB_URI?.length || 0,
       dbName: process.env.MONGODB_DB || 'portfolio (default)'
@@ -83,25 +99,26 @@ async function connectToDatabase() {
     cachedDb = db;
 
     return { client, db };
-  } catch (connectionError: any) {
+  } catch (connectionError: unknown) {
     console.error('[MongoDB Connection Error]', {
-      error: connectionError.message,
-      errorName: connectionError.name,
-      errorStack: connectionError.stack,
+      error: errorMessage(connectionError),
+      errorName: errorName(connectionError),
+      errorStack: errorStack(connectionError),
       uriLength: uri.length,
       dbName: dbName,
       // Don't log full URI for security
     });
     
     // Provide more specific error message
-    if (connectionError.message?.includes('authentication')) {
+    const msg = errorMessage(connectionError);
+    if (msg.includes('authentication')) {
       throw new Error('MongoDB authentication failed. Please check your credentials.');
-    } else if (connectionError.message?.includes('timeout')) {
+    } else if (msg.includes('timeout')) {
       throw new Error('MongoDB connection timeout. Please check your network and IP whitelist.');
-    } else if (connectionError.message?.includes('ENOTFOUND') || connectionError.message?.includes('DNS')) {
+    } else if (msg.includes('ENOTFOUND') || msg.includes('DNS')) {
       throw new Error('MongoDB host not found. Please check your connection string.');
     } else {
-      throw new Error(`MongoDB connection failed: ${connectionError.message}`);
+      throw new Error(`MongoDB connection failed: ${msg}`);
     }
   }
 }
@@ -213,10 +230,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           error: 'Invalid request format. Please ensure Content-Type is application/json.' 
         });
       }
-    } catch (parseError: any) {
+    } catch (parseError: unknown) {
       console.error('[Parse Error] Failed to parse request body:', {
-        error: parseError.message,
-        errorStack: parseError.stack,
+        error: errorMessage(parseError),
+        errorStack: errorStack(parseError),
         bodyType: typeof req.body,
         bodyPreview: typeof req.body === 'string' ? req.body.substring(0, 100) : 'not a string',
         contentType: req.headers['content-type'],
@@ -240,7 +257,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
     
     // Check for suspicious patterns in name
-    if (/[<>\"'&]/.test(formData.name) || /javascript:|data:|vbscript:/i.test(formData.name)) {
+    if (/[<>"'`&]/.test(formData.name) || /javascript:|data:|vbscript:/i.test(formData.name)) {
       console.error('[Validation Error] Suspicious patterns in name:', { name: formData.name });
       return res.status(400).json({ error: 'Invalid name format' });
     }
@@ -285,14 +302,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       const dbResult = await connectToDatabase();
       db = dbResult.db;
       console.log('[MongoDB] Connected successfully');
-    } catch (dbError: any) {
+    } catch (dbError: unknown) {
       console.error('[MongoDB Connection Failed]', {
-        error: dbError.message,
-        errorName: dbError.name,
+        error: errorMessage(dbError),
+        errorName: errorName(dbError),
         timestamp: new Date().toISOString()
       });
       // Re-throw with more context
-      throw new Error(`Database connection failed: ${dbError.message}`);
+      throw new Error(`Database connection failed: ${errorMessage(dbError)}`);
     }
 
     // Insert contact submission
@@ -316,11 +333,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     let result;
     try {
       result = await db.collection('contacts').insertOne(contactSubmission);
-    } catch (insertError: any) {
+    } catch (insertError: unknown) {
+      const code =
+        insertError !== null &&
+        typeof insertError === 'object' &&
+        'code' in insertError
+          ? (insertError as { code?: unknown }).code
+          : undefined;
       console.error('[MongoDB Insert Error]', {
-        error: insertError.message,
-        errorName: insertError.name,
-        errorCode: insertError.code,
+        error: errorMessage(insertError),
+        errorName: errorName(insertError),
+        errorCode: code,
         collection: 'contacts',
         documentPreview: {
           name: contactSubmission.name,
@@ -353,14 +376,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       message: 'Contact form submitted successfully' 
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     // Detailed error logging for debugging
     const errorId = crypto.randomUUID();
     const errorDetails = {
       errorId,
-      message: error.message,
-      stack: error.stack,
-      name: error.name,
+      message: errorMessage(error),
+      stack: errorStack(error),
+      name: errorName(error),
       timestamp: new Date().toISOString(),
       ip: req.headers['x-forwarded-for']?.split(',')[0] || req.headers['x-real-ip'] || 'unknown'
     };
@@ -368,7 +391,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.error('[Contact Form Error]', errorDetails);
     
     // Check if it's a MongoDB connection error
-    if (error.message?.includes('MONGODB_URI') || error.message?.includes('MongoClient') || error.message?.includes('connection')) {
+    const em = errorMessage(error);
+    if (em.includes('MONGODB_URI') || em.includes('MongoClient') || em.includes('connection')) {
       console.error('[MongoDB Connection Error]', {
         hasUri: !!process.env.MONGODB_URI,
         uriLength: process.env.MONGODB_URI?.length || 0,
@@ -377,12 +401,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
     
     // Generic user-facing message (detailed error logged server-side)
-    const publicErrorMessage = error.message?.includes('Invalid') || error.message?.includes('Rate limit') 
-      ? error.message 
+    const publicErrorMessage = em.includes('Invalid') || em.includes('Rate limit') 
+      ? em 
       : 'An error occurred while processing your request. Please try again later.';
     
     // Return appropriate status code
-    const statusCode = error.message?.includes('Invalid') || error.message?.includes('Rate limit') ? 400 : 500;
+    const statusCode = em.includes('Invalid') || em.includes('Rate limit') ? 400 : 500;
     
     return res.status(statusCode).json({ 
       error: publicErrorMessage,

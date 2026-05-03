@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 
 const SmoothScroll = () => {
   useEffect(() => {
-    // Add smooth scrolling behavior to the document
-    document.documentElement.style.scrollBehavior = 'smooth';
+    // Keep programmatic scroll anchors smooth via scrollIntoView only.
+    // Global scroll-behavior: smooth fights Lenis (projects ScrollStack).
+    document.documentElement.style.scrollBehavior = 'auto';
     
     // Enhanced smooth scroll for anchor links - optimized to prevent forced reflows
     const handleClick = (e: Event) => {

@@ -1,10 +1,9 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Card, CardContent } from '@/components/ui/card';
+import { useMemo, useState } from 'react';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { EvervaultCard } from '@/components/ui/evervault-card';
 import { EmojiReactor } from '@/components/EmojiReactor';
+import ScrollStack, { ScrollStackItem } from '@/components/ScrollStack/ScrollStack.jsx';
 import { 
   ExternalLink, 
   Github, 
@@ -12,9 +11,7 @@ import {
   Code, 
   Database, 
   Brain,
-  Eye,
-  Play,
-  Award
+  Eye
 } from 'lucide-react';
 
 interface Project {
@@ -31,11 +28,10 @@ interface Project {
   caseStudy?: boolean;
 }
 
-const CuratedProjects = () => {
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+const isUsableUrl = (url?: string) =>
+  Boolean(url && url.trim() !== '' && url !== '#');
 
-  const projects: Project[] = [
+const projects: Project[] = [
     {
       id: 1,
       title: "Fharma – Bridging Rural & Urban Healthcare",
@@ -162,27 +158,41 @@ const CuratedProjects = () => {
       liveUrl: "#",
       githubUrl: "#"
     }
-  ];
+];
 
-  const categories = [
-    { id: 'all', label: 'All Projects', icon: Eye },
-    { id: 'ai', label: 'AI/ML', icon: Brain },
-    { id: 'security', label: 'Cybersecurity', icon: Shield },
-    { id: 'web', label: 'Web Development', icon: Code },
-    { id: 'systems', label: 'Systems Programming', icon: Database },
-  ];
+const categories = [
+  { id: 'all', label: 'All Projects', icon: Eye },
+  { id: 'ai', label: 'AI/ML', icon: Brain },
+  { id: 'security', label: 'Cybersecurity', icon: Shield },
+  { id: 'web', label: 'Web Development', icon: Code },
+  { id: 'systems', label: 'Systems Programming', icon: Database },
+];
+
+const CuratedProjects = () => {
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   const filteredProjects = selectedCategory === 'all' 
     ? projects 
     : projects.filter(project => project.category === selectedCategory);
 
-  const featuredProjects = filteredProjects.filter(project => project.featured);
-  const otherProjects = filteredProjects.filter(project => !project.featured);
+  const itemDistance = useMemo(() => {
+    const n = projects.filter(
+      (p) => selectedCategory === 'all' || p.category === selectedCategory
+    ).length;
+    return Math.max(120, Math.round(120 * (n / 4)));
+  }, [selectedCategory]);
+
+  const scrollStackKey = useMemo(() => {
+    const ids = projects
+      .filter((p) => selectedCategory === 'all' || p.category === selectedCategory)
+      .map((p) => p.id)
+      .join('-');
+    return `${selectedCategory}-${ids}`;
+  }, [selectedCategory]);
 
   return (
-    <section id="curated-projects" className="py-20 px-6 relative">
+    <div className="py-20 px-6 relative">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -198,7 +208,6 @@ const CuratedProjects = () => {
             web development, and systems programming.
           </p>
 
-          {/* Category Filter */}
           <div className="flex flex-wrap justify-center gap-3">
             {categories.map((category) => (
               <Button
@@ -215,164 +224,120 @@ const CuratedProjects = () => {
           </div>
         </motion.div>
 
-        {/* Featured Projects Grid */}
-        <motion.div 
-          className="mb-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+        <ScrollStack
+          key={scrollStackKey}
+          className="curated-projects-scroll-stack"
+          useWindowScroll={true}
+          itemDistance={itemDistance}
+          itemScale={0.035}
+          itemStackDistance={35}
+          stackPosition="20%"
+          scaleEndPosition="10%"
+          baseScale={0.9}
+          rotationAmount={0}
+          blurAmount={0}
         >
-          <h3 className="text-2xl font-bold mb-8 flex items-center gap-2">
-            <Award className="w-6 h-6 text-primary" />
-            Flagship Projects
-          </h3>
-          
-          <div className="grid lg:grid-cols-3 gap-8">
-            {featuredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                onHoverStart={() => setHoveredProject(project.id)}
-                onHoverEnd={() => setHoveredProject(null)}
-                className="group"
-              >
-                <Card className="h-full overflow-hidden bg-muted/5 border-primary/20 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10">
-                  <div className="relative overflow-hidden">
-                    {/* Project Image/Icon with centered emoji */}
-                    <div className="h-48 relative bg-gradient-to-br from-primary/10 to-cyber-blue/10 flex items-center justify-center overflow-hidden">
-                      {/* Background effect */}
-                      <div className="absolute inset-0">
-                        <EvervaultCard 
-                          text=""
-                          className="absolute inset-0 w-full h-full"
-                        />
-                      </div>
-                      
-                      {/* Centered emoji */}
-                      <motion.div 
-                        className="relative z-10 text-7xl"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
-                        {project.image}
-                      </motion.div>
-                      
-                      {/* Featured Badge */}
-                      <Badge 
-                        variant="success" 
-                        className="absolute top-4 right-4 animate-pulse z-20"
-                      >
+          {filteredProjects.map((project) => (
+            <ScrollStackItem
+              key={project.id}
+              itemClassName="portfolio-scroll-stack-item"
+            >
+              <div className="flex h-full min-h-0 flex-col gap-8 lg:flex-row lg:items-stretch">
+                <div className="flex min-w-0 flex-[1.5] flex-col lg:max-w-[60%] lg:flex-[3]">
+                  <div className="mb-3 flex flex-wrap items-center gap-2">
+                    {project.featured && (
+                      <Badge variant="success">
                         Featured
                       </Badge>
-                    </div>
-
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                        {project.title}
-                      </h3>
-                      
-                      <p className="text-foreground/70 text-sm leading-relaxed mb-4">
-                        {project.description}
-                      </p>
-
-                      {/* Achievements */}
-                      <div className="mb-4">
-                        <h4 className="text-sm font-semibold text-primary mb-2">Key Achievements:</h4>
-                        <div className="space-y-1">
-                          {project.achievements.map((achievement, idx) => (
-                            <div key={idx} className="flex items-center gap-2 text-xs text-foreground/60">
-                              <div className="w-1 h-1 bg-cyber-green rounded-full"></div>
-                              {achievement}
-                             </div>
-                           ))}
-                         </div>
-                      </div>
-
-                      {/* Technologies */}
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.slice(0, 4).map((tech, idx) => (
-                          <Badge key={idx} variant="outline" size="sm">
-                            {tech}
-                          </Badge>
-                        ))}
-                        {project.technologies.length > 4 && (
-                          <Badge variant="outline" size="sm">
-                            +{project.technologies.length - 4} more
-                          </Badge>
-                        )}
-                      </div>
-
-                      {/* Emoji Reactor */}
-                      <EmojiReactor projectId={project.id} className="mt-auto" />
-                    </CardContent>
+                    )}
+                    <Badge variant="outline" size="sm" className="border-border text-muted-foreground">
+                      {project.category}
+                    </Badge>
+                    {project.caseStudy && (
+                      <Badge variant="neon" size="sm">
+                        Case study
+                      </Badge>
+                    )}
                   </div>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
 
-        {/* Other Projects */}
-        {otherProjects.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-2xl font-bold mb-8">More Projects</h3>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {otherProjects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group"
-                >
-                  <Card className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 hover:border-primary/30">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-primary/10 to-cyber-blue/10 rounded-lg">
-                          <span className="text-2xl">{project.image}</span>
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-bold group-hover:text-primary transition-colors">
-                            {project.title}
-                          </h3>
-                          <Badge variant="outline" size="sm">
-                            {project.category}
-                          </Badge>
-                        </div>
-                      </div>
-                      
-                      <p className="text-sm text-foreground/70 mb-4">
-                        {project.description}
-                      </p>
-                      
-                      
-                      <div className="flex flex-wrap gap-1">
-                        {project.technologies.slice(0, 3).map((tech, idx) => (
-                          <Badge key={idx} variant="secondary" size="sm">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        )}
+                  <h3 className="text-2xl font-bold leading-tight text-foreground md:text-3xl">
+                    {project.title}
+                  </h3>
+
+                  <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+                    {project.description}
+                  </p>
+
+                  <div className="mt-5 space-y-1.5">
+                    <p className="text-sm font-semibold text-primary">Key achievements</p>
+                    <ul className="space-y-1.5">
+                      {project.achievements.map((achievement, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                          <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-cyber-green" aria-hidden />
+                          {achievement}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="inline-flex items-center rounded-full border border-border/60 bg-muted/40 px-2.5 py-0.5 text-xs font-medium text-muted-foreground"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    {isUsableUrl(project.liveUrl) && (
+                      <Button variant="primary" size="sm" asChild>
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2"
+                        >
+                          View Project
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    )}
+                    {isUsableUrl(project.githubUrl) && (
+                      <Button variant="outline" size="sm" asChild>
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2"
+                        >
+                          <Github className="h-4 w-4" />
+                          GitHub
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+
+                  <EmojiReactor projectId={project.id} className="mt-6" />
+                </div>
+
+                <div className="relative flex min-h-[12rem] w-full flex-1 items-center justify-center rounded-2xl border border-border/40 bg-gradient-to-br from-primary/10 to-cyber-blue/10 lg:max-w-[40%] lg:flex-[2]">
+                  <div className="pointer-events-none absolute inset-0 opacity-90" aria-hidden>
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/25 via-muted/25 to-cyber-blue/20" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_25%,hsl(var(--primary)/0.22),transparent_55%)]" />
+                  </div>
+                  <span className="relative z-10 text-7xl drop-shadow-sm" aria-hidden>
+                    {project.image}
+                  </span>
+                </div>
+              </div>
+            </ScrollStackItem>
+          ))}
+        </ScrollStack>
       </div>
-    </section>
+    </div>
   );
 };
 

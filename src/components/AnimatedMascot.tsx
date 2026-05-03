@@ -8,13 +8,14 @@ interface MascotProps {
   className?: string;
 }
 
-const AnimatedMascot = ({ className = "" }: MascotProps) => {
-  const [isVisible, setIsVisible] = useState(true);
-  const [currentMessage, setCurrentMessage] = useState(0);
-  const [showMessage, setShowMessage] = useState(false);
-  const [mood, setMood] = useState<'happy' | 'tired' | 'hacking' | 'coffee'>('happy');
-  
-  const messages = [
+const moods = {
+  happy: { emoji: '😊', color: 'text-green-400' },
+  tired: { emoji: '😴', color: 'text-yellow-400' },
+  hacking: { emoji: '👨‍💻', color: 'text-cyber-green' },
+  coffee: { emoji: '☕', color: 'text-orange-400' }
+} as const;
+
+const messages = [
     "Welcome to my digital fortress! 🛡️",
     "404: Social life not found. Please try debugging it! 😅",
     "This project almost broke me... and my coffee machine ☕",
@@ -67,12 +68,11 @@ const AnimatedMascot = ({ className = "" }: MascotProps) => {
     "Measuring programming progress by lines of code is like measuring aircraft building progress by weight 📏"
   ];
 
-  const moods = {
-    happy: { emoji: '😊', color: 'text-green-400' },
-    tired: { emoji: '😴', color: 'text-yellow-400' },
-    hacking: { emoji: '👨‍💻', color: 'text-cyber-green' },
-    coffee: { emoji: '☕', color: 'text-orange-400' }
-  };
+const AnimatedMascot = ({ className = "" }: MascotProps) => {
+  const [isVisible, setIsVisible] = useState(true);
+  const [currentMessage, setCurrentMessage] = useState(0);
+  const [showMessage, setShowMessage] = useState(false);
+  const [mood, setMood] = useState<keyof typeof moods>('happy');
 
   useEffect(() => {
     // Cycle through moods

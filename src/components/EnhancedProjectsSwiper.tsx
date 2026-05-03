@@ -3,7 +3,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Badge, badgeVariants } from '@/components/ui/badge';
+import type { VariantProps } from 'class-variance-authority';
 import { Github, ExternalLink, Shield, Code, Database, Lock } from 'lucide-react';
 import { LottieGlow, LottiePulse } from '@/components/LottieAnimations';
 
@@ -72,13 +73,15 @@ const EnhancedProjectsSwiper = () => {
     }
   ];
 
-  const getStatusColor = (status: string) => {
+  type BadgeVariant = NonNullable<VariantProps<typeof badgeVariants>['variant']>;
+
+  const getStatusColor = (status: string): BadgeVariant => {
     switch (status) {
       case 'Active': return 'success';
       case 'Production': return 'success';
       case 'Beta': return 'warning';
       case 'In Development': return 'processing';
-      case 'Research': return 'info';
+      case 'Research': return 'neon';
       default: return 'default';
     }
   };
@@ -158,7 +161,7 @@ const EnhancedProjectsSwiper = () => {
                         <div className="p-2 rounded-lg bg-primary/10">
                           {project.icon}
                         </div>
-                        <Badge variant={getStatusColor(project.status) as any}>
+                        <Badge variant={getStatusColor(project.status)}>
                           <LottiePulse size={12} className="mr-1" />
                           {project.status}
                         </Badge>

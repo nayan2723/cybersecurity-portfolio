@@ -7,7 +7,7 @@ const SUSPICIOUS_PATTERNS = {
   script: /<script|javascript:|data:|vbscript:|on\w+\s*=/i,
   html: /<[^>]*>/g,
   sql: /(\b(union|select|insert|update|delete|drop|create|alter|exec|execute)\b)/i,
-  xss: /[<>\"'&]/g
+  xss: /[<>"'`&]/g
 };
 
 /**

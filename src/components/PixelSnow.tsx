@@ -254,7 +254,8 @@ export default function PixelSnow({
     return () => observer.disconnect();
   }, []);
 
-  // Main Three.js setup - only runs once
+  // Main Three.js setup - only runs once (uniform props sync in separate effect below)
+  /* eslint-disable react-hooks/exhaustive-deps -- mount once; uniforms updated in following effect */
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -332,7 +333,8 @@ export default function PixelSnow({
       rendererRef.current = null;
       materialRef.current = null;
     };
-  }, [handleResize]); // Only recreate scene when handleResize changes
+  }, [handleResize]);
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   // Update material uniforms when props change
   useEffect(() => {

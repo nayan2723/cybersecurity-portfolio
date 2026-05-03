@@ -86,29 +86,27 @@ const Contact = () => {
       setShowRickRoll(true);
       
       form.reset();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Contact form error:', error);
-      
-      // Extract meaningful error message
-      let errorMessage = 'Failed to send message. Please try again later.';
-      
-      if (error.message) {
-        // Use the error message from API if available
-        if (error.message.includes('Rate limit')) {
-          errorMessage = 'Too many submissions. Please wait before sending another message.';
-        } else if (error.message.includes('Invalid')) {
-          errorMessage = error.message;
-        } else if (error.message.includes('network') || error.message.includes('fetch')) {
-          errorMessage = 'Network error. Please check your connection and try again.';
-        } else {
-          // For other errors, use generic message (detailed error logged server-side)
-          errorMessage = 'Failed to send message. Please try again later.';
+
+      let errorMessageDefault = 'Failed to send message. Please try again later.';
+      const message = error instanceof Error ? error.message : '';
+
+      if (message) {
+        if (message.includes('Rate limit')) {
+          errorMessageDefault = 'Too many submissions. Please wait before sending another message.';
+        } else if (message.includes('Invalid')) {
+          errorMessageDefault = message;
+        } else if (message.includes('network') || message.includes('fetch')) {
+          errorMessageDefault = 'Network error. Please check your connection and try again.';
         }
       }
+
+      const toastMessage = errorMessageDefault;
       
       toast({
         title: "Error",
-        description: errorMessage,
+        description: toastMessage,
         variant: "destructive"
       });
     } finally {

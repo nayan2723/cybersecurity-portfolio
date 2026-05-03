@@ -566,3 +566,32 @@ All colors MUST be HSL.
 .project-swiper .swiper-button-prev {
   color: hsl(var(--primary));
 }
+
+/* Curated projects — ScrollStack (overrides only; do not edit ScrollStack/ScrollStack.css) */
+.curated-projects-scroll-stack.scroll-stack-scroller {
+  overflow: visible !important;
+  height: auto !important;
+  width: 100%;
+  scroll-behavior: auto !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  will-change: auto;
+}
+
+.curated-projects-scroll-stack .scroll-stack-inner {
+  position: relative;
+  padding: 14vh clamp(1rem, 4vw, 5rem) min(48rem, 55vh);
+  min-height: unset;
+}
+
+.curated-projects-scroll-stack .scroll-stack-card.portfolio-scroll-stack-item {
+  height: auto !important;
+  min-height: 20rem;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  border-radius: 2.5rem;
+  background: hsl(var(--card) / 0.94);
+  border: 1px solid hsl(var(--border) / 0.55);
+  box-shadow:
+    0 4px 28px hsl(var(--primary) / 0.07),
+    0 0 0 1px hsl(var(--border) / 0.35);
+}

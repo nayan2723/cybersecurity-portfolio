@@ -138,8 +138,9 @@ const Scene = memo(() => {
   }, []);
 
   useEffect(() => {
-    dotMaterial.uniforms.dotColor.value.setHex(themeColors.dotColor.replace('#', '0x') as any);
-    dotMaterial.uniforms.bgColor.value.setHex(themeColors.bgColor.replace('#', '0x') as any);
+    const toHexInt = (s: string) => parseInt(s.replace(/^#/, ''), 16);
+    dotMaterial.uniforms.dotColor.value.setHex(toHexInt(themeColors.dotColor));
+    dotMaterial.uniforms.bgColor.value.setHex(toHexInt(themeColors.bgColor));
     dotMaterial.uniforms.dotOpacity.value = themeColors.dotOpacity;
   }, [theme, dotMaterial, themeColors]);
 

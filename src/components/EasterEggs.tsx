@@ -13,6 +13,14 @@ import {
   Shuffle,
   Download
 } from 'lucide-react';
+import confetti from 'canvas-confetti';
+
+const EASTER_SECRET_CODES = {
+  konami: '↑↑↓↓←→←→BA',
+  coffee: 'coffee',
+  debug: 'debug',
+  segfault: 'segfault'
+} as const;
 
 const EasterEggs = () => {
   const [clickCount, setClickCount] = useState(0);
@@ -139,13 +147,6 @@ const EasterEggs = () => {
     ]
   };
 
-  const secretCodes = {
-    'konami': '↑↑↓↓←→←→BA',
-    'coffee': 'coffee',
-    'debug': 'debug',
-    'segfault': 'segfault'
-  };
-
   const jokes = [
     "Why do programmers prefer dark mode? Because light attracts bugs! 🐛",
     "There are only 10 types of people: those who understand binary and those who don't 💻",
@@ -219,7 +220,7 @@ const EasterEggs = () => {
         const newCode = (prev + konamiChar).slice(-10);
         
         // Check for secret codes
-        if (newCode.includes(secretCodes.konami.slice(-8))) {
+        if (newCode.includes(EASTER_SECRET_CODES.konami.slice(-8))) {
           foundEasterEgg('konami');
           setTerminalMode(true);
         }
@@ -230,20 +231,18 @@ const EasterEggs = () => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- foundEasterEgg is defined after handler; Konami stays one stable listener
   }, []);
 
   const foundEasterEgg = (egg: string) => {
     if (!easterEggFound.includes(egg)) {
       setEasterEggFound(prev => [...prev, egg]);
       
-      // Trigger confetti or special effect
-      if (typeof window !== 'undefined' && (window as any).confetti) {
-        (window as any).confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 }
-        });
-      }
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
     }
   };
 
