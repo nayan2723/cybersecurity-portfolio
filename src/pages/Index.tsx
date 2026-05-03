@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
-import { Suspense, lazy, ComponentType } from 'react';
+import { Suspense, lazy, ComponentType, useRef } from 'react';
 import CuratedHero from '@/components/CuratedHero';
 import SmoothScroll from '@/components/SmoothScroll';
 import SEOHead from '@/components/SEOHead';
 import { Briefcase } from 'lucide-react';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import SnowBackground from '@/components/SnowBackground';
 
 // Lazy load components to reduce initial bundle size
 const FullscreenNav = lazy(() => import('@/components/FullscreenNav'));
@@ -32,6 +33,8 @@ const DotScreenShader = lazy<ComponentType>(async () => {
 });
 
 const Index = () => {
+  const featuredRef = useRef<HTMLDivElement>(null);
+
   return (
     <SEOHead>
       <motion.div 
@@ -40,6 +43,7 @@ const Index = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+      <SnowBackground targetRef={featuredRef} />
       <SmoothScroll />
       <Suspense fallback={null}>
         <FullscreenNav />
@@ -95,11 +99,13 @@ const Index = () => {
           </section>
         </Suspense>
         
-        <Suspense fallback={<div className="py-20 flex justify-center"><LoadingSpinner /></div>}>
-          <section id="curated-projects">
-            <CuratedProjects />
-          </section>
-        </Suspense>
+        <div ref={featuredRef}>
+          <Suspense fallback={<div className="py-20 flex justify-center"><LoadingSpinner /></div>}>
+            <section id="curated-projects">
+              <CuratedProjects />
+            </section>
+          </Suspense>
+        </div>
         
         <Suspense fallback={<div className="py-20 flex justify-center"><LoadingSpinner /></div>}>
           <section id="about">
