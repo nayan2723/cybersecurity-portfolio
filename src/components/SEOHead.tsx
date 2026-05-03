@@ -6,9 +6,9 @@ interface SEOHeadProps extends SEOProps {
 }
 
 const SEOHead = ({ 
-  title = "Nayan Kshitij - Cybersecurity Enthusiast | Portfolio",
-  description = "Cybersecurity enthusiast and CSE student at Bennett University. Passionate about ethical hacking, web development, and secure systems.",
-  keywords = "cybersecurity, ethical hacking, web development, portfolio, computer science, Bennett University, penetration testing, vulnerability assessment",
+  title = "Nayan Kshitij - CEH | Cybersecurity Portfolio",
+  description = "EC-Council Certified Ethical Hacker (CEH) and cybersecurity student at Bennett University. Passionate about penetration testing, secure development, and defending systems.",
+  keywords = "CEH, Certified Ethical Hacker, EC-Council, cybersecurity, ethical hacking, penetration testing, portfolio, Bennett University, vulnerability assessment, web development",
   image = "https://i.ibb.co/LhYB87c6/Urban-Stillness-Amidst-Evening-Rush.png",
   url = "https://nayan-sec.vercel.app/",
   children
@@ -72,7 +72,7 @@ const SEOHead = ({
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Nayan Kshitij",
-      "jobTitle": "Cybersecurity Student & Full-Stack Developer",
+      "jobTitle": "CEH-certified Cybersecurity Student & Full-Stack Developer",
       "url": url,
       "image": image,
       "sameAs": [
@@ -82,9 +82,10 @@ const SEOHead = ({
       "knowsAbout": [
         "Cybersecurity",
         "Ethical Hacking",
-        "Web Development",
+        "Certified Ethical Hacker (CEH)",
         "Penetration Testing",
-        "Vulnerability Assessment"
+        "Vulnerability Assessment",
+        "Web Development"
       ],
       "alumniOf": {
         "@type": "CollegeOrUniversity",

@@ -127,7 +127,7 @@ const CuratedHero = () => {
           </Badge>
           <Badge variant="neon" className="hero-badge">
             <LottieGlow size={16} className="mr-1" />
-            Cybersecurity Expert
+            CEH Certified
           </Badge>
         </motion.div>
 
@@ -174,7 +174,7 @@ const CuratedHero = () => {
             Nayan <span className="text-primary animate-pulse">Kshitij</span>
           </h1>
           <h2 className="text-2xl md:text-3xl text-foreground/80 font-light mb-6">
-            Cybersecurity Student & Full-Stack Developer
+            CEH-certified Cybersecurity Student & Full-Stack Developer
           </h2>
         </motion.div>
 

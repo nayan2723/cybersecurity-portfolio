@@ -9,6 +9,7 @@ import {
   Lock,
   Search,
   Bug,
+  BadgeCheck,
   Server,
   Cloud,
   ChevronRight
@@ -198,7 +199,6 @@ const EnhancedSkills = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
             {[
-              { name: "CEH", fullName: "Certified Ethical Hacker", icon: <Bug className="w-5 h-5" />, status: "in-progress" },
               { name: "OSCP", fullName: "Offensive Security Certified Professional", icon: <Search className="w-5 h-5" />, status: "locked" },
               { name: "CISSP", fullName: "Certified Information Systems Security Professional", icon: <Lock className="w-5 h-5" />, status: "locked" },
               { name: "Security+", fullName: "CompTIA Security+", icon: <Shield className="w-5 h-5" />, status: "locked" },
@@ -249,8 +249,15 @@ const EnhancedSkills = () => {
             <p className="text-sm text-foreground/60">Completed certifications and training</p>
           </div>
           
-          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 gap-6 max-w-6xl mx-auto">
             {[
+              { 
+                name: "Certified Ethical Hacker (CEH)", 
+                provider: "EC-COUNCIL", 
+                year: "2026",
+                description: "Industry-recognized credential in ethical hacking, covering reconnaissance, scanning, exploitation, malware, cryptography, IoT/cloud security, and reporting.",
+                icon: <BadgeCheck className="w-5 h-5" />
+              },
               { 
                 name: "Google Cybersecurity", 
                 provider: "GOOGLE", 

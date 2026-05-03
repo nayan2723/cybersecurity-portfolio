@@ -194,7 +194,7 @@ const SkillsChart = () => {
     {
       icon: <Lock className="w-6 h-6" />,
       title: "Certifications",
-      skills: ["Google Cybersecurity (In Progress)", "CompTIA Security+ (Planned)"],
+      skills: ["CEH", "Google Cybersecurity", "CompTIA Security+ (Planned)"],
       color: "text-purple-400"
     },
     {
