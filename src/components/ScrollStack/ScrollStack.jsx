@@ -337,6 +337,11 @@ const ScrollStack = ({
     refreshLayoutMeasurements
   ]);
 
+  useLayoutEffect(() => {
+    refreshLayoutMeasurements();
+    updateCardTransforms();
+  }, [children, refreshLayoutMeasurements, updateCardTransforms]);
+
   return (
     <div className={`scroll-stack-scroller ${className}`.trim()} ref={scrollerRef}>
       <div className="scroll-stack-inner">

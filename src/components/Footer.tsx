@@ -9,8 +9,7 @@ const Footer = () => {
               nayan<span className="text-primary">.</span>sec
             </div>
             <p className="text-foreground/70">
-              Cybersecurity enthusiast dedicated to making the digital world safer, 
-              one line of code at a time.
+              Breaking things to see how they work, building things to make them secure.
             </p>
           </div>
 
@@ -37,16 +36,15 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold text-primary mb-4">Get In Touch</h4>
             <div className="space-y-2 text-foreground/70">
-              <p>📧 nayan@example.com</p>
-              <p>📱 +91 XXXXX XXXXX</p>
-              <p>📍 India</p>
+              <p>📧 nayan2723.k@gmail.com</p>
+              <p>📍 New Delhi, India</p>
             </div>
           </div>
         </div>
 
         <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center">
           <p className="text-foreground/60 text-sm">
-            © 2024 Nayan Kshitij. All rights reserved.
+            © 2026 Nayan Kshitij. All rights reserved.
           </p>
           <p className="text-foreground/60 text-sm mt-2 md:mt-0">
             Built with ❤️ and lots of ☕

@@ -41,18 +41,18 @@ const About = () => {
           <div className="space-y-6">
             <p className="text-lg text-foreground/80 leading-relaxed">
               I'm a Computer Science Engineering student at Bennett University, passionate about 
-              cybersecurity and ethical hacking. My journey in tech started with a fascination 
-              for how systems work.
+              cybersecurity and ethical hacking. My journey in tech started with a simple question: 
+              "How can I break this, and how can I fix it?"
             </p>
             
             <p className="text-lg text-foreground/80 leading-relaxed">
-              Currently pursuing my B.Tech in CSE (Class of 2027), I'm focused on developing 
-              my skills and exploring the field.
+              Currently pursuing my B.Tech in CSE (Class of 2027), I'm focused on turning caffeine into 
+              secure code and exploring the ever-shifting landscape of digital security.
             </p>
             
             <p className="text-lg text-foreground/80 leading-relaxed">
-              I believe in continuous learning and staying ahead of emerging trends. When I'm 
-              not coding, I enjoy playing cricket and listening to music.
+              In this field, you either keep learning or you get left behind. When I'm stepping 
+              away from the terminal, you'll probably find me playing cricket or deep into a Spotify playlist.
             </p>
 
             {/* Terminal simulation */}

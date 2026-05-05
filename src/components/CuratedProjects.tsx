@@ -1,9 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { EmojiReactor } from '@/components/EmojiReactor';
 import ScrollStack, { ScrollStackItem } from '@/components/ScrollStack/ScrollStack.jsx';
+import AnimatedList from '@/components/AnimatedList/AnimatedList.jsx';
 import { 
   ExternalLink, 
   Github, 
@@ -168,19 +169,125 @@ const categories = [
   { id: 'systems', label: 'Systems Programming', icon: Database },
 ];
 
+const ProjectCardContent = ({ project }: { project: Project }) => (
+  <div className="flex h-full min-h-0 flex-col gap-8 lg:flex-row lg:items-stretch w-full">
+    <div className="flex min-w-0 flex-[1.5] flex-col lg:max-w-[60%] lg:flex-[3]">
+      <div className="mb-3 flex flex-wrap items-center gap-2">
+        {project.featured && (
+          <Badge variant="success">
+            Featured
+          </Badge>
+        )}
+        <Badge variant="outline" size="sm" className="border-border text-muted-foreground">
+          {project.category}
+        </Badge>
+        {project.caseStudy && (
+          <Badge variant="neon" size="sm">
+            Case study
+          </Badge>
+        )}
+      </div>
+
+      <h3 className="text-2xl font-bold leading-tight text-foreground md:text-3xl">
+        {project.title}
+      </h3>
+
+      <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+        {project.description}
+      </p>
+
+      <div className="mt-5 space-y-1.5">
+        <p className="text-sm font-semibold text-primary">Key achievements</p>
+        <ul className="space-y-1.5">
+          {project.achievements.map((achievement, idx) => (
+            <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+              <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-cyber-green" aria-hidden />
+              {achievement}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="mt-5 flex flex-wrap gap-2">
+        {project.technologies.map((tech) => (
+          <span
+            key={tech}
+            className="inline-flex items-center rounded-full border border-border/60 bg-muted/40 px-2.5 py-0.5 text-xs font-medium text-muted-foreground"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+
+      <div className="mt-6 flex flex-wrap gap-3">
+        {isUsableUrl(project.liveUrl) && (
+          <Button variant="primary" size="sm" asChild>
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2"
+            >
+              View Project
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </Button>
+        )}
+        {isUsableUrl(project.githubUrl) && (
+          <Button variant="outline" size="sm" asChild>
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2"
+            >
+              <Github className="h-4 w-4" />
+              GitHub
+            </a>
+          </Button>
+        )}
+      </div>
+
+      <EmojiReactor projectId={project.id} className="mt-6" />
+    </div>
+
+    <div className="relative flex min-h-[12rem] w-full flex-1 items-center justify-center rounded-2xl border border-border/40 bg-gradient-to-br from-primary/10 to-cyber-blue/10 lg:max-w-[40%] lg:flex-[2]">
+      <div className="pointer-events-none absolute inset-0 opacity-90" aria-hidden>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/25 via-muted/25 to-cyber-blue/20" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_25%,hsl(var(--primary)/0.22),transparent_55%)]" />
+      </div>
+      <span className="relative z-10 text-7xl drop-shadow-sm" aria-hidden>
+        {project.image}
+      </span>
+    </div>
+  </div>
+);
+
 const CuratedProjects = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  const handleCategoryChange = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    setTimeout(() => {
+      if (sectionRef.current) {
+        const top = sectionRef.current.getBoundingClientRect().top + window.scrollY - 100;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    }, 50);
+  };
 
   const filteredProjects = selectedCategory === 'all' 
     ? projects 
     : projects.filter(project => project.category === selectedCategory);
 
+  const stackedProjects = filteredProjects.slice(0, 3);
+  const remainingProjects = filteredProjects.slice(3);
+
   const itemDistance = useMemo(() => {
-    const n = projects.filter(
-      (p) => selectedCategory === 'all' || p.category === selectedCategory
-    ).length;
+    const n = stackedProjects.length;
     return Math.max(120, Math.round(120 * (n / 4)));
-  }, [selectedCategory]);
+  }, [stackedProjects.length]);
 
   const scrollStackKey = useMemo(() => {
     const ids = projects
@@ -191,7 +298,7 @@ const CuratedProjects = () => {
   }, [selectedCategory]);
 
   return (
-    <div className="py-20 px-6 relative">
+    <div ref={sectionRef} className="py-20 px-6 relative">
       <div className="max-w-7xl mx-auto">
         <motion.div 
           className="text-center mb-16"
@@ -214,7 +321,7 @@ const CuratedProjects = () => {
                 key={category.id}
                 variant={selectedCategory === category.id ? "primary" : "outline"}
                 size="sm"
-                onClick={() => setSelectedCategory(category.id)}
+                onClick={() => handleCategoryChange(category.id)}
                 className="transition-all duration-300"
               >
                 <category.icon className="w-4 h-4 mr-2" />
@@ -224,118 +331,41 @@ const CuratedProjects = () => {
           </div>
         </motion.div>
 
-        <ScrollStack
-          key={scrollStackKey}
-          className="curated-projects-scroll-stack"
-          useWindowScroll={true}
-          itemDistance={itemDistance}
-          itemScale={0.035}
-          itemStackDistance={35}
-          stackPosition="20%"
-          scaleEndPosition="10%"
-          baseScale={0.9}
-          rotationAmount={0}
-          blurAmount={0}
-        >
-          {filteredProjects.map((project) => (
-            <ScrollStackItem
-              key={project.id}
-              itemClassName="portfolio-scroll-stack-item"
-            >
-              <div className="flex h-full min-h-0 flex-col gap-8 lg:flex-row lg:items-stretch">
-                <div className="flex min-w-0 flex-[1.5] flex-col lg:max-w-[60%] lg:flex-[3]">
-                  <div className="mb-3 flex flex-wrap items-center gap-2">
-                    {project.featured && (
-                      <Badge variant="success">
-                        Featured
-                      </Badge>
-                    )}
-                    <Badge variant="outline" size="sm" className="border-border text-muted-foreground">
-                      {project.category}
-                    </Badge>
-                    {project.caseStudy && (
-                      <Badge variant="neon" size="sm">
-                        Case study
-                      </Badge>
-                    )}
-                  </div>
+        {stackedProjects.length > 0 && (
+          <ScrollStack
+            className="curated-projects-scroll-stack"
+            useWindowScroll={true}
+            itemDistance={itemDistance}
+            itemScale={0.035}
+            itemStackDistance={35}
+            stackPosition="20%"
+            scaleEndPosition="10%"
+            baseScale={0.9}
+            rotationAmount={0}
+            blurAmount={0}
+          >
+            {stackedProjects.map((project) => (
+              <ScrollStackItem
+                key={project.id}
+                itemClassName="portfolio-card w-full"
+              >
+                <ProjectCardContent project={project} />
+              </ScrollStackItem>
+            ))}
+          </ScrollStack>
+        )}
 
-                  <h3 className="text-2xl font-bold leading-tight text-foreground md:text-3xl">
-                    {project.title}
-                  </h3>
-
-                  <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-                    {project.description}
-                  </p>
-
-                  <div className="mt-5 space-y-1.5">
-                    <p className="text-sm font-semibold text-primary">Key achievements</p>
-                    <ul className="space-y-1.5">
-                      {project.achievements.map((achievement, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-cyber-green" aria-hidden />
-                          {achievement}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="inline-flex items-center rounded-full border border-border/60 bg-muted/40 px-2.5 py-0.5 text-xs font-medium text-muted-foreground"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="mt-6 flex flex-wrap gap-3">
-                    {isUsableUrl(project.liveUrl) && (
-                      <Button variant="primary" size="sm" asChild>
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2"
-                        >
-                          View Project
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    )}
-                    {isUsableUrl(project.githubUrl) && (
-                      <Button variant="outline" size="sm" asChild>
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2"
-                        >
-                          <Github className="h-4 w-4" />
-                          GitHub
-                        </a>
-                      </Button>
-                    )}
-                  </div>
-
-                  <EmojiReactor projectId={project.id} className="mt-6" />
-                </div>
-
-                <div className="relative flex min-h-[12rem] w-full flex-1 items-center justify-center rounded-2xl border border-border/40 bg-gradient-to-br from-primary/10 to-cyber-blue/10 lg:max-w-[40%] lg:flex-[2]">
-                  <div className="pointer-events-none absolute inset-0 opacity-90" aria-hidden>
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/25 via-muted/25 to-cyber-blue/20" />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_25%,hsl(var(--primary)/0.22),transparent_55%)]" />
-                  </div>
-                  <span className="relative z-10 text-7xl drop-shadow-sm" aria-hidden>
-                    {project.image}
-                  </span>
-                </div>
-              </div>
-            </ScrollStackItem>
-          ))}
-        </ScrollStack>
+        {remainingProjects.length > 0 && (
+          <div className="mt-16 w-full flex justify-center max-w-5xl mx-auto">
+            <AnimatedList
+              items={remainingProjects}
+              className="w-full"
+              itemClassName="portfolio-card w-full"
+              showGradients={false}
+              renderItem={(project) => <ProjectCardContent project={project} />}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
