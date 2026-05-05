@@ -108,7 +108,13 @@ const AnimatedList = ({
 
   return (
     <div className={`scroll-list-container ${className}`}>
-      <div ref={listRef} className={`scroll-list ${!displayScrollbar ? 'no-scrollbar' : ''}`} onScroll={handleScroll}>
+      <div 
+        ref={listRef} 
+        className={`scroll-list ${!displayScrollbar ? 'no-scrollbar' : ''}`} 
+        onScroll={handleScroll}
+        data-lenis-prevent="true"
+        onWheel={(e) => e.stopPropagation()}
+      >
         {items.map((item, index) => (
           <AnimatedItem
             key={item.id || index}
