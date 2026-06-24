@@ -12,7 +12,9 @@ import {
   BadgeCheck,
   Server,
   Cloud,
-  ChevronRight
+  ChevronRight,
+  Brain,
+  Award
 } from 'lucide-react';
 
 const EnhancedSkills = () => {
@@ -28,9 +30,9 @@ const EnhancedSkills = () => {
         { name: "Penetration Testing", level: 85 },
         { name: "Vulnerability Assessment", level: 90 },
         { name: "Network Security", level: 80 },
-        { name: "Web Application Security", level: 95 },
-        { name: "Digital Forensics", level: 75 },
-        { name: "Threat Intelligence", level: 70 }
+        { name: "MITRE ATT&CK", level: 85 },
+        { name: "SIEM & Incident Response", level: 75 },
+        { name: "Cryptography", level: 70 }
       ]
     },
     {
@@ -39,11 +41,11 @@ const EnhancedSkills = () => {
       color: "cyber-blue",
       skills: [
         { name: "Python", level: 90 },
-        { name: "JavaScript", level: 85 },
+        { name: "C++", level: 80 },
+        { name: "JavaScript/TypeScript", level: 85 },
         { name: "React", level: 80 },
-        { name: "Node.js", level: 75 },
-        { name: "TypeScript", level: 70 },
-        { name: "Go", level: 65 }
+        { name: "Bash/Shell Scripting", level: 75 },
+        { name: "SQL", level: 70 }
       ]
     },
     {
@@ -55,8 +57,21 @@ const EnhancedSkills = () => {
         { name: "Metasploit", level: 85 },
         { name: "Nmap", level: 90 },
         { name: "Wireshark", level: 80 },
-        { name: "Docker", level: 75 },
-        { name: "Linux", level: 90 }
+        { name: "Kali Linux", level: 85 },
+        { name: "Git/GitHub", level: 90 }
+      ]
+    },
+    {
+      title: "AI / Machine Learning",
+      icon: <Brain className="w-6 h-6" />,
+      color: "cyber-blue",
+      skills: [
+        { name: "Machine Learning & Deep Learning", level: 85 },
+        { name: "NLP & Transformers", level: 80 },
+        { name: "PyTorch & HuggingFace", level: 80 },
+        { name: "OpenCV & YOLOv8", level: 75 },
+        { name: "Scikit-learn & Pandas", level: 85 },
+        { name: "Model Fine-Tuning", level: 75 }
       ]
     }
   ];
@@ -128,7 +143,7 @@ const EnhancedSkills = () => {
         </motion.div>
 
         <motion.div 
-          className="grid lg:grid-cols-3 gap-8"
+          className="grid lg:grid-cols-2 xl:grid-cols-4 gap-8"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -253,31 +268,73 @@ const EnhancedSkills = () => {
             {[
               { 
                 name: "Certified Ethical Hacker (CEH)", 
-                provider: "EC-COUNCIL", 
+                provider: "EC-Council", 
                 year: "2026",
                 description: "Industry-recognized credential in ethical hacking, covering reconnaissance, scanning, exploitation, malware, cryptography, IoT/cloud security, and reporting.",
                 icon: <BadgeCheck className="w-5 h-5" />
               },
               { 
-                name: "Google Cybersecurity", 
-                provider: "GOOGLE", 
+                name: "Google Cybersecurity Specialization", 
+                provider: "Google / Coursera", 
                 year: "2024",
-                description: "Foundational certification covering essential security concepts and best practices.",
+                description: "Foundational certification covering essential security concepts, network security, and best practices.",
                 icon: <Shield className="w-5 h-5" />
               },
               { 
-                name: "Introduction to Cybersecurity Tools & Cyberattacks", 
-                provider: "IBM", 
+                name: "AWS CloudOps Engineer", 
+                provider: "Amazon Web Services", 
                 year: "2024",
-                description: "Introduction to hacking methodologies and penetration testing.",
-                icon: <Bug className="w-5 h-5" />
+                description: "Cloud operations engineering covering AWS infrastructure, deployment, and management.",
+                icon: <Cloud className="w-5 h-5" />
               },
               { 
-                name: "Ethical Hacking", 
-                provider: "Internshala Trainings", 
-                year: "2025",
-                description: "Comprehensive 8-week training covering Information Security, Computer Networking, Web Development, VAPT of OWASP top 10 vulnerabilities, and automated vulnerability assessment.",
+                name: "Google IT Automation with Python", 
+                provider: "Google", 
+                year: "2024",
+                description: "Professional certificate covering Python automation, Git, and IT infrastructure management.",
+                icon: <Code className="w-5 h-5" />
+              },
+              { 
+                name: "Cyber Security with AI Training", 
+                provider: "Internshala / NSDC", 
+                year: "2024",
+                description: "8-week intensive training covering system security, networking, PhishNot ML pipeline, and Python automation.",
                 icon: <Terminal className="w-5 h-5" />
+              },
+              { 
+                name: "Foundations of Neural Networks", 
+                provider: "Coursera", 
+                year: "2024",
+                description: "Specialization covering neural network architectures, training, and deep learning fundamentals.",
+                icon: <Brain className="w-5 h-5" />
+              },
+              { 
+                name: "Databases and SQL for Data Science", 
+                provider: "Coursera", 
+                year: "2024",
+                description: "SQL fundamentals and data science with Python for database management and analytics.",
+                icon: <Database className="w-5 h-5" />
+              },
+              { 
+                name: "Programming in C++: Hands-on Introduction", 
+                provider: "Coursera", 
+                year: "2024",
+                description: "Specialization covering C++ programming fundamentals and systems-level development.",
+                icon: <Code className="w-5 h-5" />
+              },
+              { 
+                name: "Kali Linux & Penetration Testing", 
+                provider: "Infosys Springboard", 
+                year: "2024",
+                description: "Hands-on penetration testing training using Kali Linux tools and methodologies.",
+                icon: <Terminal className="w-5 h-5" />
+              },
+              { 
+                name: "Deloitte Cyber Job Simulation", 
+                provider: "Deloitte", 
+                year: "2024",
+                description: "Threat Detection, SIEM, Incident Reporting, and Risk Assessment simulation.",
+                icon: <Shield className="w-5 h-5" />
               }
             ].map((cert, index) => (
               <motion.div

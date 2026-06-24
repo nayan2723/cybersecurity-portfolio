@@ -15,6 +15,7 @@ const ResumeButton = lazy(() => import('@/components/ui/resume-button'));
 const GradientButton = lazy(() => import('@/components/ui/gradient-button').then(m => ({ default: m.GradientButton })));
 const EnhancedSkills = lazy(() => import('@/components/EnhancedSkills'));
 const CuratedProjects = lazy(() => import('@/components/CuratedProjects'));
+const ResearchPublications = lazy(() => import('@/components/ResearchPublications'));
 const QuirkyAbout = lazy(() => import('@/components/QuirkyAbout'));
 const MiniGames = lazy(() => import('@/components/MiniGames'));
 const EasterEggs = lazy(() => import('@/components/EasterEggs'));
@@ -109,6 +110,12 @@ const Index = () => {
             </section>
           </Suspense>
         </div>
+        
+        <Suspense fallback={<div className="py-20 flex justify-center"><LoadingSpinner /></div>}>
+          <section id="publications">
+            <ResearchPublications />
+          </section>
+        </Suspense>
         
         <Suspense fallback={<div className="py-20 flex justify-center"><LoadingSpinner /></div>}>
           <section id="about">

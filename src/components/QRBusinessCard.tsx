@@ -22,7 +22,7 @@ const QRBusinessCard = () => {
 
   const contactInfo: ContactInfo = {
     name: "Nayan Kshitij",
-    title: "Cybersecurity Enthusiast & Full-Stack Developer",
+    title: "Cybersecurity & AI/ML Student",
     email: "nayankshitij128@gmail.com",
     phone: "+91-9100606434",
     website: "https://nayan-sec.vercel.app",

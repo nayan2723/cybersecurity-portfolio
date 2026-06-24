@@ -214,7 +214,7 @@ const QuirkyAbout = () => {
                 <CardContent className="space-y-3">
                   <div className="flex items-center gap-2">
                     <GraduationCap className="w-4 h-4 text-foreground/60" />
-                    <span className="text-sm">Student: 3rd Year B.Tech CSE 🎓</span>
+                    <span className="text-sm">Student: 4th Year B.Tech CSE (Cybersecurity) | CGPA: 8.75 🎓</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-foreground/60" />

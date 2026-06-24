@@ -35,10 +35,88 @@ const isUsableUrl = (url?: string) =>
 const projects: Project[] = [
     {
       id: 1,
+      title: "Windows Threat Detection Engine",
+      description: "Production-grade CLI tool that parses Windows Security EVTX logs and detects threats mapped to MITRE ATT&CK techniques. Implements correlation-based detection for brute-force logins (Event ID 4625), privilege escalation (4728/4732), and encoded PowerShell execution (4688). Generates dual outputs: machine-readable alerts.json (SIEM-ingestible) and human-readable incident_report.txt following SOC triage with severity-based response recommendations.",
+      category: "security",
+      featured: true,
+      image: "🔍",
+      technologies: ["Python", "MITRE ATT&CK", "EVTX Log Analysis", "SIEM", "SOC Triage"],
+      achievements: ["MITRE ATT&CK threat mapping", "Dual SIEM-ingestible + human-readable output", "Brute-force & privilege escalation detection"],
+      liveUrl: "#",
+      githubUrl: "https://github.com/nayan2723/win-threat-detector",
+      caseStudy: true
+    },
+    {
+      id: 2,
+      title: "PhishNot – Phishing Email Detection System",
+      description: "Engineered a phishing detection engine using a hybrid ML + rule-based classification pipeline with NLP-based feature extraction — analysing entropy, URL patterns, spoofed headers, and social-engineering signals to detect phishing attempts. Designed a modular pipeline with separate components for feature engineering, model training, and threshold tuning; optimised precision-recall balance for real-world deployment in email security workflows.",
+      category: "security",
+      featured: true,
+      image: "🎣",
+      technologies: ["Python", "Scikit-learn", "NLP", "ML Pipeline", "Threat Intelligence"],
+      achievements: ["Hybrid ML + rule-based detection", "NLP feature extraction (entropy, URL, headers)", "Production-tuned precision-recall thresholds"],
+      liveUrl: "#",
+      githubUrl: "https://github.com/nayan2723/phishnot",
+      caseStudy: true
+    },
+    {
+      id: 3,
+      title: "NoxxShell – Custom Linux Shell",
+      description: "Developed a functional Linux shell in C++ supporting command execution, piping, I/O redirection, background processes, and built-ins using low-level system calls (fork, exec, dup2, wait). Deepened understanding of process lifecycle, file descriptors, and signal handling — directly applicable to privilege escalation analysis and shell injection vulnerability research.",
+      category: "systems",
+      featured: true,
+      image: "💻",
+      technologies: ["C++", "Linux", "Systems Programming", "Process Management", "Signal Handling"],
+      achievements: ["Piping & I/O redirection support", "Process lifecycle management (fork/exec/dup2)", "Signal handling & background processes"],
+      liveUrl: "#",
+      githubUrl: "https://github.com/nayan2723/noxx-shell",
+      caseStudy: true
+    },
+    {
+      id: 4,
+      title: "Mailer3000 – Fake Email Generator Telegram Bot",
+      description: "Designed and built a full-featured Telegram bot in Python that generates disposable email addresses and monitors inboxes in real time via command-based interaction (/new, /check, /help). Implemented async polling and scheduling using asyncio, integrated external email provider APIs via the requests library, and managed secrets securely through dotenv configuration. Followed modular design principles to allow plug-and-play swapping of email providers.",
+      category: "security",
+      featured: false,
+      image: "📧",
+      technologies: ["Python", "Telegram Bot API", "asyncio", "REST APIs", "dotenv"],
+      achievements: ["Async email polling & scheduling", "Plug-and-play email provider architecture", "Secure secrets management via dotenv"],
+      liveUrl: "#",
+      githubUrl: "#",
+      caseStudy: true
+    },
+    {
+      id: 5,
+      title: "Sentiment Analysis – Fine-Tuned Transformer Model",
+      description: "Fine-tuned a pre-trained BERT/DistilBERT model for binary text sentiment classification using the HuggingFace Trainer API and Datasets library, evaluating performance across accuracy, precision, recall, and F1 metrics. Built a complete end-to-end ML pipeline: raw data ingestion → tokenization (AutoTokenizer) → model fine-tuning (TrainingArguments, Trainer) → checkpointing → inference via HuggingFace pipeline abstraction.",
+      category: "ai",
+      featured: false,
+      image: "🧠",
+      technologies: ["Python", "PyTorch", "HuggingFace", "BERT/DistilBERT", "NLP"],
+      achievements: ["BERT/DistilBERT fine-tuning pipeline", "HuggingFace Trainer API integration", "Accuracy, precision, recall & F1 evaluation"],
+      liveUrl: "#",
+      githubUrl: "#",
+      caseStudy: true
+    },
+    {
+      id: 6,
+      title: "Real-Time Scene Description System",
+      description: "Built an end-to-end computer vision pipeline that captures live video frames using OpenCV, runs YOLOv8 for real-time multi-object detection, and generates human-readable natural language scene descriptions using an NLP module. Engineered efficient frame buffering and inference scheduling to maintain low-latency, real-time throughput — integrating vision + language into a single seamless full-stack AI application.",
+      category: "ai",
+      featured: false,
+      image: "👁️",
+      technologies: ["Python", "OpenCV", "YOLOv8", "NLP", "Real-time Processing"],
+      achievements: ["Real-time multi-object detection", "NLP scene description generation", "Frame buffering & inference optimization"],
+      liveUrl: "#",
+      githubUrl: "#",
+      caseStudy: true
+    },
+    {
+      id: 7,
       title: "Fharma – Bridging Rural & Urban Healthcare",
       description: "Full-stack web app with AI-powered medicine recommendation system and doctor-patient live chat functionality. User-friendly UI/UX designed and implemented.",
       category: "ai",
-      featured: true,
+      featured: false,
       image: "🏥",
       technologies: ["React", "Backend", "AI Models", "Real-time Chat", "TailwindCSS"],
       achievements: ["AI medicine recommendations", "Live chat system", "Rural healthcare bridge"],
@@ -47,46 +125,7 @@ const projects: Project[] = [
       caseStudy: true
     },
     {
-      id: 2,
-      title: "Phishnot",
-      description: "Advanced cybersecurity project using rule-based + ML models to detect phishing URLs. Integrates AI (Gemini + Perplexity) for real-time threat intelligence with Google Safe Browsing API validation.",
-      category: "security",
-      featured: true,
-      image: "🎣",
-      technologies: ["Python", "Scikit-learn", "Google Gemini API", "Perplexity API", "Google Safe Browsing API"],
-      achievements: ["ML + rule-based detection", "Real-time threat intelligence", "Multi-API integration"],
-      liveUrl: "#",
-      githubUrl: "#",
-      caseStudy: true
-    },
-    {
-      id: 3,
-      title: "NoxxShell",
-      description: "Custom lightweight shell implementation supporting command execution, piping, and process handling. Built for OS and system programming practice using Python on Linux.",
-      category: "systems",
-      featured: true,
-      image: "💻",
-      technologies: ["Python", "Linux", "System Programming", "Process Management"],
-      achievements: ["Custom shell implementation", "Command piping support", "Process handling"],
-      liveUrl: "#",
-      githubUrl: "#",
-      caseStudy: true
-    },
-    {
-      id: 4,
-      title: "Mailer3000",
-      description: "Telegram bot that generates temporary email addresses and helps users check their inbox. Built for privacy-focused users who need disposable email addresses for temporary services.",
-      category: "security",
-      featured: true,
-      image: "📧",
-      technologies: ["Python", "Telegram Bot API", "Temp Mail APIs", "SQLite", "Asyncio"],
-      achievements: ["Temporary email generation", "Real-time inbox monitoring", "Privacy protection"],
-      liveUrl: "#",
-      githubUrl: "#",
-      caseStudy: true
-    },
-    {
-      id: 5,
+      id: 8,
       title: "Cyber Threat Visualization",
       description: "Real-time cyber threat intelligence visualization with geographical attack maps, live updates, severity classification and trend analysis for cybersecurity professionals.",
       category: "security",
@@ -98,7 +137,7 @@ const projects: Project[] = [
       githubUrl: "#"
     },
     {
-      id: 6,
+      id: 9,
       title: "Portfolio Website",
       description: "Personal portfolio website built with React and TailwindCSS. Fully responsive custom-built design showcasing skills, resume, and live projects. Optimized for performance and accessibility.",
       category: "web",
@@ -110,7 +149,7 @@ const projects: Project[] = [
       githubUrl: "https://github.com/nayan2723/cybersecurity-portfolio"
     },
     {
-      id: 7,
+      id: 10,
       title: "LinkedIn Clone (UI Prototype)",
       description: "Frontend UI prototype replicating LinkedIn's layout and core UI components. Responsive design across devices built as practice project to mimic real-world complexity.",
       category: "web",
@@ -122,11 +161,11 @@ const projects: Project[] = [
       githubUrl: "#"
     },
     {
-      id: 8,
+      id: 11,
       title: "TravelTactix – Gamified AI Travel Companion",
       description: "AI-powered travel companion app with multi-day itineraries, cultural lessons, gamified missions, AR landmark scanning, and real-time crowd monitoring. Built for interactive, immersive travel experiences across India.",
       category: "ai",
-      featured: true,
+      featured: false,
       image: "🗺️",
       technologies: ["AI/ML", "AR Technology", "React", "Geolocation APIs", "Real-time Data"],
       achievements: ["AI-powered itineraries", "AR landmark detection", "Gamified missions & rewards"],
@@ -135,20 +174,7 @@ const projects: Project[] = [
       caseStudy: true
     },
     {
-      id: 9,
-      title: "AI/ML Sentiment Analysis Model",
-      description: "End-to-end text sentiment classifier using ML and NLP techniques. Implements tokenization, embeddings, and multiple machine learning models to achieve high accuracy in sentiment detection.",
-      category: "ai",
-      featured: true,
-      image: "🧠",
-      technologies: ["Python", "Scikit-learn", "NLP", "TensorFlow/PyTorch", "Text Embeddings"],
-      achievements: ["Multi-model ensemble", "Tokenization pipeline", "High accuracy classification"],
-      liveUrl: "#",
-      githubUrl: "#",
-      caseStudy: true
-    },
-    {
-      id: 10,
+      id: 12,
       title: "Emoji Reactor – Real-Time Emotion Detection",
       description: "Real-time facial expression and pose detection application using computer vision. Detects emotions and body language, then displays matching emojis instantly in a separate window.",
       category: "ai",

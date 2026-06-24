@@ -6,9 +6,9 @@ interface SEOHeadProps extends SEOProps {
 }
 
 const SEOHead = ({ 
-  title = "Nayan Kshitij - CEH | Cybersecurity Portfolio",
-  description = "EC-Council Certified Ethical Hacker (CEH) and cybersecurity student at Bennett University. Passionate about penetration testing, secure development, and defending systems.",
-  keywords = "CEH, Certified Ethical Hacker, EC-Council, cybersecurity, ethical hacking, penetration testing, portfolio, Bennett University, vulnerability assessment, web development",
+  title = "Nayan Kshitij - CEH | Cybersecurity & AI/ML Portfolio",
+  description = "EC-Council Certified Ethical Hacker (CEH) and cybersecurity student at Bennett University. Skilled in penetration testing, AI/ML, Python development, NLP, and computer vision. Building secure and intelligent systems.",
+  keywords = "CEH, Certified Ethical Hacker, EC-Council, cybersecurity, ethical hacking, penetration testing, portfolio, Bennett University, vulnerability assessment, machine learning, NLP, Python developer, AI intern, computer vision, MITRE ATT&CK",
   image = "https://i.ibb.co/LhYB87c6/Urban-Stillness-Amidst-Evening-Rush.png",
   url = "https://nayan-sec.vercel.app/",
   children
@@ -72,7 +72,7 @@ const SEOHead = ({
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Nayan Kshitij",
-      "jobTitle": "CEH-certified Cybersecurity Student & Full-Stack Developer",
+      "jobTitle": "CEH-certified Cybersecurity Student | AI/ML | Python Developer",
       "url": url,
       "image": image,
       "sameAs": [
@@ -85,7 +85,11 @@ const SEOHead = ({
         "Certified Ethical Hacker (CEH)",
         "Penetration Testing",
         "Vulnerability Assessment",
-        "Web Development"
+        "Machine Learning",
+        "NLP",
+        "Computer Vision",
+        "Python Development",
+        "MITRE ATT&CK"
       ],
       "alumniOf": {
         "@type": "CollegeOrUniversity",

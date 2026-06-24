@@ -38,7 +38,7 @@ const EnhancedAbout = () => {
     // Terminal typewriter effect with GSAP
     const tl = gsap.timeline();
     
-    terminalCommands.forEach((cmd, index) => {
+    TERMINAL_COMMANDS.forEach((cmd, index) => {
       tl.fromTo(`[data-command="${index}"]`, 
         { opacity: 0, x: -20 },
         { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" }

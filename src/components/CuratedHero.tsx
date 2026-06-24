@@ -174,7 +174,7 @@ const CuratedHero = () => {
             Nayan <span className="text-primary animate-pulse">Kshitij</span>
           </h1>
           <h2 className="text-2xl md:text-3xl text-foreground/80 font-light mb-6">
-            CEH-certified Cybersecurity Student & Full-Stack Developer
+            CEH-certified Cybersecurity Student | AI/ML | Python Developer
           </h2>
         </motion.div>
 
