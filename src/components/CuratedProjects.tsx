@@ -63,7 +63,15 @@ const projects: Project[] = [
       description: "Engineered a phishing detection engine using a hybrid ML + rule-based classification pipeline with NLP-based feature extraction — analysing entropy, URL patterns, spoofed headers, and social-engineering signals to detect phishing attempts. Designed a modular pipeline with separate components for feature engineering, model training, and threshold tuning; optimised precision-recall balance for real-world deployment in email security workflows.",
       category: "security",
       featured: true,
-      image: "🎣",
+      image: "/projects/phishnot/thumbnail.jpg",
+      images: [
+        { src: "/projects/phishnot/thumbnail.jpg", alt: "PhishNot — AI-Powered Phishing Email Detection System" },
+        { src: "/projects/phishnot/landing.png", alt: "Landing page — dark theme hero with AI-Powered, Real-time, Secure badges" },
+        { src: "/projects/phishnot/analyzer.png", alt: "AI-Powered Email Scanner — form with mock PayPal phishing email" },
+        { src: "/projects/phishnot/features.png", alt: "Advanced Security Features — AI Detection, Real-time Analysis, Global Threat DB" },
+        { src: "/projects/phishnot/about.png", alt: "Enterprise-Grade Protection for Everyone + Mission Statement" },
+        { src: "/projects/phishnot/stats.png", alt: "96.2% accuracy, 18,631 training emails, <1s analysis time, 24/7 protection" }
+      ],
       technologies: ["Python", "Scikit-learn", "NLP", "ML Pipeline", "Threat Intelligence"],
       achievements: ["Hybrid ML + rule-based detection", "NLP feature extraction (entropy, URL, headers)", "Production-tuned precision-recall thresholds"],
       liveUrl: "#",
