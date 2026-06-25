@@ -84,7 +84,10 @@ const projects: Project[] = [
       description: "Developed a functional Linux shell in C++ supporting command execution, piping, I/O redirection, background processes, and built-ins using low-level system calls (fork, exec, dup2, wait). Deepened understanding of process lifecycle, file descriptors, and signal handling — directly applicable to privilege escalation analysis and shell injection vulnerability research.",
       category: "systems",
       featured: true,
-      image: "💻",
+      image: "/projects/noxx-shell/terminal.png",
+      images: [
+        { src: "/projects/noxx-shell/terminal.png", alt: "NoxxShell interactive terminal showing uptime, weather, and safe mode commands" }
+      ],
       technologies: ["C++", "Linux", "Systems Programming", "Process Management", "Signal Handling"],
       achievements: ["Piping & I/O redirection support", "Process lifecycle management (fork/exec/dup2)", "Signal handling & background processes"],
       liveUrl: "#",
