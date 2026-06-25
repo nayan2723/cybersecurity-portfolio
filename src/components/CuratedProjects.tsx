@@ -192,18 +192,7 @@ const projects: Project[] = [
       liveUrl: "#",
       githubUrl: "#"
     },
-    {
-      id: 9,
-      title: "Portfolio Website",
-      description: "Personal portfolio website built with React and TailwindCSS. Fully responsive custom-built design showcasing skills, resume, and live projects. Optimized for performance and accessibility.",
-      category: "web",
-      featured: false,
-      image: "💼",
-      technologies: ["React", "TailwindCSS", "Vercel", "TypeScript", "Framer Motion"],
-      achievements: ["Fully responsive design", "Performance optimized", "Accessibility compliant"],
-      liveUrl: "https://nayan-cyber-folio.vercel.app/",
-      githubUrl: "https://github.com/nayan2723/cybersecurity-portfolio"
-    },
+
     {
       id: 10,
       title: "LinkedIn Clone (UI Prototype)",
