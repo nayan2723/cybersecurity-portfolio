@@ -81,17 +81,17 @@ const CuratedHero = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Interactive Cursor */}
-      <SplashCursor />
+      <SplashCursor SIM_RESOLUTION={64} DYE_RESOLUTION={256} SPLAT_RADIUS={0.3} />
 
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 z-0 opacity-40">
+        <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
           <Particles
             particleColors={['#00FF80', '#00C8FF', '#FF00FF']}
-            particleCount={150}
+            particleCount={40}
             particleSpread={10}
             speed={0.1}
-            particleBaseSize={100}
+            particleBaseSize={80}
             moveParticlesOnHover={true}
             alphaParticles={true}
             disableRotation={false}
