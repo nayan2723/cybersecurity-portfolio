@@ -39,6 +39,24 @@ const isUsableUrl = (url?: string) =>
 
 const projects: Project[] = [
     {
+      id: 0,
+      title: "F1 Insights 2026 – Real-Time Telemetry & ML Predictions",
+      description: "Full-stack multi-page application providing unprecedented telemetric and strategic intelligence for the Formula 1 World Championship. Engineered a resilient backend using Express.js with a multi-layered caching system (memory → disk → API → static fallback) to ensure zero downtime. Features a custom ML Prediction Engine utilizing Bayesian Elo ratings and Monte Carlo simulations (1,000 iterations) for race forecasting. Frontend built with Vite, React Islands, and Tailwind CSS for dynamic UI updates without full page reloads.",
+      category: "ai",
+      featured: true,
+      image: "/projects/f1-insights/main.png",
+      images: [
+        { src: "/projects/f1-insights/main.png", alt: "F1 Insights Dashboard — 2026 Season Overview and Next Race Countdown" },
+        { src: "/projects/f1-insights/stats.png", alt: "Driver Head-to-Head Comparison — Lewis Hamilton vs Lando Norris Radar Chart" },
+        { src: "/projects/f1-insights/chart.png", alt: "Championship Points Progression Chart — Tracking driver performance across the season" }
+      ],
+      technologies: ["Node.js", "Express", "React", "Machine Learning", "Vite"],
+      achievements: ["Bayesian Elo + Monte Carlo ML prediction engine", "Resilient 4-layer caching architecture", "React Islands pattern for performance"],
+      liveUrl: "#",
+      githubUrl: "https://github.com/nayan2723/f1-insight-2026",
+      caseStudy: true
+    },
+    {
       id: 1,
       title: "Windows Threat Detection Engine",
       description: "Production-grade CLI tool that parses Windows Security EVTX logs and detects threats mapped to MITRE ATT&CK techniques. Implements correlation-based detection for brute-force logins (Event ID 4625), privilege escalation (4728/4732), and encoded PowerShell execution (4688). Generates dual outputs: machine-readable alerts.json (SIEM-ingestible) and human-readable incident_report.txt following SOC triage with severity-based response recommendations.",
