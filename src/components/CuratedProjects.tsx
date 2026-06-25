@@ -175,7 +175,9 @@ const projects: Project[] = [
       featured: false,
       image: "/projects/fharma/thumbnail.jpg",
       images: [
-        { src: "/projects/fharma/thumbnail.jpg", alt: "Fharma – Bridging Rural & Urban Healthcare poster" }
+        { src: "/projects/fharma/thumbnail.jpg", alt: "Fharma – Bridging Rural & Urban Healthcare poster" },
+        { src: "/projects/fharma/hero.png", alt: "Fharma landing page highlighting the mission to connect rural India to urban healthcare" },
+        { src: "/projects/fharma/app.png", alt: "Fharma virtual doctor consultation interface with text-based medical AI" }
       ],
       technologies: ["React", "Backend", "AI Models", "Real-time Chat", "TailwindCSS"],
       achievements: ["AI medicine recommendations", "Live chat system", "Rural healthcare bridge"],
