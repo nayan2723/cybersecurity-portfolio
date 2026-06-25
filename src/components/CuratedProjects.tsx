@@ -155,7 +155,12 @@ const projects: Project[] = [
       description: "Built an end-to-end computer vision pipeline that captures live video frames using OpenCV, runs YOLOv8 for real-time multi-object detection, and generates human-readable natural language scene descriptions using an NLP module. Engineered efficient frame buffering and inference scheduling to maintain low-latency, real-time throughput — integrating vision + language into a single seamless full-stack AI application.",
       category: "ai",
       featured: false,
-      image: "👁️",
+      image: "/projects/scene-description/thumbnail.jpg",
+      images: [
+        { src: "/projects/scene-description/thumbnail.jpg", alt: "Real-Time Scene Description System poster" },
+        { src: "/projects/scene-description/dashboard.png", alt: "Computer vision dashboard showing live object detection feed with YOLOv8 bounding boxes" },
+        { src: "/projects/scene-description/nlp_metrics.png", alt: "Generated natural language scene descriptions and real-time inference metrics" }
+      ],
       technologies: ["Python", "OpenCV", "YOLOv8", "NLP", "Real-time Processing"],
       achievements: ["Real-time multi-object detection", "NLP scene description generation", "Frame buffering & inference optimization"],
       liveUrl: "#",
