@@ -194,7 +194,10 @@ const projects: Project[] = [
       description: "AI-powered travel companion app with multi-day itineraries, cultural lessons, gamified missions, AR landmark scanning, and real-time crowd monitoring. Built for interactive, immersive travel experiences across India.",
       category: "ai",
       featured: false,
-      image: "🗺️",
+      image: "/projects/traveltactix/thumbnail.jpg",
+      images: [
+        { src: "/projects/traveltactix/thumbnail.jpg", alt: "TravelTactix – Gamified AI Travel Companion poster" }
+      ],
       technologies: ["AI/ML", "AR Technology", "React", "Geolocation APIs", "Real-time Data"],
       achievements: ["AI-powered itineraries", "AR landmark detection", "Gamified missions & rewards"],
       liveUrl: "#",
