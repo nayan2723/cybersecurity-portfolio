@@ -453,7 +453,7 @@ const ProjectDetailModal = ({ project, onClose }: { project: Project | null; onC
                       <img
                         src={img.src}
                         alt={img.alt}
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-contain p-1 bg-muted/30"
                       />
                     </button>
                   ))}
