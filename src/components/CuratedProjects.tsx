@@ -101,8 +101,12 @@ const projects: Project[] = [
       description: "Designed and built a full-featured Telegram bot in Python that generates disposable email addresses and monitors inboxes in real time via command-based interaction (/new, /check, /help). Implemented async polling and scheduling using asyncio, integrated external email provider APIs via the requests library, and managed secrets securely through dotenv configuration. Followed modular design principles to allow plug-and-play swapping of email providers.",
       category: "security",
       featured: false,
-      image: "📧",
-      technologies: ["Python", "Telegram Bot API", "asyncio", "REST APIs", "dotenv"],
+      image: "/projects/mailer3000/thumbnail.jpg",
+      images: [
+        { src: "/projects/mailer3000/thumbnail.jpg", alt: "Mailer3000 Fake Email Generator Telegram Bot poster" },
+        { src: "/projects/mailer3000/telegram.png", alt: "Mailer3000 Telegram Bot interface showing disposable email generation and inbox monitoring" }
+      ],
+      technologies: ["Python", "AsyncIO", "Telegram API", "REST APIs", "Bot Development"],
       achievements: ["Async email polling & scheduling", "Plug-and-play email provider architecture", "Secure secrets management via dotenv"],
       liveUrl: "#",
       githubUrl: "#",
