@@ -185,18 +185,7 @@ const projects: Project[] = [
       githubUrl: "https://github.com/nayan2723/fharma-health-bridge-ui",
       caseStudy: true
     },
-    {
-      id: 8,
-      title: "Cyber Threat Visualization",
-      description: "Real-time cyber threat intelligence visualization with geographical attack maps, live updates, severity classification and trend analysis for cybersecurity professionals.",
-      category: "security",
-      featured: false,
-      image: "📊",
-      technologies: ["Python", "Flask/Django", "D3.js", "Chart.js", "Threat Intelligence APIs"],
-      achievements: ["Real-time visualization", "Geographical mapping", "Trend analysis"],
-      liveUrl: "#",
-      githubUrl: "#"
-    },
+
 
 
     {
@@ -212,18 +201,7 @@ const projects: Project[] = [
       githubUrl: "#",
       caseStudy: true
     },
-    {
-      id: 12,
-      title: "Emoji Reactor – Real-Time Emotion Detection",
-      description: "Real-time facial expression and pose detection application using computer vision. Detects emotions and body language, then displays matching emojis instantly in a separate window.",
-      category: "ai",
-      featured: false,
-      image: "😊",
-      technologies: ["Python", "MediaPipe", "OpenCV", "Computer Vision", "Real-time Processing"],
-      achievements: ["Real-time face detection", "Pose estimation", "Instant emoji mapping"],
-      liveUrl: "#",
-      githubUrl: "#"
-    }
+
 ];
 
 const categories = [
