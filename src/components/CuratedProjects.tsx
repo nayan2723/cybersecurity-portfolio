@@ -196,7 +196,9 @@ const projects: Project[] = [
       featured: false,
       image: "/projects/traveltactix/thumbnail.jpg",
       images: [
-        { src: "/projects/traveltactix/thumbnail.jpg", alt: "TravelTactix – Gamified AI Travel Companion poster" }
+        { src: "/projects/traveltactix/thumbnail.jpg", alt: "TravelTactix – Gamified AI Travel Companion poster" },
+        { src: "/projects/traveltactix/home.png", alt: "TravelTactix Discovery dashboard interface" },
+        { src: "/projects/traveltactix/missions.png", alt: "TravelTactix Quest Missions and Cultural Challenges page" }
       ],
       technologies: ["AI/ML", "AR Technology", "React", "Geolocation APIs", "Real-time Data"],
       achievements: ["AI-powered itineraries", "AR landmark detection", "Gamified missions & rewards"],
