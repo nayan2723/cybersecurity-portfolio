@@ -242,7 +242,7 @@ const EnhancedHero = () => {
               <Button 
                 variant="outline" 
                 className="border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground group"
-                onClick={() => window.open('/Resume.pdf', '_blank')}
+                onClick={() => window.open('https://drive.google.com/file/d/1kX2QAO7aNAaibnOhfV7Q9TJCIlqHTdIU/view?usp=sharing', '_blank')}
               >
                 <Download className="w-4 h-4 mr-2 group-hover:animate-pulse" />
                 Access Resume

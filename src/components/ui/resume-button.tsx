@@ -20,7 +20,7 @@ const ResumeButton = ({
   text = 'View Resume'
 }: ResumeButtonProps) => {
   const handleResumeClick = () => {
-    window.open('/Resume.pdf', '_blank');
+    window.open('https://drive.google.com/file/d/1kX2QAO7aNAaibnOhfV7Q9TJCIlqHTdIU/view?usp=sharing', '_blank');
   };
 
   const IconComponent = iconType === 'download' ? Download : FileText;
