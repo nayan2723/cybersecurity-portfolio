@@ -1,17 +1,26 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { GradientButton } from '@/components/ui/gradient-button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { LottieGlow } from '@/components/LottieAnimations';
-import QRBusinessCard from '@/components/QRBusinessCard';
+import DecryptedText from '@/components/DecryptedText';
+import SplitText from '@/components/SplitText';
+import SpotlightCard from '@/components/SpotlightCard';
+import Particles from '@/components/Particles';
+import SplashCursor from '@/components/SplashCursor';
+import { fetchGitHubStats, GitHubStats } from '@/lib/github';
 
 const CuratedHero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const typewriterRef = useRef<HTMLSpanElement>(null);
+  const [stats, setStats] = useState<GitHubStats | null>(null);
 
   useEffect(() => {
+    fetchGitHubStats().then(data => {
+      if (data) setStats(data);
+    });
+
     // Defer GSAP animations to reduce main-thread work during initial load
     const timeoutId = setTimeout(() => {
       // Optimize GSAP animations - skip .hero-title to improve LCP
@@ -54,41 +63,6 @@ const CuratedHero = () => {
       });
     }, 100); // Defer by 100ms to prioritize initial render
 
-    // Optimized typewriter effect - defer to reduce main-thread work
-    const typewriter = typewriterRef.current;
-    if (typewriter) {
-      const text = "Breaking systems and building them again.";
-      let index = 0;
-      let lastTime = 0;
-      const typingSpeed = 50;
-      
-      // Defer typewriter animation
-      const startTyping = setTimeout(() => {
-        const typeChar = (timestamp: number) => {
-          if (timestamp - lastTime >= typingSpeed) {
-            if (index < text.length) {
-              // Batch DOM updates to prevent reflows
-              typewriter.textContent += text.charAt(index);
-              index++;
-              lastTime = timestamp;
-            } else {
-              return;
-            }
-          }
-          if (index < text.length) {
-            requestAnimationFrame(typeChar);
-          }
-        };
-        
-        requestAnimationFrame(typeChar);
-      }, 500); // Defer typewriter start
-
-      return () => {
-        clearTimeout(timeoutId);
-        clearTimeout(startTyping);
-      };
-    }
-    
     return () => clearTimeout(timeoutId);
   }, []);
 
@@ -106,14 +80,29 @@ const CuratedHero = () => {
       ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
+      {/* Interactive Cursor */}
+      <SplashCursor />
+
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-cyber-blue/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-neon-pink/5 rounded-full blur-xl animate-pulse delay-2000"></div>
+        <div className="absolute inset-0 z-0 opacity-40">
+          <Particles
+            particleColors={['#00FF80', '#00C8FF', '#FF00FF']}
+            particleCount={150}
+            particleSpread={10}
+            speed={0.1}
+            particleBaseSize={100}
+            moveParticlesOnHover={true}
+            alphaParticles={true}
+            disableRotation={false}
+          />
+        </div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse z-0"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-cyber-blue/5 rounded-full blur-2xl animate-pulse delay-1000 z-0"></div>
+        <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-neon-pink/5 rounded-full blur-xl animate-pulse delay-2000 z-0"></div>
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center pt-20">
         {/* Status Badges */}
         <motion.div 
           className="flex justify-center gap-3 mb-8"
@@ -170,11 +159,20 @@ const CuratedHero = () => {
             }
           }}
         >
-          <h1 className="text-5xl md:text-7xl font-bold mb-4">
-            Nayan <span className="text-primary animate-pulse">Kshitij</span>
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 flex justify-center gap-4">
+            <DecryptedText text="Nayan" animateOn="view" /> 
+            <span className="text-primary animate-pulse">
+              <DecryptedText text="Kshitij" animateOn="view" />
+            </span>
           </h1>
-          <h2 className="text-2xl md:text-3xl text-foreground/80 font-light mb-6">
-            CEH-certified Cybersecurity Student | AI/ML | Python Developer
+          <h2 className="text-2xl md:text-3xl text-foreground/80 font-light mb-6 flex justify-center">
+            <DecryptedText
+              text="CEH-certified Cybersecurity Student | AI/ML | Python Developer"
+              animateOn="view"
+              revealDirection="center"
+              speed={60}
+              maxIterations={15}
+            />
           </h2>
         </motion.div>
 
@@ -185,79 +183,67 @@ const CuratedHero = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
         >
-          <p className="text-xl md:text-2xl text-primary/80 font-mono">
-            <span ref={typewriterRef}></span>
-            <span className="animate-pulse">|</span>
-          </p>
+          <SplitText
+            text="Breaking systems and building them again."
+            className="text-xl md:text-2xl text-primary/80 font-mono"
+            delay={30}
+            duration={0.8}
+            splitType="chars"
+            tag="p"
+          />
         </motion.div>
 
-        {/* Interactive Status Card with QR Business Card */}
+        {/* Interactive Spotlight Cards for Live Data */}
         <motion.div 
-          className="relative max-w-6xl mx-auto mb-12 rounded-xl overflow-hidden"
+          className="relative max-w-6xl mx-auto mb-16 mt-8"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5 }}
         >
-          <div className="w-full min-h-[500px] bg-gradient-to-br from-background via-muted/30 to-background relative overflow-hidden border border-primary/20 rounded-xl p-8 md:p-12">
-            <div className="relative z-10 flex flex-col items-center justify-center h-full">
-              <h3 className="text-4xl md:text-5xl font-bold mb-4 text-center">
-                Connect With <span className="text-primary">Me</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl mx-auto text-left">
+            {/* Live Status Card */}
+            <SpotlightCard className="flex flex-col items-start justify-center h-full border border-primary/20 bg-background/50 backdrop-blur-sm" spotlightColor="rgba(0, 255, 128, 0.15)">
+              <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                <div className="w-2.5 h-2.5 bg-cyber-green rounded-full animate-pulse shadow-[0_0_10px_rgba(0,255,128,0.8)]"></div>
+                Live System Status
               </h3>
-              <p className="text-lg text-foreground/70 mb-8 max-w-2xl text-center">
-                Scan my digital business card to instantly save my contact information
-              </p>
-              
-              <div className="flex justify-center mb-8">
-                <QRBusinessCard />
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 w-full max-w-4xl">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-cyber-green rounded-full animate-pulse"></div>
-                    <span className="text-sm text-foreground/60 font-mono">
-                      Status: <span className="text-cyber-green font-bold">In the Zone</span>
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-cyber-blue rounded-full animate-pulse"></div>
-                    <span className="text-sm text-foreground/60 font-mono">
-                      Mode: <span className="text-cyber-blue font-bold">Full Stack Development</span>
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-neon-pink rounded-full animate-pulse"></div>
-                    <span className="text-sm text-foreground/60 font-mono">
-                      Focus: <span className="text-neon-pink font-bold">Maximum Productivity</span>
-                    </span>
-                  </div>
+              <div className="space-y-5 w-full">
+                <div className="flex justify-between items-center border-b border-white/5 pb-3">
+                  <span className="text-sm text-foreground/60 font-mono">Current Mode</span>
+                  <span className="text-sm font-bold text-cyber-blue">Full Stack Dev</span>
                 </div>
-                
-                <div className="bg-muted/20 rounded-lg p-6 border border-primary/10">
-                  <h4 className="text-sm font-mono text-primary mb-4">Quick Stats</h4>
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <span className="text-xs text-foreground/50">Projects Completed</span>
-                      <span className="text-sm font-bold text-cyber-green">15+</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-xs text-foreground/50">Technologies</span>
-                      <span className="text-sm font-bold text-cyber-blue">20+</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-xs text-foreground/50">Response Time</span>
-                      <span className="text-sm font-bold text-primary">24h</span>
-                    </div>
-                  </div>
+                <div className="flex justify-between items-center border-b border-white/5 pb-3">
+                  <span className="text-sm text-foreground/60 font-mono">Top Language</span>
+                  <span className="text-sm font-bold text-cyber-green">{stats ? stats.topLanguage : 'Loading...'}</span>
+                </div>
+                <div className="flex justify-between items-center pb-2">
+                  <span className="text-sm text-foreground/60 font-mono">Network</span>
+                  <span className="text-sm font-bold text-neon-pink">Maximum Productivity</span>
                 </div>
               </div>
-            </div>
+            </SpotlightCard>
             
-            {/* Animated background elements */}
-            <div className="absolute inset-0 opacity-30">
-              <div className="absolute top-10 left-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
-              <div className="absolute bottom-10 right-10 w-40 h-40 bg-cyber-blue/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-            </div>
+            {/* Live GitHub Stats Card */}
+            <SpotlightCard className="flex flex-col items-start justify-center h-full border border-primary/20 bg-background/50 backdrop-blur-sm" spotlightColor="rgba(0, 200, 255, 0.15)">
+              <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                <Github className="w-6 h-6 text-cyber-blue drop-shadow-[0_0_8px_rgba(0,200,255,0.6)]" />
+                Live GitHub Feed
+              </h3>
+              <div className="space-y-5 w-full">
+                <div className="flex justify-between items-center border-b border-white/5 pb-3">
+                  <span className="text-sm text-foreground/60 font-mono">Public Repos</span>
+                  <span className="text-sm font-bold text-cyber-blue">{stats ? stats.publicRepos : '...'}</span>
+                </div>
+                <div className="flex justify-between items-center border-b border-white/5 pb-3">
+                  <span className="text-sm text-foreground/60 font-mono">Total Stars</span>
+                  <span className="text-sm font-bold text-neon-pink">{stats ? stats.stars : '...'}</span>
+                </div>
+                <div className="flex justify-between items-center pb-2">
+                  <span className="text-sm text-foreground/60 font-mono">Followers</span>
+                  <span className="text-sm font-bold text-primary">{stats ? stats.followers : '...'}</span>
+                </div>
+              </div>
+            </SpotlightCard>
           </div>
         </motion.div>
 
