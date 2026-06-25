@@ -173,7 +173,10 @@ const projects: Project[] = [
       description: "Full-stack web app with AI-powered medicine recommendation system and doctor-patient live chat functionality. User-friendly UI/UX designed and implemented.",
       category: "ai",
       featured: false,
-      image: "🏥",
+      image: "/projects/fharma/thumbnail.jpg",
+      images: [
+        { src: "/projects/fharma/thumbnail.jpg", alt: "Fharma – Bridging Rural & Urban Healthcare poster" }
+      ],
       technologies: ["React", "Backend", "AI Models", "Real-time Chat", "TailwindCSS"],
       achievements: ["AI medicine recommendations", "Live chat system", "Rural healthcare bridge"],
       liveUrl: "https://fharma-health-bridge-ui-nayan2723s-projects.vercel.app/",
@@ -193,18 +196,7 @@ const projects: Project[] = [
       githubUrl: "#"
     },
 
-    {
-      id: 10,
-      title: "LinkedIn Clone (UI Prototype)",
-      description: "Frontend UI prototype replicating LinkedIn's layout and core UI components. Responsive design across devices built as practice project to mimic real-world complexity.",
-      category: "web",
-      featured: false,
-      image: "👥",
-      technologies: ["React", "TailwindCSS", "Responsive Design", "Component Libraries"],
-      achievements: ["Pixel-perfect UI replica", "Cross-device responsive", "Complex component structure"],
-      liveUrl: "#",
-      githubUrl: "#"
-    },
+
     {
       id: 11,
       title: "TravelTactix – Gamified AI Travel Companion",
