@@ -137,7 +137,12 @@ const projects: Project[] = [
       description: "Fine-tuned a pre-trained BERT/DistilBERT model for binary text sentiment classification using the HuggingFace Trainer API and Datasets library, evaluating performance across accuracy, precision, recall, and F1 metrics. Built a complete end-to-end ML pipeline: raw data ingestion → tokenization (AutoTokenizer) → model fine-tuning (TrainingArguments, Trainer) → checkpointing → inference via HuggingFace pipeline abstraction.",
       category: "ai",
       featured: false,
-      image: "🧠",
+      image: "/projects/sentiment-analysis/thumbnail.jpg",
+      images: [
+        { src: "/projects/sentiment-analysis/thumbnail.jpg", alt: "Sentiment Analysis Fine-Tuned Transformer Model poster" },
+        { src: "/projects/sentiment-analysis/training.png", alt: "Jupyter Notebook showing training loop and accuracy/F1 metrics table" },
+        { src: "/projects/sentiment-analysis/inference.png", alt: "Jupyter Notebook showing inference pipeline and text classification outputs" }
+      ],
       technologies: ["Python", "PyTorch", "HuggingFace", "BERT/DistilBERT", "NLP"],
       achievements: ["BERT/DistilBERT fine-tuning pipeline", "HuggingFace Trainer API integration", "Accuracy, precision, recall & F1 evaluation"],
       liveUrl: "#",
