@@ -1,5 +1,5 @@
-import { useMemo, useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useMemo, useState, useRef, useCallback, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { EmojiReactor } from '@/components/EmojiReactor';
@@ -12,7 +12,11 @@ import {
   Code, 
   Database, 
   Brain,
-  Eye
+  Eye,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Maximize2
 } from 'lucide-react';
 
 interface Project {
@@ -22,6 +26,7 @@ interface Project {
   category: string;
   featured: boolean;
   image: string;
+  images?: { src: string; alt: string }[];
   technologies: string[];
   achievements: string[];
   liveUrl?: string;
@@ -39,11 +44,16 @@ const projects: Project[] = [
       description: "Production-grade CLI tool that parses Windows Security EVTX logs and detects threats mapped to MITRE ATT&CK techniques. Implements correlation-based detection for brute-force logins (Event ID 4625), privilege escalation (4728/4732), and encoded PowerShell execution (4688). Generates dual outputs: machine-readable alerts.json (SIEM-ingestible) and human-readable incident_report.txt following SOC triage with severity-based response recommendations.",
       category: "security",
       featured: true,
-      image: "🔍",
+      image: "/projects/win-threat-detector/dashboard.png",
+      images: [
+        { src: "/projects/win-threat-detector/dashboard.png", alt: "Windows Threat Detection Dashboard — severity charts, MITRE techniques, and recent alerts" },
+        { src: "/projects/win-threat-detector/cli-scan.png", alt: "CLI scan output — threat detection engine running with severity summary table" },
+        { src: "/projects/win-threat-detector/streamlit-launch.png", alt: "Streamlit dashboard server launching" }
+      ],
       technologies: ["Python", "MITRE ATT&CK", "EVTX Log Analysis", "SIEM", "SOC Triage"],
       achievements: ["MITRE ATT&CK threat mapping", "Dual SIEM-ingestible + human-readable output", "Brute-force & privilege escalation detection"],
       liveUrl: "#",
-      githubUrl: "https://github.com/nayan2723/win-threat-detector",
+      githubUrl: "https://github.com/nayan2723/windows-threat-detection-engine",
       caseStudy: true
     },
     {
@@ -277,21 +287,254 @@ const ProjectCardContent = ({ project }: { project: Project }) => (
       <EmojiReactor projectId={project.id} className="mt-6" />
     </div>
 
-    <div className="relative flex min-h-[12rem] w-full flex-1 items-center justify-center rounded-2xl border border-border/40 bg-gradient-to-br from-primary/10 to-cyber-blue/10 lg:max-w-[40%] lg:flex-[2]">
-      <div className="pointer-events-none absolute inset-0 opacity-90" aria-hidden>
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/25 via-muted/25 to-cyber-blue/20" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_25%,hsl(var(--primary)/0.22),transparent_55%)]" />
-      </div>
-      <span className="relative z-10 text-7xl drop-shadow-sm" aria-hidden>
-        {project.image}
-      </span>
+    <div
+      className="relative flex min-h-[12rem] w-full flex-1 items-center justify-center rounded-2xl border border-border/40 bg-gradient-to-br from-primary/10 to-cyber-blue/10 lg:max-w-[40%] lg:flex-[2] overflow-hidden cursor-pointer group/img"
+      onClick={() => {
+        if (project.images && project.images.length > 0) {
+          const event = new CustomEvent('openProjectModal', { detail: project });
+          window.dispatchEvent(event);
+        }
+      }}
+    >
+      {project.images && project.images.length > 0 ? (
+        <>
+          <img
+            src={project.images[0].src}
+            alt={project.images[0].alt}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover/img:scale-105"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+          <div className="absolute bottom-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-background/70 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-sm border border-border/50">
+            <Maximize2 className="h-3 w-3" />
+            {project.images.length} screenshots
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="pointer-events-none absolute inset-0 opacity-90" aria-hidden>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/25 via-muted/25 to-cyber-blue/20" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_25%,hsl(var(--primary)/0.22),transparent_55%)]" />
+          </div>
+          <span className="relative z-10 text-7xl drop-shadow-sm" aria-hidden>
+            {project.image}
+          </span>
+        </>
+      )}
     </div>
   </div>
 );
 
+/* ─── Project Detail Modal ─── */
+const ProjectDetailModal = ({ project, onClose }: { project: Project | null; onClose: () => void }) => {
+  const [activeImg, setActiveImg] = useState(0);
+  const images = project?.images || [];
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (!project) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowRight') setActiveImg((p) => (p + 1) % images.length);
+      if (e.key === 'ArrowLeft') setActiveImg((p) => (p - 1 + images.length) % images.length);
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [project, images.length, onClose]);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (project) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [project]);
+
+  if (!project) return null;
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.25 }}
+      >
+        {/* Backdrop */}
+        <div
+          className="absolute inset-0 bg-background/80 backdrop-blur-md"
+          onClick={onClose}
+        />
+
+        {/* Modal content */}
+        <motion.div
+          className="relative z-10 w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl border border-border/60 bg-card shadow-2xl"
+          initial={{ scale: 0.92, y: 30, opacity: 0 }}
+          animate={{ scale: 1, y: 0, opacity: 1 }}
+          exit={{ scale: 0.92, y: 30, opacity: 0 }}
+          transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Close button */}
+          <button
+            onClick={onClose}
+            className="absolute right-4 top-4 z-20 rounded-full bg-background/80 p-2 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-foreground hover:bg-background transition-colors"
+            aria-label="Close modal"
+          >
+            <X className="h-5 w-5" />
+          </button>
+
+          {/* Image gallery */}
+          {images.length > 0 && (
+            <div className="relative">
+              <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl bg-muted">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={activeImg}
+                    src={images[activeImg].src}
+                    alt={images[activeImg].alt}
+                    className="absolute inset-0 h-full w-full object-cover"
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -30 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </AnimatePresence>
+                <div className="absolute inset-0 bg-gradient-to-t from-card/50 via-transparent to-transparent" />
+              </div>
+
+              {/* Nav arrows */}
+              {images.length > 1 && (
+                <>
+                  <button
+                    onClick={() => setActiveImg((p) => (p - 1 + images.length) % images.length)}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-background/70 p-2 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-foreground hover:bg-background transition-colors"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft className="h-5 w-5" />
+                  </button>
+                  <button
+                    onClick={() => setActiveImg((p) => (p + 1) % images.length)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-background/70 p-2 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-foreground hover:bg-background transition-colors"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight className="h-5 w-5" />
+                  </button>
+                </>
+              )}
+
+              {/* Thumbnail strip */}
+              {images.length > 1 && (
+                <div className="flex gap-2 p-4 justify-center">
+                  {images.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveImg(idx)}
+                      className={`relative h-14 w-24 flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all duration-200 ${
+                        idx === activeImg
+                          ? 'border-primary ring-2 ring-primary/30 scale-105'
+                          : 'border-border/40 opacity-60 hover:opacity-100'
+                      }`}
+                    >
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        className="h-full w-full object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* Image caption */}
+              <p className="px-6 pb-2 text-xs text-muted-foreground italic text-center">
+                {images[activeImg].alt}
+              </p>
+            </div>
+          )}
+
+          {/* Project details */}
+          <div className="p-6 pt-4 space-y-5">
+            <div className="flex flex-wrap items-center gap-2">
+              {project.featured && <Badge variant="success">Featured</Badge>}
+              <Badge variant="outline" size="sm" className="border-border text-muted-foreground">
+                {project.category}
+              </Badge>
+              {project.caseStudy && <Badge variant="neon" size="sm">Case study</Badge>}
+            </div>
+
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
+              {project.title}
+            </h3>
+
+            <p className="text-base leading-relaxed text-muted-foreground">
+              {project.description}
+            </p>
+
+            <div className="space-y-1.5">
+              <p className="text-sm font-semibold text-primary">Key achievements</p>
+              <ul className="space-y-1.5">
+                {project.achievements.map((a, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-cyber-green" aria-hidden />
+                    {a}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {project.technologies.map((tech) => (
+                <span
+                  key={tech}
+                  className="inline-flex items-center rounded-full border border-border/60 bg-muted/40 px-2.5 py-0.5 text-xs font-medium text-muted-foreground"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-3 pt-2">
+              {isUsableUrl(project.liveUrl) && (
+                <Button variant="primary" size="sm" asChild>
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                    View Project <ExternalLink className="h-4 w-4" />
+                  </a>
+                </Button>
+              )}
+              {isUsableUrl(project.githubUrl) && (
+                <Button variant="outline" size="sm" asChild>
+                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                    <Github className="h-4 w-4" /> GitHub
+                  </a>
+                </Button>
+              )}
+            </div>
+
+            <EmojiReactor projectId={project.id} className="pt-2" />
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+};
+
 const CuratedProjects = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [modalProject, setModalProject] = useState<Project | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  // Listen for custom event from card image click
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail as Project;
+      setModalProject(detail);
+    };
+    window.addEventListener('openProjectModal', handler);
+    return () => window.removeEventListener('openProjectModal', handler);
+  }, []);
 
   const handleCategoryChange = (categoryId: string) => {
     setSelectedCategory(categoryId);
@@ -393,6 +636,9 @@ const CuratedProjects = () => {
           </div>
         )}
       </div>
+
+      {/* Project Detail Modal */}
+      <ProjectDetailModal project={modalProject} onClose={() => setModalProject(null)} />
     </div>
   );
 };
