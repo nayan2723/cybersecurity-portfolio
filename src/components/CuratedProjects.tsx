@@ -44,8 +44,9 @@ const projects: Project[] = [
       description: "Production-grade CLI tool that parses Windows Security EVTX logs and detects threats mapped to MITRE ATT&CK techniques. Implements correlation-based detection for brute-force logins (Event ID 4625), privilege escalation (4728/4732), and encoded PowerShell execution (4688). Generates dual outputs: machine-readable alerts.json (SIEM-ingestible) and human-readable incident_report.txt following SOC triage with severity-based response recommendations.",
       category: "security",
       featured: true,
-      image: "/projects/win-threat-detector/dashboard.png",
+      image: "/projects/win-threat-detector/thumbnail.jpg",
       images: [
+        { src: "/projects/win-threat-detector/thumbnail.jpg", alt: "Windows Threat Detection Engine — Detect. Analyze. Respond." },
         { src: "/projects/win-threat-detector/dashboard.png", alt: "Windows Threat Detection Dashboard — severity charts, MITRE techniques, and recent alerts" },
         { src: "/projects/win-threat-detector/cli-scan.png", alt: "CLI scan output — threat detection engine running with severity summary table" },
         { src: "/projects/win-threat-detector/streamlit-launch.png", alt: "Streamlit dashboard server launching" }
