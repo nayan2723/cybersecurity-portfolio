@@ -313,7 +313,7 @@ const ProjectCardContent = ({ project }: { project: Project }) => (
           <img
             src={project.images[0].src}
             alt={project.images[0].alt}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover/img:scale-105"
+            className="absolute inset-0 h-full w-full object-contain p-4 transition-transform duration-500 group-hover/img:scale-105"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
           <div className="absolute bottom-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-background/70 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-sm border border-border/50">
@@ -407,7 +407,7 @@ const ProjectDetailModal = ({ project, onClose }: { project: Project | null; onC
                     key={activeImg}
                     src={images[activeImg].src}
                     alt={images[activeImg].alt}
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className="absolute inset-0 h-full w-full object-contain p-2"
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -30 }}
