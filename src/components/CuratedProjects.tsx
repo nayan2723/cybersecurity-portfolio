@@ -44,8 +44,9 @@ const projects: Project[] = [
       description: "Full-stack multi-page application providing unprecedented telemetric and strategic intelligence for the Formula 1 World Championship. Engineered a resilient backend using Express.js with a multi-layered caching system (memory → disk → API → static fallback) to ensure zero downtime. Features a custom ML Prediction Engine utilizing Bayesian Elo ratings and Monte Carlo simulations (1,000 iterations) for race forecasting. Frontend built with Vite, React Islands, and Tailwind CSS for dynamic UI updates without full page reloads.",
       category: "ai",
       featured: true,
-      image: "/projects/f1-insights/main.png",
+      image: "/projects/f1-insights/thumbnail.jpg",
       images: [
+        { src: "/projects/f1-insights/thumbnail.jpg", alt: "F1 Insights 2026 Poster" },
         { src: "/projects/f1-insights/main.png", alt: "F1 Insights Dashboard — 2026 Season Overview and Next Race Countdown" },
         { src: "/projects/f1-insights/stats.png", alt: "Driver Head-to-Head Comparison — Lewis Hamilton vs Lando Norris Radar Chart" },
         { src: "/projects/f1-insights/chart.png", alt: "Championship Points Progression Chart — Tracking driver performance across the season" }
