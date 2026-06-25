@@ -586,8 +586,8 @@ const CuratedProjects = () => {
     ? projects 
     : projects.filter(project => project.category === selectedCategory);
 
-  const stackedProjects = filteredProjects.slice(0, 3);
-  const remainingProjects = filteredProjects.slice(3);
+  const stackedProjects = filteredProjects.filter(project => project.featured);
+  const remainingProjects = filteredProjects.filter(project => !project.featured);
 
   const itemDistance = useMemo(() => {
     const n = stackedProjects.length;
