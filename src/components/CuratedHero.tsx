@@ -232,15 +232,15 @@ const CuratedHero = () => {
               <div className="space-y-5 w-full">
                 <div className="flex justify-between items-center border-b border-white/5 pb-3">
                   <span className="text-sm text-foreground/60 font-mono">Public Repos</span>
-                  <span className="text-sm font-bold text-cyber-blue">{stats ? stats.publicRepos : '...'}</span>
+                  <span className="text-sm font-bold text-cyber-blue">26</span>
                 </div>
                 <div className="flex justify-between items-center border-b border-white/5 pb-3">
-                  <span className="text-sm text-foreground/60 font-mono">Total Stars</span>
-                  <span className="text-sm font-bold text-neon-pink">{stats ? stats.stars : '...'}</span>
+                  <span className="text-sm text-foreground/60 font-mono">Contributions (2026)</span>
+                  <span className="text-sm font-bold text-neon-pink">463</span>
                 </div>
                 <div className="flex justify-between items-center pb-2">
-                  <span className="text-sm text-foreground/60 font-mono">Followers</span>
-                  <span className="text-sm font-bold text-primary">{stats ? stats.followers : '...'}</span>
+                  <span className="text-sm text-foreground/60 font-mono">Total Stars</span>
+                  <span className="text-sm font-bold text-primary">{stats ? stats.stars : '...'}</span>
                 </div>
               </div>
             </SpotlightCard>
